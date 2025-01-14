@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply m-0 p-0;
+  }
+}
+
+@layer components {
+  .sidebar-wrapper {
+    @apply bg-cv-paper fixed top-0 w-[300px] text-black border-l border-black overflow-y-auto;
+    height: 100vh;
+    right: calc(50% - 480px);
+  }
+  
+  .main-wrapper {
+    @apply bg-cv-content p-16 lg:pr-[340px] min-h-screen;
+  }
+  
+  .section-title {
+    @apply uppercase text-xl font-bold text-black relative mt-0 mb-5 border-b border-black pb-1;
+  }
+
+  .sidebar-content {
+    @apply h-full flex flex-col;
+  }
+
+  /* Styles spécifiques pour les expériences */
+  .prose h3 {
+    @apply relative pr-32;
+  }
+
+  .prose h3 + p {
+    @apply text-gray-600 text-right font-bold mb-4;
+  }
+
+  .prose h3 + strong {
+    @apply text-gray-600 font-bold absolute right-0 top-0;
+  }
+
+  .prose h1 + p {
+    @apply mb-12;
+  }
+
+  .prose h3:not(:first-child) {
+    @apply mt-8;
+  }
+
+  /* Media queries */
+  @media (max-width: 1023px) {
+    .main-wrapper {
+      @apply p-8;
+    }
+
+    .prose h3 {
+      @apply pr-0;
+    }
+
+    .prose h3 + strong {
+      @apply relative block text-right mt-2;
+    }
+  }
+}

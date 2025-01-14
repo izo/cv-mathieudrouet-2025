@@ -1,0 +1,63 @@
+---
+---
+<div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-50 z-40 transform translate-x-full transition-transform duration-300 lg:hidden">
+  <div class="fixed right-0 top-0 h-full w-[300px] bg-cv-paper transform translate-x-full transition-transform duration-300 overflow-y-auto">
+    <button 
+      id="closeSidebar" 
+      class="absolute top-4 right-4 p-2 text-black hover:text-gray-700"
+      aria-label="Fermer le menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <slot />
+  </div>
+</div>
+
+<button 
+  id="openSidebar" 
+  class="fixed top-4 right-4 p-2 bg-cv-paper rounded-md shadow-lg text-black hover:text-gray-700 lg:hidden z-30"
+  aria-label="Ouvrir le menu">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+  </svg>
+</button>
+
+<script>
+  const sidebar = document.getElementById('mobileSidebar');
+  const sidebarContent = sidebar?.querySelector('div');
+  const openButton = document.getElementById('openSidebar');
+  const closeButton = document.getElementById('closeSidebar');
+
+  function openSidebar() {
+    sidebar?.classList.remove('translate-x-full');
+    sidebarContent?.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar?.classList.add('translate-x-full');
+    sidebarContent?.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  openButton?.addEventListener('click', openSidebar);
+  closeButton?.addEventListener('click', closeSidebar);
+  sidebar?.addEventListener('click', (e) => {
+    if (e.target === sidebar) {
+      closeSidebar();
+    }
+  });
+
+  // Gestion de l'accessibilité
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSidebar();
+    }
+  });
+
+  // Ouvrir automatiquement sur mobile au chargement
+  if (window.innerWidth < 1024) {
+    setTimeout(openSidebar, 500);
+  }
+</script>
