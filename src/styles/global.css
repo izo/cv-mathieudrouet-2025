@@ -37,7 +37,7 @@
   }
 
   .prose h3 + p {
-    @apply text-gray-600 text-right font-bold mb-4;
+    @apply text-gray-600 text-left font-bold mb-4;
   }
 
   .prose h3 + strong {
