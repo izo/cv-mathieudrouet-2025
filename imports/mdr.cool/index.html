@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://ogp.me/ns/fb#">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="https://mathisgarcia.com/img/featured_image.png" />
+  <title>Mathis Garcia</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.png">
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="profile-badge">
+        <div class="profile-image">
+          <img src="img/mat-profile.jpg" alt="Mathis Garcia" />
+        </div>
+        <p>Mathis Garcia<br />
+          <span>@matgdesign</span>
+        </p>
+      </div>
+      <div class="hero-titles">
+        <h1>Designer by day</h1>
+        <h2>Content Creator by night</h2>
+      </div>
+      <div class="hero-bio">
+        <p>My name is Mathis Garcia, I'm getting dangerously close to entering my thirties. Currently obsessed with creating content to help young designers get better and find jobs.</p>
+        <p>I've worked for startups, mid-size companies and big corporations like Adobe.</p>
+      </div>
+      <div class="hero-buttons">
+        <a href="mailto:hello@mathisgarcia.com" class="primary-button">Work with me</a>
+        <div class="social-stats">
+          <a href="https://www.instagram.com/matgdesign" target="_blank" class="stat">
+            <img src="img/hero-insta-white.svg" alt="Instagram" />
+            <span>1.2K</span>
+          </a>
+          <a href="https://www.threads.net/@matgdesign" target="_blank" class="stat">
+            <img src="img/hero-threads-white.svg" alt="Threads" />
+            <span>5.1K</span>
+          </a>
+          <a href="https://www.tiktok.com/@matgdesign" target="_blank" class="stat">
+            <img src="img/hero-tiktok-white.svg" alt="TikTok" />
+            <span>5.7K</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works Section -->
+  <h2 class="section-title">And here is a selection of my works</h2>
+  <div class="works-grid">
+    <div class="column">
+      <div class="work-item laptop" style="background-image: url(img/works/website-adobe-4.jpg);">
+      </div>
+      <div class="work-item phone" style="background-image: url(img/works/mobile-app-moments.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-adobe-5.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-qucit.jpg);">
+      </div>
+      <div class="work-item appicon" style="background-image: url(img/works/app-icon-pulse.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-actio.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-adobe-3.jpg);">
+      </div>
+    </div>
+    <div class="column">
+      <div class="work-item phone" style="background-image: url(img/works/mobile-app-pulse.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-adobe-2.jpg);">
+      </div>
+      <div class="work-item appicon" style="background-image: url(img/works/app-icon-linkstory.jpg);">
+      </div>
+      <div class="work-item phone" style="background-image: url(img/works/mobile-app-moments.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-crosscall.jpg);">
+      </div>
+      <div class="work-item appicon" style="background-image: url(img/works/app-icon-moments.jpg);">
+      </div>
+    </div>
+    <div class="column">
+      <div class="work-item appicon" style="background-image: url(img/works/app-icon-sick.jpg);">
+      </div>
+      <div class="work-item phone" style="background-image: url(img/works/mobile-app-skillgap.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-smartly.jpg);">
+      </div>
+      <div class="work-item appicon" style="background-image: url(img/works/app-icon-mates.jpg);">
+      </div>
+      <div class="work-item phone" style="background-image: url(img/works/mobile-app-linkstory.jpg);">
+      </div>
+      <div class="work-item laptop" style="background-image: url(img/works/website-adobe-1.jpg);">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-text">portfolio designed and coded by Mathis Garcia, all rights reserved.</div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Add this to your existing JavaScript or replace the existing script
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add class to body to indicate animations can start
+      document.body.classList.add('loaded');
+
+      // 3D Tilt effect for hero card
+      const heroCard = document.querySelector('.hero-card');
+      const heroCardRect = heroCard.getBoundingClientRect();
+      const maxTilt = 10; // Maximum tilt in degrees
+
+      // Create glass shine effect
+      const shineEffect = document.createElement('div');
+      shineEffect.className = 'glass-shine';
+      heroCard.appendChild(shineEffect);
+
+      // Track mouse movement over the hero card
+      heroCard.addEventListener('mousemove', (e) => {
+        // Calculate mouse position relative to the card center
+        const cardCenterX = heroCardRect.left + heroCardRect.width / 2;
+        const cardCenterY = heroCardRect.top + heroCardRect.height / 2;
+
+        // Calculate percentage from center (-1 to 1)
+        const percentX = (e.clientX - cardCenterX) / (heroCardRect.width / 2);
+        const percentY = (e.clientY - cardCenterY) / (heroCardRect.height / 2);
+
+        // Calculate tilt angles
+        const tiltX = -percentY * maxTilt; // Inverted for natural feel
+        const tiltY = percentX * maxTilt;
+
+        // Apply transform with easing
+        heroCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        // Move shine effect based on mouse position
+        const shineX = 50 + percentX * 25; // 25-75% range
+        const shineY = 50 + percentY * 25;
+        shineEffect.style.background = `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%)`;
+      });
+
+      // Reset on mouse leave
+      heroCard.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        heroCard.style.transition = 'transform 0.5s ease';
+        shineEffect.style.background = 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%)';
+      });
+
+      // Smooth transition on mouse enter
+      heroCard.addEventListener('mouseenter', () => {
+        heroCard.style.transition = 'transform 0.2s ease';
+      });
+
+      // Update card rect on window resize
+      window.addEventListener('resize', () => {
+        heroCardRect = heroCard.getBoundingClientRect();
+      });
+
+      // Continue with your existing code
+
+      // Hover effect for social stats
+      const socialStats = document.querySelectorAll('.stat');
+      socialStats.forEach(stat => {
+        stat.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+          this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+        });
+
+        stat.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = 'none';
+        });
+      });
+
+      // Work items reveal on scroll
+      const workItems = document.querySelectorAll('.work-item');
+
+      // Function to check if an element is in viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
+          rect.bottom >= 0
+        );
+      }
+
+      // Function to reveal items that are in viewport
+      function revealItems() {
+        workItems.forEach(item => {
+          if (isInViewport(item) && !item.classList.contains('revealed')) {
+            item.classList.add('revealed');
+          }
+        });
+      }
+
+      // Run on scroll
+      window.addEventListener('scroll', revealItems);
+
+      // Run once at start to catch already visible items
+      setTimeout(revealItems, 500);
+    });
+  </script>
+</body>
+
+</html>
