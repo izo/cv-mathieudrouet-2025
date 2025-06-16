@@ -1,6 +1,7 @@
 ---
 import CVLayout from '../layouts/CVLayout.astro';
 import MobileSidebar from '../components/MobileSidebar.astro';
+import SidebarContent from '../components/SidebarContent.astro';
 import { Content as CV } from '../content/cv.mdx';
 
 const title = "Mathieu Drouet - Senior Product Manager";
@@ -15,124 +16,10 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
   </div>
   
   <aside class="sidebar-wrapper hidden lg:block">
-    <div class="sidebar-content">
-      <div class="p-8 text-center border-b border-black">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-          <img 
-            src="/profile.jpg" 
-            alt="Mathieu Drouet" 
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <h1 class="text-3xl font-black mb-2 mt-0">Mathieu Drouet</h1>
-        <p class="text-base font-normal mt-0 mb-0">Senior Product Manager</p>
-      </div>
-      
-      <!-- Reste du contenu de la sidebar inchangé -->
-      <div class="p-8 border-b border-black">
-        <h2 class="section-title">Contact</h2>
-        <ul class="space-y-4 list-none p-0">
-          <li>
-            <a href="tel:0767144874" class="font-bold hover:text-gray-700">07 67 14 48 74</a>
-          </li>
-          <li>
-            <a href="mailto:mathieu@drouet.io" class="font-bold hover:text-gray-700">mathieu@drouet.io</a>
-          </li>
-          <li>
-            Lille / Paris / Bruxelles
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/mathieudrouet/" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://github.com/izo" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">GitHub</a>
-          </li>
-          <li>
-            <a href="https://mathieu-drouet.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">Portfolio photographique</a>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="p-8 border-b border-black">
-        <h2 class="section-title">Langues</h2>
-        <ul class="space-y-2.5 list-none p-0">
-          <li>Français - Natif</li>
-          <li>Anglais - Professionnel</li>
-          <li>Espagnol - Intermédiaire</li>
-        </ul>
-      </div>
-      
-      <div class="p-8">
-        <h2 class="section-title">Intérêts</h2>
-        <ul class="space-y-2.5 list-none p-0">
-          <li>Musique</li>
-          <li>Photographie</li>
-          <li>Permaculture</li>
-          <li>Art numérique</li>
-          <li>Archéologie</li>
-        </ul>
-      </div>
-    </div>
+    <SidebarContent />
   </aside>
 
   <MobileSidebar>
-    <div class="sidebar-content">
-      <div class="p-8 text-center border-b border-black">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-          <img 
-            src="/profile.jpg" 
-            alt="Mathieu Drouet" 
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <h1 class="text-3xl font-black mb-2 mt-0">Mathieu Drouet</h1>
-        <p class="text-base font-normal mt-0 mb-0">Senior Product Manager</p>
-      </div>
-      
-      <!-- Reste du contenu de la sidebar mobile inchangé -->
-      <div class="p-8 border-b border-black">
-        <h2 class="section-title">Contact</h2>
-        <ul class="space-y-4 list-none p-0">
-          <li>
-            <a href="tel:0767144874" class="font-bold hover:text-gray-700">07 67 14 48 74</a>
-          </li>
-          <li>
-            <a href="mailto:mathieu@drouet.io" class="font-bold hover:text-gray-700">mathieu@drouet.io</a>
-          </li>
-          <li>
-            Lille / Paris / Bruxelles
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/mathieudrouet/" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://github.com/izo" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">GitHub</a>
-          </li>
-          <li>
-            <a href="https://mathieu-drouet.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-gray-700">Portfolio photographique</a>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="p-8 border-b border-black">
-        <h2 class="section-title">Langues</h2>
-        <ul class="space-y-2.5 list-none p-0">
-          <li>Français - Natif</li>
-          <li>Anglais - Professionnel</li>
-          <li>Espagnol - Intermédiaire</li>
-        </ul>
-      </div>
-      
-      <div class="p-8">
-        <h2 class="section-title">Intérêts</h2>
-        <ul class="space-y-2.5 list-none p-0">
-          <li>Musique</li>
-          <li>Photographie</li>
-          <li>Permaculture</li>
-          <li>Art numérique</li>
-          <li>Archéologie</li>
-        </ul>
-      </div>
-    </div>
+    <SidebarContent />
   </MobileSidebar>
 </CVLayout>

@@ -40,7 +40,8 @@
     @apply text-gray-600 text-left font-bold mb-4;
   }
 
-  .prose h3 + strong {
+  /* Style pour les dates dans les h3 */
+  .prose h3 strong:last-child {
     @apply text-gray-600 font-bold absolute right-0 top-0;
   }
 
@@ -62,7 +63,7 @@
       @apply pr-0;
     }
 
-    .prose h3 + strong {
+    .prose h3 strong:last-child {
       @apply relative block text-right mt-2;
     }
   }
