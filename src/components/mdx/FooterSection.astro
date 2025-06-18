@@ -1,0 +1,36 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="space-y-6">
+  <h2 class="text-section font-semibold text-cv-content">{title}</h2>
+  <div class="footer-section-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .footer-section-content :global(p) {
+    @apply text-sm text-cv-muted leading-relaxed;
+  }
+  
+  .footer-section-content :global(ul) {
+    @apply space-y-3;
+  }
+  
+  .footer-section-content :global(ul li) {
+    @apply text-sm;
+  }
+  
+  .footer-section-content :global(ul li::before) {
+    content: none;
+  }
+  
+  .footer-section-content :global(a) {
+    @apply text-cv-muted hover:text-cv-accent transition-colors;
+  }
+</style>
