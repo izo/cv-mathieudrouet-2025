@@ -4,12 +4,43 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cv-bg': 'rgb(143, 135, 113)',
-        'cv-paper': '#F2EFE6',
-        'cv-content': '#FCFBF8'
+        'cv-bg': '#FFFFFF',
+        'cv-paper': '#FFFFFF',
+        'cv-content': '#000000',
+        'cv-muted': 'rgba(0, 0, 0, 0.6)',
+        'cv-light': 'rgba(0, 0, 0, 0.8)',
+        'cv-card': '#F3F3F3',
+        'cv-accent': '#0086F7',
+        'cv-section': 'rgba(0, 0, 0, 0.04)'
       },
       fontFamily: {
+        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
         'cormorant': ['Cormorant', 'serif']
+      },
+      fontSize: {
+        'hero': ['3.5rem', { lineHeight: '1', fontWeight: '600' }],      // ~56px for main title
+        'section': ['2rem', { lineHeight: '1.1', fontWeight: '600' }],   // 32px for section titles  
+        'company': ['1.375rem', { lineHeight: '1.3', fontWeight: '600' }], // 22px for company names
+        'role': ['1.375rem', { lineHeight: '1.3', fontWeight: '400' }],    // 22px for roles
+        'date': ['1.125rem', { lineHeight: '1.3', fontWeight: '400' }],    // 18px for dates
+        'body': ['1rem', { lineHeight: '1.5', fontWeight: '400' }],        // 16px for body text
+        '4xl': '2.5rem',
+        '3xl': '2rem',
+        '2xl': '1.5rem'
+      },
+      spacing: {
+        'section': '2rem',   // 32px spacing between sections
+        'card': '2rem',      // 32px padding inside cards
+        'page': '4rem'       // 64px left margin
+      },
+      borderRadius: {
+        'card': '2rem'       // 32px border radius
+      },
+      fontWeight: {
+        'normal': '400',
+        'medium': '500',
+        'semibold': '590',
+        'bold': '700'
       },
       typography: {
         DEFAULT: {

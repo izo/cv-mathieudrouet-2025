@@ -19,9 +19,11 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
   - `CVLayout.astro`: Specific CV layout with sidebar (desktop) and mobile sidebar (responsive)
 - **Component Organization**:
   - `Card.astro`: Reusable card component for section containers
+  - `ExperienceCard.astro`: Work experience display with company links, roles, and descriptions
+  - `SidebarContent.astro`: Contact info, languages, and interests
   - `MobileSidebar.astro`: Responsive navigation for mobile devices
 - **Styling Architecture**: Tailwind CSS with custom theme configuration in `tailwind.config.mjs`:
-  - Custom colors: `cv-bg` (background), `cv-paper` (paper texture), `cv-content` (text)
+  - Custom colors: `cv-bg` (background), `cv-paper` (paper texture), `cv-content` (text), `cv-muted`, `cv-light`, `cv-card`, `cv-accent`
   - Custom typography using Cormorant serif font
   - Extensive typography plugin customization for professional appearance
 
@@ -32,7 +34,7 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
 - **Props**: Define interfaces for component props with clear types
 - **Formatting**: Use consistent indentation (2 spaces) and meaningful variable names
 - **Imports**: Group imports by type (Astro, React, utilities)
-- **Custom Colors**: Use predefined colors from tailwind.config.mjs (cv-bg, cv-paper, cv-content)
+- **Custom Colors**: Use predefined colors from tailwind.config.mjs (cv-bg, cv-paper, cv-content, etc.)
 - **Error Handling**: Use appropriate error handling for async operations
 - **Naming**: Use camelCase for variables/functions, PascalCase for components
 

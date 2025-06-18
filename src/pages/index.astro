@@ -1,25 +1,253 @@
 ---
 import CVLayout from '../layouts/CVLayout.astro';
-import MobileSidebar from '../components/MobileSidebar.astro';
-import SidebarContent from '../components/SidebarContent.astro';
-import { Content as CV } from '../content/cv.mdx';
 
 const title = "Mathieu Drouet - Senior Product Manager";
 const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale.";
+
+const experiences = [
+  {
+    company: "CH-Studio - GEHealthcare",
+    companyUrl: "https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/",
+    role: "Senior Product Manager",
+    period: "2025",
+    current: true,
+    description: [
+      "Réalisé un audit stratégique de la plateforme interne Sherlock pour GE HealthCare",
+      "Conduit une analyse croisée des usages (logs, sondages, interviews)",
+      "Produit une cartographie des parcours utilisateurs et évaluation de la gouvernance",
+      "Livré un rapport de recommandations stratégiques pour la roadmap"
+    ],
+    logo: "ch-studio"
+  },
+  {
+    company: "Group Actual",
+    companyUrl: "https://www.groupeactual.eu/",
+    role: "Senior Product Manager",
+    period: "2023 - 2024",
+    description: [
+      "Développé une solution de gestion des comptes épargne-temps, réduisant le temps administratif de 25%",
+      "Conçu une stratégie produit pour moderniser une application legacy DAF",
+      "Encadré des équipes Agile pour aligner les objectifs métiers et techniques"
+    ],
+    logo: "actual"
+  },
+  {
+    company: "Bookr.fm",
+    companyUrl: "https://bookr.fm/",
+    role: "Senior Product Manager",
+    period: "2021 - 2024",
+    description: [
+      "Conduit le développement d'un outil de gestion de festivals",
+      "Supervisé la stratégie produit, le go-to-market et l'UX/UI",
+      "Intégration réussie dans les workflows clients"
+    ],
+    logo: "bookr"
+  },
+  {
+    company: "Fluidra",
+    companyUrl: "https://www.fluidra.com/",
+    role: "Senior Product Manager, IoT",
+    period: "2018 - 2021",
+    description: [
+      "Développé des applications iOS et Android pour Blue Connect avec Flutter",
+      "Supervisé l'UX/UI, augmentant la satisfaction utilisateur de 35%",
+      "Géré le lancement du produit aux États-Unis"
+    ],
+    logo: "fluidra"
+  }
+];
+
+const education = [
+  {
+    period: "2022",
+    title: "Programmation iOS - Swift",
+    subtitle: "Simplon.co - Lille"
+  },
+  {
+    period: "1997 - 1999",
+    title: "Photographie / Histoire de l'art",
+    subtitle: "Institut Supérieur d'Architecture Saint-Luc"
+  }
+];
+
+const skills = {
+  productManagement: ["Roadmap produit", "Stratégie go-to-market", "OKR", "User research", "A/B testing"],
+  technologies: ["HTML/CSS", "Node.js", "Flutter", "SwiftUI", "WordPress", "Drupal"],
+  tools: ["Jira", "Confluence", "Notion", "Figma", "VS Code"],
+  languages: ["Français", "Anglais", "Espagnol"]
+};
+
+const interests = ["Technologies", "Innovation", "Photographie", "Architecture", "Sport"];
 ---
 
 <CVLayout title={title} description={description}>
-  <div class="main-wrapper">
-    <div class="prose prose-lg max-w-none">
-      <CV />
-    </div>
-  </div>
-  
-  <aside class="sidebar-wrapper hidden lg:block">
-    <SidebarContent />
-  </aside>
+  <div class="pl-page pr-8 py-8">
+    <!-- Header -->
+    <header class="mb-section">
+      <h1 class="text-hero text-cv-content font-semibold">Mathieu Drouet</h1>
+    </header>
 
-  <MobileSidebar>
-    <SidebarContent />
-  </MobileSidebar>
+    <!-- 3 Column Layout Section -->
+    <div class="grid grid-cols-3 gap-section mb-section">
+      <!-- Education -->
+      <div class="bg-cv-card rounded-card p-card">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Education</h2>
+        <div class="space-y-4">
+          {education.map((edu) => (
+            <div>
+              <p class="text-date text-cv-muted mb-1">{edu.period}</p>
+              <h3 class="text-role text-cv-content font-semibold">{edu.title}</h3>
+              <p class="text-body text-cv-muted">{edu.subtitle}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="bg-cv-card rounded-card p-card">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Contact Info</h2>
+        <div class="space-y-4">
+          <div>
+            <p class="text-body text-cv-muted">Email: hello@mathieu-drouet.com</p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">Portfolio: <a href="https://cv.mathieu-drouet.com" class="text-cv-accent">cv.mathieu-drouet.com</a></p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">LinkedIn: linkedin.com/in/mathieu-drouet</p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">Lille, France</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="bg-cv-card rounded-card p-card">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Interests</h2>
+        <div class="grid grid-cols-2 gap-x-12 gap-y-4">
+          {interests.map((interest) => (
+            <p class="text-body text-cv-muted">{interest}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section class="mb-section">
+      <div class="flex items-baseline gap-4 mb-8">
+        <h2 class="text-section text-cv-content font-semibold">Experience</h2>
+        <span class="text-body text-cv-muted">10+ years</span>
+      </div>
+      
+      <div class="space-y-section">
+        {experiences.map((exp) => (
+          <div class="bg-cv-card rounded-card p-card">
+            <div class="grid grid-cols-[4rem_1fr] gap-6">
+              <!-- Logo Column -->
+              <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+                {exp.logo === "ch-studio" && (
+                  <div class="w-full h-full bg-red-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white text-xl font-bold">CH</span>
+                  </div>
+                )}
+                {exp.logo === "actual" && (
+                  <div class="w-full h-full bg-orange-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-rocket text-white text-xl"></i>
+                  </div>
+                )}
+                {exp.logo === "bookr" && (
+                  <div class="w-full h-full bg-red-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-caret-down text-white text-xl"></i>
+                  </div>
+                )}
+                {exp.logo === "fluidra" && (
+                  <div class="w-full h-full bg-blue-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-hexagon text-white text-xl"></i>
+                  </div>
+                )}
+              </div>
+              
+              <!-- Content Column -->
+              <div>
+                <div class="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 class="text-company text-cv-content font-semibold">
+                      <span class="text-cv-muted font-normal">Company:</span> {exp.companyUrl ? <a href={exp.companyUrl} target="_blank" class="hover:underline">{exp.company}</a> : exp.company}
+                    </h3>
+                    <p class="text-role text-cv-muted">{exp.role}</p>
+                  </div>
+                  <p class={`text-date ${exp.current ? 'text-cv-accent' : 'text-cv-muted'}`}>
+                    {exp.period}
+                  </p>
+                </div>
+                
+                <ul class="space-y-2">
+                  {exp.description.map((item) => (
+                    <li class="text-body text-cv-content flex">
+                      <span class="mr-3">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+      <h2 class="text-section text-cv-content font-semibold mb-8">Skills</h2>
+      
+      <div class="grid grid-cols-4 gap-8">
+        <!-- Product Management -->
+        <div class="bg-cv-card rounded-card p-card">
+          <h3 class="text-company text-cv-content font-semibold mb-4">Product Management</h3>
+          <div class="flex gap-3 mb-4">
+            <i class="fas fa-chart-line text-2xl text-blue-600"></i>
+            <i class="fas fa-tasks text-2xl text-green-600"></i>
+            <i class="fas fa-users text-2xl text-purple-600"></i>
+          </div>
+          <p class="text-body text-cv-muted">{skills.productManagement.join(", ")}.</p>
+        </div>
+
+        <!-- Technologies -->
+        <div class="bg-cv-card rounded-card p-card">
+          <h3 class="text-company text-cv-content font-semibold mb-4">Technologies</h3>
+          <div class="flex gap-3 mb-4">
+            <i class="fab fa-html5 text-2xl text-orange-500"></i>
+            <i class="fab fa-node-js text-2xl text-green-500"></i>
+            <i class="fas fa-mobile-alt text-2xl text-blue-500"></i>
+            <i class="fab fa-wordpress text-2xl text-blue-600"></i>
+          </div>
+          <p class="text-body text-cv-muted">{skills.technologies.join(", ")}.</p>
+        </div>
+
+        <!-- Tools -->
+        <div class="bg-cv-card rounded-card p-card">
+          <h3 class="text-company text-cv-content font-semibold mb-4">Tools</h3>
+          <div class="flex gap-3 mb-4">
+            <i class="fab fa-jira text-2xl text-blue-500"></i>
+            <i class="fab fa-confluence text-2xl text-blue-600"></i>
+            <i class="fab fa-figma text-2xl text-purple-600"></i>
+          </div>
+          <p class="text-body text-cv-muted">{skills.tools.join(", ")}.</p>
+        </div>
+
+        <!-- Languages -->
+        <div class="bg-cv-card rounded-card p-card">
+          <h3 class="text-company text-cv-content font-semibold mb-4">Languages</h3>
+          <div class="flex gap-3 mb-4">
+            <span class="text-2xl">🇫🇷</span>
+            <span class="text-2xl">🇬🇧</span>
+            <span class="text-2xl">🇪🇸</span>
+            <span class="text-2xl">🇵🇹</span>
+          </div>
+          <p class="text-body text-cv-muted">{skills.languages.join(", ")}.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </CVLayout>

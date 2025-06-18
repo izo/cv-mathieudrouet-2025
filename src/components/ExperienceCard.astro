@@ -1,0 +1,57 @@
+---
+interface Props {
+  company: string;
+  companyUrl?: string;
+  role: string;
+  period: string;
+  current?: boolean;
+  logo?: string;
+  description: string[];
+}
+
+const { company, companyUrl, role, period, current = false, logo, description } = Astro.props;
+---
+
+<div class="px-8 py-6 bg-cv-card rounded-card flex flex-col lg:flex-row gap-6 lg:gap-12">
+  <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6 lg:flex-1">
+    <div class="flex items-center gap-4">
+      {logo && (
+        <img 
+          src={logo} 
+          alt={`${company} logo`} 
+          class="w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover"
+        />
+      )}
+      <div class="flex-1">
+        <h3 class="text-2xl lg:text-3xl font-bold text-cv-content m-0">
+          {companyUrl ? (
+            <a href={companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-cv-accent transition-colors">
+              {company}
+            </a>
+          ) : (
+            company
+          )}
+        </h3>
+        <p class="text-xl lg:text-2xl text-cv-muted m-0">{role}</p>
+      </div>
+    </div>
+    <div class="lg:ml-auto">
+      {current ? (
+        <span class="inline-flex px-4 py-2 rounded-2xl text-base lg:text-lg font-semibold text-cv-accent border-2 border-cv-accent">
+          {period}
+        </span>
+      ) : (
+        <span class="inline-flex px-4 py-2 rounded-2xl text-base lg:text-lg text-cv-muted bg-white">
+          {period}
+        </span>
+      )}
+    </div>
+  </div>
+  <div class="lg:flex-1">
+    <ul class="text-base lg:text-lg text-cv-light space-y-2 m-0 list-disc list-inside">
+      {description.map((item) => (
+        <li class="leading-relaxed">{item}</li>
+      ))}
+    </ul>
+  </div>
+</div>
