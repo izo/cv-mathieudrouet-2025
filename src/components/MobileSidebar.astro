@@ -1,22 +1,24 @@
 ---
 ---
-<div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-50 z-40 transform translate-x-full transition-transform duration-300 lg:hidden">
-  <div class="fixed right-0 top-0 h-full w-[300px] bg-cv-paper transform translate-x-full transition-transform duration-300 overflow-y-auto">
-    <button 
-      id="closeSidebar" 
-      class="absolute top-4 right-4 p-2 text-black hover:text-gray-700"
-      aria-label="Fermer le menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-    <slot />
+<div id="mobileSidebar" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transform translate-x-full transition-all duration-300 lg:hidden">
+  <div class="fixed right-0 top-0 h-full w-[300px] transform translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div class="h-full bg-cv-glass backdrop-blur-heavy border-l border-cv-glass-border shadow-glass">
+      <button 
+        id="closeSidebar" 
+        class="absolute top-4 right-4 p-2 text-cv-content hover:text-cv-muted transition-colors"
+        aria-label="Fermer le menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <slot />
+    </div>
   </div>
 </div>
 
 <button 
   id="openSidebar" 
-  class="fixed top-4 right-4 p-2 bg-cv-paper rounded-md shadow-lg text-black hover:text-gray-700 lg:hidden z-30"
+  class="fixed top-4 right-4 p-3 bg-cv-glass backdrop-blur-glass rounded-2xl shadow-glass border border-cv-glass-border text-cv-content hover:bg-white/40 transition-all lg:hidden z-30"
   aria-label="Ouvrir le menu">
   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
