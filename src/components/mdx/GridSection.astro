@@ -1,0 +1,11 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={`grid grid-cols-3 gap-section mb-section ${className || ''}`}>
+  <slot />
+</div>

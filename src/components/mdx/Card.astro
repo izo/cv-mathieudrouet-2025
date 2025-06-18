@@ -1,0 +1,12 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="glass-card">
+  <h2 class="text-section text-cv-content font-semibold mb-4">{title}</h2>
+  <slot />
+</div>

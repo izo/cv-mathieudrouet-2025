@@ -1,0 +1,49 @@
+---
+import CVLayout from '../layouts/CVLayout.astro';
+import CV2Content from '../content/cv2.mdx';
+
+const title = "Mathieu Drouet - Senior Product Manager";
+const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale.";
+---
+
+<CVLayout title={title} description={description}>
+  <div class="pl-page pr-8 pt-8 pb-16">
+    <div class="prose prose-cv max-w-none">
+      <CV2Content />
+    </div>
+  </div>
+</CVLayout>
+
+<style>
+  .prose-cv {
+    --tw-prose-body: theme('colors.cv-content');
+    --tw-prose-headings: theme('colors.cv-content');
+    --tw-prose-links: theme('colors.cv-accent');
+    --tw-prose-bold: theme('colors.cv-content');
+    --tw-prose-bullets: theme('colors.cv-muted');
+  }
+  
+  .prose-cv h1 {
+    @apply text-hero font-semibold mb-section;
+  }
+  
+  .prose-cv h2 {
+    @apply text-section font-semibold mb-4 mt-section;
+  }
+  
+  .prose-cv h3 {
+    @apply text-company font-semibold mb-2;
+  }
+  
+  .prose-cv ul {
+    @apply space-y-2;
+  }
+  
+  .prose-cv li {
+    @apply text-body;
+  }
+  
+  .prose-cv p {
+    @apply text-body mb-4;
+  }
+</style>
