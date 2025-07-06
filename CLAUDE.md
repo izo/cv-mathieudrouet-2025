@@ -40,4 +40,4 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
 - `astro.config.mjs`: Configures Tailwind and MDX integrations
 - `tailwind.config.mjs`: Contains custom theme, colors, and typography settings
 - `tsconfig.json`: TypeScript configuration extending Astro's base
-- `renovate.json`: Automated dependency updates configuration
+- `renovate.json`: Automated dependency updates configuration.
