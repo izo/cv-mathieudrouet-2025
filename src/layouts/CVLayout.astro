@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Card } from '../components/ui/card';
 
 interface Props {
   title: string;
@@ -21,8 +22,8 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="min-h-full bg-cv-bg font-cormorant text-lg antialiased">
-    <div class="max-w-[960px] mx-auto bg-cv-paper border border-cv-paper min-h-screen">
+    <Card className="max-w-[960px] mx-auto bg-cv-paper border border-cv-paper min-h-screen">
       <slot />
-    </div>
+    </Card>
   </body>
 </html>
