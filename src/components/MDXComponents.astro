@@ -26,7 +26,15 @@ const { company, companyUrl, role, period, current, logo } = Astro.props;
       <div>
         <div class="flex items-start justify-between mb-4">
           <div>
-            <h3 class="text-company text-cv-content font-semibold">
+            <h3 class="flex gap-2 text-sm text-black dark:text-white mb-1 items-center">
+              <span class="shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server icons-base">
+                  <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+                  <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+                  <line x1="6" x2="6.01" y1="6" y2="6"></line>
+                  <line x1="6" x2="6.01" y1="18" y2="18"></line>
+                </svg>
+              </span>
               <span class="text-cv-muted font-normal">Company:</span> 
               {companyUrl ? (
                 <a href={companyUrl} target="_blank" class="hover:underline">{company}</a>

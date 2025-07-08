@@ -4,16 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cv-bg': '#F5F5F7',
-        'cv-paper': 'rgba(255, 255, 255, 0.7)',
-        'cv-content': '#1D1D1F',
-        'cv-muted': 'rgba(29, 29, 31, 0.6)',
-        'cv-light': 'rgba(29, 29, 31, 0.8)',
-        'cv-card': 'rgba(255, 255, 255, 0.5)',
-        'cv-accent': '#0071E3',
-        'cv-section': 'rgba(255, 255, 255, 0.3)',
-        'cv-glass': 'rgba(255, 255, 255, 0.25)',
-        'cv-glass-border': 'rgba(255, 255, 255, 0.18)'
+        // CSS Variables for theming
+        'cv-bg': 'var(--cv-bg)',
+        'cv-paper': 'var(--cv-paper)',
+        'cv-content': 'var(--cv-content)',
+        'cv-muted': 'var(--cv-muted)',
+        'cv-light': 'var(--cv-light)',
+        'cv-card': 'var(--cv-card)',
+        'cv-accent': 'var(--cv-accent)',
+        'cv-section': 'var(--cv-section)',
+        'cv-glass': 'var(--cv-glass)',
+        'cv-glass-border': 'var(--cv-glass-border)',
+        // Brutalist additions
+        'cv-secondary': 'var(--cv-secondary)',
+        'cv-border': 'var(--cv-border)',
+        'cv-shadow': 'var(--cv-shadow)'
       },
       backdropBlur: {
         'xs': '2px',
@@ -29,19 +34,26 @@ export default {
         'glass-shine': 'linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.7) 50%, transparent 60%)',
         // Reflets et lumière
         'light-leak': 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%)',
-        'aurora': 'linear-gradient(45deg, rgba(255, 119, 181, 0.1) 0%, rgba(255, 185, 120, 0.1) 50%, rgba(120, 255, 214, 0.1) 100%)'
+        'aurora': 'linear-gradient(45deg, rgba(255, 119, 181, 0.1) 0%, rgba(255, 185, 120, 0.1) 50%, rgba(120, 255, 214, 0.1) 100%)',
+        // Square gradient background
+        'square-gradient': 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)'
       },
       boxShadow: {
-        // Ombres multicouches pour la profondeur
+        // Glass shadows (original)
         'glass-sm': '0 2px 8px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
         'glass': '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 2px 0 0 rgba(255, 255, 255, 0.2)',
         'glass-lg': '0 20px 70px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.2)',
         'glass-inset': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
-        'glass-border': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)'
+        'glass-border': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+        // Zed shadows
+        'zed': '0 4px 24px hsla(218, 13%, 6%, 0.3)',
+        'zed-lg': '0 8px 32px hsla(218, 13%, 6%, 0.4)',
+        'zed-hover': '0 2px 8px hsla(218, 13%, 6%, 0.2)'
       },
       fontFamily: {
         'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        'cormorant': ['Cormorant', 'serif']
+        'cormorant': ['Cormorant', 'serif'],
+        'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif']
       },
       fontSize: {
         'hero': ['3.5rem', { lineHeight: '1', fontWeight: '600' }],      // ~56px for main title

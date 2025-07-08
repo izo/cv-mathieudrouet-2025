@@ -3,17 +3,82 @@
 @tailwind utilities;
 
 @layer base {
+  /* ===== THEME SYSTEM ===== */
+  
+  /* Default Theme: Liquid Glass */
+  :root {
+    --cv-bg: #fdfdfd;
+    --cv-paper: rgba(255, 255, 255, 0.7);
+    --cv-content: #1D1D1F;
+    --cv-muted: rgba(29, 29, 31, 0.6);
+    --cv-light: rgba(29, 29, 31, 0.8);
+    --cv-card: rgba(255, 255, 255, 0.5);
+    --cv-accent: #0071E3;
+    --cv-section: rgba(255, 255, 255, 0.3);
+    --cv-glass: rgba(255, 255, 255, 0.25);
+    --cv-glass-border: rgba(255, 255, 255, 0.18);
+    --cv-secondary: #007AFF;
+    --cv-border: rgba(255, 255, 255, 0.2);
+    --cv-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Theme mode */
+    --theme-mode: 'liquid-glass';
+    --font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI';
+    --background-image: url('/background.jpg');
+  }
+
+  /* Zed Theme: Based on real screenshots */
+  [data-theme="zed"] {
+    /* Clean colors from screenshots */
+    --cv-bg: #fdfdfd;                    /* Almost white background */
+    --cv-paper: #ffffff;                 /* Pure white */
+    --cv-content: #333333;               /* Dark gray text */
+    --cv-muted: #666666;                 /* Medium gray */
+    --cv-light: #999999;                 /* Light gray */
+    --cv-card: #ffffff;                  /* White cards */
+    --cv-accent: #0751cf;                /* Exact Zed accent blue */
+    --cv-section: #f8f9fa;               /* Very light gray */
+    --cv-glass: #ffffff;                 /* Pure white */
+    --cv-glass-border: #e5e7eb;          /* Light border */
+    --cv-secondary: #2563eb;             /* Clean blue */
+    --cv-border: #e5e7eb;                /* Light gray border */
+    --cv-shadow: rgba(0, 0, 0, 0.05);    /* Subtle shadow */
+    
+    --theme-mode: 'zed';
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-lora: '__lora_1fc044', '__lora_Fallback_1fc044';
+    --font-agrandir: '__agrandir_24f3dc', '__agrandir_Fallback_24f3dc';
+    --font-writer: '__writer_1deb74', '__writer_Fallback_1deb74';
+    --background-image: none;
+    
+    /* Simple typography sizes */
+    --text-body: 16px;
+    --text-caption: 14px;
+    --h1-size: 2rem;
+    --h2-size: 1.5rem;
+    --h3-size: 1.25rem;
+  }
+
   html {
     @apply h-full;
   }
 
   body {
     @apply m-0 p-0 min-h-screen;
-    background-image: url('/background.jpg');
+    background-color: var(--cv-bg);
+    background-image: var(--background-image);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+  }
+
+  /* Hide background image for Zed theme */
+  [data-theme="zed"] body {
+    background-image: none;
+    background-color: var(--cv-bg);
   }
 
   /* Optimisation des performances */
@@ -63,6 +128,171 @@
 }
 
 @layer components {
+  /* Zed-style layout system */
+  [data-theme="zed"] .zed-section {
+    @apply mx-auto w-full relative isolate grid grid-cols-1 justify-center lg:grid-cols-2 gap-4 lg:gap-32;
+    max-width: 640px; /* --breakpoint-sm */
+  }
+  
+  @media (min-width: 768px) {
+    [data-theme="zed"] .zed-section {
+      max-width: 1100px;
+    }
+  }
+  
+  [data-theme="zed"] .zed-content {
+    @apply mx-auto flex flex-col gap-7 lg:m-0;
+  }
+  
+  [data-theme="zed"] .zed-hgroup {
+    @apply flex flex-col items-center lg:items-start;
+  }
+  
+  /* Zed typography - Lora for titles like the real site */
+  [data-theme="zed"] h1,
+  [data-theme="zed"] .h1,
+  [data-theme="zed"] .h0 {
+    font-family: var(--font-lora);
+    font-size: clamp(2.25rem, 1.5rem + 2.5vw, 3rem); /* .h0 size from guide */
+    font-weight: 400; /* font-normal from HTML */
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--cv-accent); /* text-accent-blue from HTML */
+    text-align: center; /* text-center from HTML */
+    text-wrap: balance; /* !text-balance from HTML */
+    @apply text-pretty scroll-mt-24 my-2;
+  }
+  
+  @media (min-width: 1024px) {
+    [data-theme="zed"] h1,
+    [data-theme="zed"] .h1,
+    [data-theme="zed"] .h0 {
+      text-align: left; /* lg:text-left */
+    }
+  }
+  
+  [data-theme="zed"] h2,
+  [data-theme="zed"] .h2 {
+    font-family: var(--font-lora);
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 1.7rem); /* .h2 from guide */
+    font-weight: 500; /* font-medium */
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    color: var(--cv-accent); /* text-accent-blue */
+    @apply text-pretty scroll-mt-24 mb-2 text-balance text-center;
+  }
+  
+  [data-theme="zed"] h3,
+  [data-theme="zed"] .h3 {
+    font-family: var(--font-agrandir);
+    font-size: clamp(1.15rem, 1rem + 0.75vw, 1.35rem); /* .h3 from guide */
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--cv-content);
+  }
+  
+  [data-theme="zed"] p,
+  [data-theme="zed"] li {
+    font-family: var(--font-writer);
+    font-size: 16px; /* --text-body from guide */
+    line-height: 1.44; /* 144% from guide */
+    color: var(--cv-muted);
+    @apply tracking-tight text-center text-balance lg:text-left;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 1024px) {
+    [data-theme="zed"] p,
+    [data-theme="zed"] li {
+      margin: 0;
+    }
+  }
+
+  [data-theme="zed"] .text-caption {
+    font-family: var(--font-writer);
+    font-size: 14px; /* --text-caption from guide */
+    line-height: 1.44;
+    color: var(--cv-muted);
+  }
+
+  /* Add Zed accent blue color like the real site */
+  [data-theme="zed"] .text-accent-blue {
+    color: var(--cv-accent);
+  }
+
+  /* Simple Zed-style header */
+  [data-theme="zed"] .zed-header {
+    background: var(--cv-bg);
+    border-bottom: 1px solid var(--cv-border);
+  }
+
+  [data-theme="zed"] .zed-nav {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  [data-theme="zed"] .zed-nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  [data-theme="zed"] .zed-logo {
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--cv-content);
+  }
+
+  [data-theme="zed"] .zed-nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  [data-theme="zed"] .zed-nav-item {
+    font-size: 1rem;
+    color: var(--cv-muted);
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+
+  [data-theme="zed"] .zed-nav-item:hover {
+    color: var(--cv-content);
+  }
+
+  /* Simple container system */
+  .zed-container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px);
+    padding: 3rem 2rem;
+  }
+
+  .glass-wrapper {
+    position: absolute;
+    inset: 2rem 1rem;
+    border-radius: 2rem;
+    pointer-events: none;
+  }
+
+  /* Clean layout for Zed theme */
+  [data-theme="zed"] .glass-wrapper {
+    display: none;
+  }
+
+  [data-theme="zed"] .zed-container {
+    max-width: 1200px;
+    padding: 4rem 2rem;
+  }
+
   .sidebar-wrapper {
     @apply fixed top-0 w-[300px] text-cv-content overflow-hidden;
     height: 100vh;
@@ -108,27 +338,125 @@
     @apply h-full flex flex-col;
   }
 
-  /* Glass card component */
+  /* Glass card component with theme support */
   .glass-card {
-    @apply relative rounded-[1.5rem] p-card overflow-hidden;
-    @apply backdrop-blur-glass;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.65) 0%,
-      rgba(255, 255, 255, 0.45) 100%
-    );
-    @apply shadow-glass border border-white/20;
+    @apply relative overflow-hidden;
+    background: var(--cv-card);
+    border: 1px solid #93c5fd;
+    color: var(--cv-content);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Default Liquid Glass styles */
+    @apply rounded-[1.5rem] p-card backdrop-blur-glass shadow-glass;
+  }
+
+  /* Square gradient background card */
+  .square-gradient-bg {
+    @apply bg-square-gradient;
+  }
+
+  /* Modern grid background */
+  .modern-grid-bg {
+    width: 100%;
+    height: 100%;
+    --color: rgba(114, 114, 114, 0.15);
+    background-color: rgba(255, 255, 255, 0.85);
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+        linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+    background-size: 30px 30px;
+  }
+
+  /* Pattern boxes fallback */
+  .pattern-boxes {
+    background-color: white;
+    background-image: 
+      linear-gradient(0deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent);
+    background-size: 24px 24px;
+    border: 1px solid #93c5fd;
+  }
+
+  /* Dark mode version */
+  .dark .modern-grid-bg {
+    --color: rgba(114, 114, 114, 0.3);
+    background-color: #191a1a;
+  }
+
+  /* Shadow alternative style */
+  .sh-alt {
+    box-shadow: 0 4px 24px hsla(218, 13%, 6%, 0.1);
+  }
+
+  /* Offgray color variants */
+  .text-offgray-900 {
+    color: rgb(17, 17, 17);
+  }
+  
+  .text-offgray-100 {
+    color: rgb(243, 243, 243);
+  }
+  
+  .text-offgray-200 {
+    color: rgb(229, 229, 229);
+  }
+  
+  .text-offgray-300 {
+    color: rgb(209, 209, 209);
+  }
+  
+  .text-offgray-700 {
+    color: rgb(64, 64, 64);
+  }
+
+  /* Rounded variants */
+  .rounded-xs {
+    border-radius: 0.125rem;
+  }
+
+  /* Monospace font for ALL h3 elements */
+  h3 {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace !important;
+  }
+
+  /* Harmonize size for flex h3 elements */
+  h3.flex {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
   }
 
   .glass-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) !important;
     @apply shadow-glass-lg;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.75) 0%,
-      rgba(255, 255, 255, 0.55) 100%
-    );
+    background-color: white !important;
+    background-image: 
+      linear-gradient(0deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent) !important;
+    background-size: 24px 24px !important;
+    border-radius: 0 !important;
+  }
+
+  /* Zed theme overrides - Clean from screenshots */
+  [data-theme="zed"] body {
+    background-color: var(--cv-bg);
+    background-image: none;
+    color: var(--cv-content);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  [data-theme="zed"] .glass-card {
+    background: var(--cv-card);
+    border: 1px solid var(--cv-border);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-family);
+    padding: 1.5rem 2rem;
+    transition: all 0.2s ease;
+    backdrop-filter: none;
+  }
+
+  [data-theme="zed"] .glass-card:hover {
+    border-color: var(--cv-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .glass-card::before {

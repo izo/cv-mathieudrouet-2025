@@ -36,9 +36,10 @@ const { company, companyUrl, role, period, current = false, logo } = Astro.props
           </h3>
           <p class="text-role text-cv-muted">{role}</p>
         </div>
-        <p class={`text-date ${current ? 'text-cv-accent' : 'text-cv-muted'}`}>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-blue-500 text-white rounded-sm border border-blue-600 shadow-sm hover:bg-blue-600 transition-colors mb-2">
+          <iconify-icon icon="carbon:download" width="16" height="16"></iconify-icon>
           {period}
-        </p>
+        </span>
       </div>
       
       <ul class="space-y-2">
