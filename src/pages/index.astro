@@ -1,6 +1,8 @@
 ---
 import CVLayout from '../layouts/CVLayout.astro';
-import { Content as CV2Content } from '../content/cv2.mdx';
+import ExperienceCard from '../components/mdx/ExperienceCard.astro';
+import GridSection from '../components/mdx/GridSection.astro';
+import { cvData } from '../data/cv.ts';
 
 const title = "Mathieu Drouet - Senior Product Manager";
 const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale.";
@@ -8,6 +10,110 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
 
 <CVLayout title={title} description={description}>
   <div class="pl-page pr-8 pt-8 pb-16">
-    <CV2Content />
+    <header class="mb-section">
+      <h1 class="text-hero text-cv-content font-semibold">{cvData.name}</h1>
+    </header>
+
+    <GridSection>
+      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Education</h2>
+        <div class="space-y-4">
+          {cvData.education.map((edu) => (
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-blue-500 text-white rounded-sm border border-blue-600 shadow-sm hover:bg-blue-600 transition-colors mb-2">
+                <iconify-icon icon="carbon:download" width="16" height="16"></iconify-icon>
+                {edu.period}
+              </span>
+              <h3 class="flex gap-2 text-sm text-black dark:text-white mb-1 items-center">
+                <span class="shrink-0">
+                  <iconify-icon icon="carbon:server" width="24" height="24"></iconify-icon>
+                </span>
+                {edu.title}
+              </h3>
+              <p class="text-body text-cv-muted">{edu.institution}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Contact Info</h2>
+        <div class="space-y-4">
+          <div>
+            <p class="text-body text-cv-muted">Email: {cvData.contact.email}</p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">Portfolio: <a href={cvData.contact.portfolio.url} class="text-cv-accent">{cvData.contact.portfolio.text}</a></p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">LinkedIn: {cvData.contact.linkedin}</p>
+          </div>
+          <div>
+            <p class="text-body text-cv-muted">{cvData.contact.location}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+        <h2 class="text-section text-cv-content font-semibold mb-4">Interests</h2>
+        <div class="grid grid-cols-2 gap-x-12 gap-y-4">
+          {cvData.interests.map((interest) => (
+            <p class="text-body text-cv-muted">{interest}</p>
+          ))}
+        </div>
+      </div>
+    </GridSection>
+
+    <section class="mb-section">
+      <div class="flex items-baseline gap-4 mb-8">
+        <h2 class="text-section text-cv-content font-semibold">Experience</h2>
+        <span class="text-body text-cv-muted">10+ years</span>
+      </div>
+      
+      <div class="space-y-section">
+        {cvData.experience.map((exp) => (
+          <ExperienceCard
+            company={exp.company}
+            companyUrl={exp.companyUrl}
+            role={exp.role}
+            period={exp.period}
+            current={exp.current}
+            logo={exp.logo}
+          >
+            {exp.achievements.map((achievement) => (
+              <li class="text-body text-cv-content flex">
+                <span class="mr-3">•</span>
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ExperienceCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-section">
+      <div class="flex items-baseline gap-4 mb-8">
+        <h2 class="text-section text-cv-content font-semibold">Skills</h2>
+        <span class="text-body text-cv-muted">Professional expertise</span>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-section">
+        {cvData.skills.map((skill) => (
+          <ExperienceCard
+            company={skill.title}
+            role={skill.subtitle}
+            period={skill.level}
+            current={skill.current}
+          >
+            {skill.items.map((item) => (
+              <li class="text-body text-cv-content flex">
+                <span class="mr-3">•</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ExperienceCard>
+        ))}
+      </div>
+    </section>
   </div>   
 </CVLayout>
