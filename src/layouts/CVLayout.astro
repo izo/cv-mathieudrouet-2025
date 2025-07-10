@@ -76,28 +76,28 @@ const { title, description } = Astro.props;
       <!-- Content -->
       <div class="relative z-10">
         <slot />
+        
+        <!-- Footer -->
+        <footer class="border border-cv-border/20 mt-16 rounded-lg">
+          <div class="pl-page pr-8 py-12 md:flex md:items-center md:justify-between">
+            <div class="flex justify-center gap-x-6 md:order-2">
+              <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                <span class="sr-only">LinkedIn</span>
+                <iconify-icon icon="carbon:logo-linkedin" width="24" height="24"></iconify-icon>
+              </a>
+              <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                <span class="sr-only">GitHub</span>
+                <iconify-icon icon="carbon:logo-github" width="24" height="24"></iconify-icon>
+              </a>
+              <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-content transition-colors">
+                <span class="sr-only">Email</span>
+                <iconify-icon icon="carbon:email" width="24" height="24"></iconify-icon>
+              </a>
+            </div>
+            <p class="mt-8 text-center text-sm/6 text-cv-muted md:order-1 md:mt-0">&copy; 2025 Mathieu Drouet. Tous droits réservés.</p>
+          </div>
+        </footer>
       </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="bg-white border-t border-cv-border">
-      <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div class="flex justify-center gap-x-6 md:order-2">
-          <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
-            <span class="sr-only">LinkedIn</span>
-            <iconify-icon icon="carbon:logo-linkedin" width="24" height="24"></iconify-icon>
-          </a>
-          <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
-            <span class="sr-only">GitHub</span>
-            <iconify-icon icon="carbon:logo-github" width="24" height="24"></iconify-icon>
-          </a>
-          <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-content transition-colors">
-            <span class="sr-only">Email</span>
-            <iconify-icon icon="carbon:email" width="24" height="24"></iconify-icon>
-          </a>
-        </div>
-        <p class="mt-8 text-center text-sm/6 text-cv-muted md:order-1 md:mt-0">&copy; 2025 Mathieu Drouet. Tous droits réservés.</p>
-      </div>
-    </footer>
   </body>
 </html>
