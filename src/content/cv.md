@@ -34,6 +34,7 @@ Institut Supérieur d'Architecture Saint-Luc
 - Conduit une analyse croisée des usages (logs, sondages, interviews)
 - Produit une cartographie des parcours utilisateurs et évaluation de la gouvernance
 - Livré un rapport de recommandations stratégiques pour la roadmap
+- Reflexion autour des LLM dans le projet
 
 ### Group Actual
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)

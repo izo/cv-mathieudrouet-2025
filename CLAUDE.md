@@ -131,3 +131,6 @@ src/
 - Review any new CDN dependencies for supply chain risks
 - Maintain static site generation for optimal security posture
 - Consider implementing Content Security Policy for production
+
+## Memories & Notes
+- une remarque , on garde un seul theme = zed

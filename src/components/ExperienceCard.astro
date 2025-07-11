@@ -1,57 +1,75 @@
 ---
-interface Props {
+export interface Props {
   company: string;
   companyUrl?: string;
   role: string;
   period: string;
   current?: boolean;
   logo?: string;
-  description: string[];
+  description?: string[];
 }
 
 const { company, companyUrl, role, period, current = false, logo, description } = Astro.props;
 ---
 
-<div class="px-8 py-6 bg-cv-card rounded-card flex flex-col lg:flex-row gap-6 lg:gap-12">
-  <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6 lg:flex-1">
-    <div class="flex items-center gap-4">
+<div class="glass-card mb-4 sm:mb-6 lg:mb-section">
+  <div class="grid grid-cols-1 sm:grid-cols-[3rem_1fr] lg:grid-cols-[4rem_1fr] gap-4 sm:gap-6">
+    <!-- Logo Column -->
+    <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
       {logo && (
-        <img 
-          src={logo} 
-          alt={`${company} logo`} 
-          class="w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover"
-        />
+        <img src={logo} alt={`${company} logo`} class="w-full h-full object-contain rounded-xl" />
       )}
-      <div class="flex-1">
-        <h3 class="text-2xl lg:text-3xl font-bold text-cv-content m-0">
-          {companyUrl ? (
-            <a href={companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-cv-accent transition-colors">
-              {company}
-            </a>
+    </div>
+    
+    <!-- Content Column -->
+    <div>
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 sm:mb-4 text-center sm:text-left">
+        <div class="mb-2 sm:mb-0">
+          <h3 class="text-lg sm:text-xl lg:text-company text-cv-content font-semibold">
+            {companyUrl ? (
+              <a href={companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-cv-accent transition-colors hover:underline">
+                {company}
+              </a>
+            ) : (
+              company
+            )}
+          </h3>
+          <p class="text-base sm:text-lg lg:text-role text-cv-muted">{role}</p>
+        </div>
+        
+        <!-- Period Badge -->
+        <div class="flex justify-center sm:justify-end">
+          {current ? (
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm font-medium">
+              <iconify-icon icon="carbon:time" width="14" height="14" class="sm:w-4 sm:h-4"></iconify-icon>
+              <span class="hidden sm:inline">{period}</span>
+              <span class="sm:hidden">{period.split(' ')[0]}</span>
+            </span>
           ) : (
-            company
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-muted/10 text-cv-muted rounded-sm border border-cv-border shadow-sm">
+              <iconify-icon icon="carbon:calendar" width="14" height="14" class="sm:w-4 sm:h-4"></iconify-icon>
+              <span class="hidden sm:inline">{period}</span>
+              <span class="sm:hidden">{period.split(' ')[0]}</span>
+            </span>
           )}
-        </h3>
-        <p class="text-xl lg:text-2xl text-cv-muted m-0">{role}</p>
+        </div>
       </div>
-    </div>
-    <div class="lg:ml-auto">
-      {current ? (
-        <span class="inline-flex px-4 py-2 rounded-2xl text-base lg:text-lg font-semibold text-cv-accent border-2 border-cv-accent">
-          {period}
-        </span>
+      
+      <!-- Content: either description array or slot -->
+      {description && description.length > 0 ? (
+        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left">
+          {description.map((item) => (
+            <li class="text-sm sm:text-base lg:text-body text-cv-content flex flex-col sm:flex-row sm:items-start">
+              <span class="mr-0 sm:mr-3 text-cv-accent hidden sm:inline">•</span>
+              <span class="sm:flex-1">{item}</span>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <span class="inline-flex px-4 py-2 rounded-2xl text-base lg:text-lg text-cv-muted bg-white">
-          {period}
-        </span>
+        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left">
+          <slot />
+        </ul>
       )}
     </div>
-  </div>
-  <div class="lg:flex-1">
-    <ul class="text-base lg:text-lg text-cv-light space-y-2 m-0 list-disc list-inside">
-      {description.map((item) => (
-        <li class="leading-relaxed">{item}</li>
-      ))}
-    </ul>
   </div>
 </div>

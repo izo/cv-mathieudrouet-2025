@@ -1,12 +1,13 @@
 ---
 import '../styles/global.css';
 
-interface Props {
+export interface Props {
   title: string;
   description: string;
+  showFooter?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, showFooter = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,54 +18,22 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome removed - using Iconify instead -->
+    <!-- Google Fonts removed - using system fonts instead -->
     
     <!-- Iconify API -->
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
     
-    <!-- Zed Fonts -->
-    <style>
-      @font-face {
-        font-family: '__agrandir_24f3dc';
-        src: url('/fonts/64b7d03ab5ef000d-s.p.woff2') format('woff2');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: '__agrandir_24f3dc';
-        src: url('/fonts/a59897eca4c0e06d-s.p.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: '__writer_1deb74';
-        src: url('/fonts/179d7f9da167b110-s.p.woff2') format('woff2');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: '__lora_1fc044';
-        src: url('/fonts/0fb30d387ad01f2e-s.p.woff2') format('woff2');
-        font-weight: 400 700;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
+    <!-- Using system fonts for performance -->
     <title>{title}</title>
   </head>
   <body class="min-h-full font-sans text-cv-content antialiased">
     <!-- Main content container -->
     <div class="zed-container">
-      <!-- Glass theme wrapper (default) -->
+      <!-- Glass theme wrapper (for liquid-glass theme) -->
       <div class="glass-wrapper">
         <div class="absolute inset-0 rounded-[2rem] overflow-hidden">
-          <div class="absolute inset-0 bg-white/30 backdrop-blur-ultra"></div>
+          <div class="absolute inset-0 bg-cv-glass backdrop-blur-ultra"></div>
           <div class="absolute inset-0 bg-glass-gradient"></div>
           <div class="absolute inset-0 bg-glass-radial opacity-50"></div>
           <div class="absolute inset-0 bg-light-leak opacity-30"></div>
@@ -75,29 +44,37 @@ const { title, description } = Astro.props;
       
       <!-- Content -->
       <div class="relative z-10">
-        <slot />
+        <!-- Main content slot -->
+        <slot name="content">
+          <slot />
+        </slot>
         
-        <!-- Footer -->
-        <footer class="border border-cv-border/20 mt-16 rounded-lg">
-          <div class="pl-page pr-8 py-12 md:flex md:items-center md:justify-between">
-            <div class="flex justify-center gap-x-6 md:order-2">
-              <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
-                <span class="sr-only">LinkedIn</span>
-                <iconify-icon icon="carbon:logo-linkedin" width="24" height="24"></iconify-icon>
-              </a>
-              <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
-                <span class="sr-only">GitHub</span>
-                <iconify-icon icon="carbon:logo-github" width="24" height="24"></iconify-icon>
-              </a>
-              <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-content transition-colors">
-                <span class="sr-only">Email</span>
-                <iconify-icon icon="carbon:email" width="24" height="24"></iconify-icon>
-              </a>
+        <!-- Footer (conditional) -->
+        {showFooter && (
+          <footer class="border border-cv-border/20 mt-16 rounded-lg">
+            <div class="pl-page pr-8 py-8 sm:py-10 lg:py-12 lg:flex lg:items-center lg:justify-between">
+              <div class="flex justify-center gap-x-4 sm:gap-x-6 lg:order-2">
+                <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                  <span class="sr-only">LinkedIn</span>
+                  <iconify-icon icon="carbon:logo-linkedin" width="24" height="24"></iconify-icon>
+                </a>
+                <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                  <span class="sr-only">GitHub</span>
+                  <iconify-icon icon="carbon:logo-github" width="24" height="24"></iconify-icon>
+                </a>
+                <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-content transition-colors">
+                  <span class="sr-only">Email</span>
+                  <iconify-icon icon="carbon:email" width="24" height="24"></iconify-icon>
+                </a>
+              </div>
+              <p class="mt-6 sm:mt-8 lg:mt-0 text-center text-xs sm:text-sm/6 text-cv-muted lg:order-1">&copy; 2025 Mathieu Drouet. Tous droits réservés.</p>
             </div>
-            <p class="mt-8 text-center text-sm/6 text-cv-muted md:order-1 md:mt-0">&copy; 2025 Mathieu Drouet. Tous droits réservés.</p>
-          </div>
-        </footer>
+          </footer>
+        )}
       </div>
     </div>
+    
+    <!-- Optional external footer slot -->
+    <slot name="footer" />
   </body>
 </html>

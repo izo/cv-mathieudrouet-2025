@@ -6,6 +6,6 @@ export interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={`grid grid-cols-3 gap-section mb-section ${className || ''}`}>
+<div class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-section mb-4 sm:mb-6 lg:mb-section ${className || ''}`}>
   <slot />
 </div>

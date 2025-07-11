@@ -5,30 +5,8 @@
 @layer base {
   /* ===== THEME SYSTEM ===== */
   
-  /* Default Theme: Liquid Glass */
-  :root {
-    --cv-bg: #fdfdfd;
-    --cv-paper: rgba(255, 255, 255, 0.7);
-    --cv-content: #1D1D1F;
-    --cv-muted: rgba(29, 29, 31, 0.6);
-    --cv-light: rgba(29, 29, 31, 0.8);
-    --cv-card: rgba(255, 255, 255, 0.5);
-    --cv-accent: #0071E3;
-    --cv-section: rgba(255, 255, 255, 0.3);
-    --cv-glass: rgba(255, 255, 255, 0.25);
-    --cv-glass-border: rgba(255, 255, 255, 0.18);
-    --cv-secondary: #007AFF;
-    --cv-border: rgba(255, 255, 255, 0.2);
-    --cv-shadow: rgba(0, 0, 0, 0.1);
-    
-    /* Theme mode */
-    --theme-mode: 'liquid-glass';
-    --font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI';
-    --background-image: url('/background.jpg');
-  }
-
   /* Zed Theme: Based on real screenshots */
-  [data-theme="zed"] {
+  :root, [data-theme="zed"] {
     /* Clean colors from screenshots */
     --cv-bg: #fdfdfd;                    /* Almost white background */
     --cv-paper: #ffffff;                 /* Pure white */
@@ -46,9 +24,9 @@
     
     --theme-mode: 'zed';
     --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    --font-lora: '__lora_1fc044', '__lora_Fallback_1fc044';
-    --font-agrandir: '__agrandir_24f3dc', '__agrandir_Fallback_24f3dc';
-    --font-writer: '__writer_1deb74', '__writer_Fallback_1deb74';
+    --font-lora: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-agrandir: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-writer: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --background-image: none;
     
     /* Simple typography sizes */
@@ -75,195 +53,69 @@
     transition: all 0.3s ease;
   }
 
-  /* Hide background image for Zed theme */
-  [data-theme="zed"] body {
+  /* Clean background for Zed theme */
+  body {
     background-image: none;
     background-color: var(--cv-bg);
   }
 
-  /* Optimisation des performances */
+  /* Performance optimizations */
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* GPU acceleration for transforms and filters */
-  .glass-card,
-  .sidebar-glass {
-    will-change: transform;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-  }
-
-  /* Animation pour les effets de lumière */
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
+  /* Simple fade-in animation */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes scaleIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  /* Animation des éléments au chargement */
   .glass-card {
-    animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: fadeIn 0.3s ease both;
   }
-
-  .glass-card:nth-child(1) { animation-delay: 0.1s; }
-  .glass-card:nth-child(2) { animation-delay: 0.2s; }
-  .glass-card:nth-child(3) { animation-delay: 0.3s; }
-  .glass-card:nth-child(4) { animation-delay: 0.4s; }
 }
 
 @layer components {
-  /* Zed-style layout system */
-  [data-theme="zed"] .zed-section {
-    @apply mx-auto w-full relative isolate grid grid-cols-1 justify-center lg:grid-cols-2 gap-4 lg:gap-32;
-    max-width: 640px; /* --breakpoint-sm */
+  /* Clean layout system */
+  .zed-section {
+    @apply mx-auto w-full max-w-4xl relative grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8;
   }
   
-  @media (min-width: 768px) {
-    [data-theme="zed"] .zed-section {
-      max-width: 1100px;
-    }
+  .zed-content {
+    @apply mx-auto flex flex-col gap-6 lg:m-0;
   }
   
-  [data-theme="zed"] .zed-content {
-    @apply mx-auto flex flex-col gap-7 lg:m-0;
-  }
-  
-  [data-theme="zed"] .zed-hgroup {
-    @apply flex flex-col items-center lg:items-start;
-  }
-  
-  /* Zed typography - Lora for titles like the real site */
-  [data-theme="zed"] h1,
-  [data-theme="zed"] .h1,
-  [data-theme="zed"] .h0 {
+  /* Simplified typography */
+  h1, .h1 {
     font-family: var(--font-lora);
-    font-size: clamp(2.25rem, 1.5rem + 2.5vw, 3rem); /* .h0 size from guide */
-    font-weight: 400; /* font-normal from HTML */
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    color: var(--cv-accent); /* text-accent-blue from HTML */
-    text-align: center; /* text-center from HTML */
-    text-wrap: balance; /* !text-balance from HTML */
-    @apply text-pretty scroll-mt-24 my-2;
-  }
-  
-  @media (min-width: 1024px) {
-    [data-theme="zed"] h1,
-    [data-theme="zed"] .h1,
-    [data-theme="zed"] .h0 {
-      text-align: left; /* lg:text-left */
-    }
-  }
-  
-  [data-theme="zed"] h2,
-  [data-theme="zed"] .h2 {
-    font-family: var(--font-lora);
-    font-size: clamp(1.5rem, 1.2rem + 1vw, 1.7rem); /* .h2 from guide */
-    font-weight: 500; /* font-medium */
-    line-height: 1.25;
-    letter-spacing: -0.005em;
-    color: var(--cv-accent); /* text-accent-blue */
-    @apply text-pretty scroll-mt-24 mb-2 text-balance text-center;
-  }
-  
-  [data-theme="zed"] h3,
-  [data-theme="zed"] .h3 {
-    font-family: var(--font-agrandir);
-    font-size: clamp(1.15rem, 1rem + 0.75vw, 1.35rem); /* .h3 from guide */
+    font-size: clamp(2rem, 1.5rem + 2vw, 2.5rem);
     font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    color: var(--cv-content);
-  }
-  
-  [data-theme="zed"] p,
-  [data-theme="zed"] li {
-    font-family: var(--font-writer);
-    font-size: 16px; /* --text-body from guide */
-    line-height: 1.44; /* 144% from guide */
-    color: var(--cv-muted);
-    @apply tracking-tight text-center text-balance lg:text-left;
-    max-width: 360px;
-    margin: 0 auto;
-  }
-  
-  @media (min-width: 1024px) {
-    [data-theme="zed"] p,
-    [data-theme="zed"] li {
-      margin: 0;
-    }
-  }
-
-  [data-theme="zed"] .text-caption {
-    font-family: var(--font-writer);
-    font-size: 14px; /* --text-caption from guide */
-    line-height: 1.44;
-    color: var(--cv-muted);
-  }
-
-  /* Add Zed accent blue color like the real site */
-  [data-theme="zed"] .text-accent-blue {
+    line-height: 1.2;
     color: var(--cv-accent);
   }
+  
+  h2, .h2 {
+    font-family: var(--font-lora);
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--cv-accent);
+  }
+  
+  h3, .h3 {
+    font-family: var(--font-agrandir);
+    font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--cv-content);
+  }
 
-  /* Simple Zed-style header */
-  [data-theme="zed"] .zed-header {
+  /* Navigation styles */
+  .zed-nav {
+    @apply h-16 flex items-center px-8;
     background: var(--cv-bg);
     border-bottom: 1px solid var(--cv-border);
-  }
-
-  [data-theme="zed"] .zed-nav {
-    height: 64px;
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-  }
-
-  [data-theme="zed"] .zed-nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  [data-theme="zed"] .zed-logo {
-    font-weight: 500;
-    font-size: 1.125rem;
-    color: var(--cv-content);
-  }
-
-  [data-theme="zed"] .zed-nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  [data-theme="zed"] .zed-nav-item {
-    font-size: 1rem;
-    color: var(--cv-muted);
-    font-weight: 400;
-    transition: color 0.2s ease;
-  }
-
-  [data-theme="zed"] .zed-nav-item:hover {
-    color: var(--cv-content);
   }
 
   /* Simple container system */
@@ -284,89 +136,35 @@
   }
 
   /* Clean layout for Zed theme */
-  [data-theme="zed"] .glass-wrapper {
+  .glass-wrapper {
     display: none;
   }
 
-  [data-theme="zed"] .zed-container {
+  .zed-container {
     max-width: 1200px;
     padding: 4rem 2rem;
   }
 
-  .sidebar-wrapper {
-    @apply fixed top-0 w-[300px] text-cv-content overflow-hidden;
-    height: 100vh;
-    right: calc(50% - 480px);
-  }
-  
-  .sidebar-glass {
-    @apply absolute inset-0 overflow-y-auto;
-    @apply backdrop-blur-heavy;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.72) 0%,
-      rgba(255, 255, 255, 0.45) 50%,
-      rgba(255, 255, 255, 0.72) 100%
-    );
-    @apply shadow-glass-lg;
-    @apply border-l border-white/20;
-  }
-  
-  .sidebar-glass::before {
-    content: '';
-    @apply absolute inset-0;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgba(255, 255, 255, 0.4) 50%,
-      transparent 60%
-    );
-    animation: shimmer 3s ease-in-out infinite;
-    @apply pointer-events-none;
-  }
-  
+  /* Simplified layout */
   .main-wrapper {
-    @apply p-16 lg:pr-[340px] min-h-screen;
+    @apply p-8 lg:p-16 min-h-screen;
   }
   
-  .section-title {
-    @apply uppercase text-xl font-bold text-cv-content relative mt-0 mb-5 pb-1;
-    @apply border-b border-cv-glass-border;
-  }
-
   .sidebar-content {
     @apply h-full flex flex-col;
   }
 
-  /* Glass card component with theme support */
+  /* Clean card component */
   .glass-card {
     @apply relative overflow-hidden;
     background: var(--cv-card);
-    border: 1px solid #93c5fd;
+    border: 1px solid var(--cv-border);
     color: var(--cv-content);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    
-    /* Default Liquid Glass styles */
-    @apply rounded-[1.5rem] p-card backdrop-blur-glass shadow-glass;
+    transition: all 0.2s ease;
+    @apply rounded-lg p-6;
   }
 
-  /* Square gradient background card */
-  .square-gradient-bg {
-    @apply bg-square-gradient;
-  }
-
-  /* Modern grid background */
-  .modern-grid-bg {
-    width: 100%;
-    height: 100%;
-    --color: rgba(114, 114, 114, 0.15);
-    background-color: rgba(255, 255, 255, 0.85);
-    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
-        linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
-    background-size: 30px 30px;
-  }
-
-  /* Pattern boxes fallback */
+  /* Pattern boxes */
   .pattern-boxes {
     background-color: white;
     background-image: 
@@ -376,74 +174,26 @@
     border: 1px solid #93c5fd;
   }
 
-  /* Dark mode version */
-  .dark .modern-grid-bg {
-    --color: rgba(114, 114, 114, 0.3);
-    background-color: #191a1a;
-  }
-
-  /* Shadow alternative style */
+  /* Shadow style */
   .sh-alt {
     box-shadow: 0 4px 24px hsla(218, 13%, 6%, 0.1);
   }
 
-  /* Offgray color variants */
-  .text-offgray-900 {
-    color: rgb(17, 17, 17);
-  }
-  
-  .text-offgray-100 {
-    color: rgb(243, 243, 243);
-  }
-  
-  .text-offgray-200 {
-    color: rgb(229, 229, 229);
-  }
-  
-  .text-offgray-300 {
-    color: rgb(209, 209, 209);
-  }
-  
-  .text-offgray-700 {
-    color: rgb(64, 64, 64);
-  }
-
-  /* Rounded variants */
-  .rounded-xs {
-    border-radius: 0.125rem;
-  }
-
-  /* Monospace font for ALL h3 elements */
-  h3 {
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace !important;
-  }
-
-  /* Harmonize size for flex h3 elements */
-  h3.flex {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-  }
-
+  /* Clean hover effects */
   .glass-card:hover {
-    transform: translateY(-2px) !important;
-    @apply shadow-glass-lg;
-    background-color: white !important;
-    background-image: 
-      linear-gradient(0deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, rgba(147, 197, 253, 0.2) 25%, rgba(147, 197, 253, 0.2) 26%, transparent 27%, transparent 74%, rgba(147, 197, 253, 0.2) 75%, rgba(147, 197, 253, 0.2) 76%, transparent 77%, transparent) !important;
-    background-size: 24px 24px !important;
-    border-radius: 0 !important;
+    border-color: var(--cv-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  /* Zed theme overrides - Clean from screenshots */
-  [data-theme="zed"] body {
+  /* Zed theme styles - Clean from screenshots */
+  body {
     background-color: var(--cv-bg);
     background-image: none;
     color: var(--cv-content);
     -webkit-font-smoothing: antialiased;
   }
 
-  [data-theme="zed"] .glass-card {
+  .glass-card {
     background: var(--cv-card);
     border: 1px solid var(--cv-border);
     border-radius: 8px;
@@ -454,28 +204,12 @@
     backdrop-filter: none;
   }
 
-  [data-theme="zed"] .glass-card:hover {
+  .glass-card:hover {
     border-color: var(--cv-accent);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  .glass-card::before {
-    content: '';
-    @apply absolute inset-0 opacity-0;
-    background: linear-gradient(
-      105deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.5) 50%,
-      transparent 70%
-    );
-    transition: opacity 0.3s ease;
-    @apply pointer-events-none;
-  }
-
-  .glass-card:hover::before {
-    @apply opacity-100;
-    animation: shimmer 0.8s ease-out;
-  }
+  /* Removed complex glass effects for performance */
 
   /* Styles spécifiques pour les expériences */
   .prose h3 {

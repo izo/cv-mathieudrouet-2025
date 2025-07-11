@@ -1,6 +1,6 @@
 ---
 import CVLayout from '../layouts/CVLayout.astro';
-import ExperienceCard from '../components/mdx/ExperienceCard.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 import GridSection from '../components/mdx/GridSection.astro';
 import { cvData } from '../data/cv.ts';
 
@@ -9,7 +9,7 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
 ---
 
 <CVLayout title={title} description={description}>
-  <div class="pl-page pr-8 pt-8 pb-16">
+  <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-12 sm:pb-16">
     <header class="mb-section">
       <h1 class="text-hero text-cv-content font-semibold">{cvData.name}</h1>
     </header>
@@ -20,11 +20,11 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
         <div class="space-y-4">
           {cvData.education.map((edu) => (
             <div>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-blue-500 text-white rounded-sm border border-blue-600 shadow-sm hover:bg-blue-600 transition-colors mb-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm hover:bg-cv-accent/80 transition-colors mb-2">
                 <iconify-icon icon="carbon:download" width="16" height="16"></iconify-icon>
                 {edu.period}
               </span>
-              <h3 class="flex gap-2 text-sm text-black dark:text-white mb-1 items-center">
+              <h3 class="flex gap-2 text-sm text-cv-content mb-1 items-center">
                 <span class="shrink-0">
                   <iconify-icon icon="carbon:server" width="24" height="24"></iconify-icon>
                 </span>
@@ -97,7 +97,7 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
         <span class="text-body text-cv-muted">Professional expertise</span>
       </div>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-section">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-section">
         {cvData.skills.map((skill) => (
           <ExperienceCard
             company={skill.title}
