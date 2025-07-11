@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cv.mathieu-drouet.com/sitemap.xml
+
+# Optimization
+Crawl-delay: 1

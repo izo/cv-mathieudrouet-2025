@@ -3,20 +3,22 @@ import CVLayout from '../layouts/CVLayout.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import GridSection from '../components/mdx/GridSection.astro';
 import { cvData } from '../data/cv.ts';
+import { siteConfig } from '../config/site.ts';
 
-const title = "Mathieu Drouet - Senior Product Manager";
-const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale.";
+const { title, description } = siteConfig;
 ---
 
 <CVLayout title={title} description={description}>
   <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-12 sm:pb-16">
-    <header class="mb-section">
-      <h1 class="text-hero text-cv-content font-semibold">{cvData.name}</h1>
+    <header class="mb-section" role="banner">
+      <h1 class="text-hero text-cv-content font-semibold" id="main-title">{cvData.name}</h1>
     </header>
 
-    <GridSection>
-      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-        <h2 class="text-section text-cv-content font-semibold mb-4">Education</h2>
+    <section aria-labelledby="overview-heading">
+      <h2 id="overview-heading" class="sr-only">Informations générales</h2>
+      <GridSection>
+        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+          <h3 class="text-section text-cv-content font-semibold mb-4" id="education-section">Education</h3>
         <div class="space-y-4">
           {cvData.education.map((edu) => (
             <div>
@@ -25,10 +27,10 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
                 {edu.period}
               </span>
               <h3 class="flex gap-2 text-sm text-cv-content mb-1 items-center">
-                <span class="shrink-0">
+                <span class="shrink-0" aria-hidden="true">
                   <iconify-icon icon="carbon:server" width="24" height="24"></iconify-icon>
                 </span>
-                {edu.title}
+                <span>{edu.title}</span>
               </h3>
               <p class="text-body text-cv-muted">{edu.institution}</p>
             </div>
@@ -36,8 +38,8 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
         </div>
       </div>
 
-      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-        <h2 class="text-section text-cv-content font-semibold mb-4">Contact Info</h2>
+        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+          <h3 class="text-section text-cv-content font-semibold mb-4" id="contact-section">Contact Info</h3>
         <div class="space-y-4">
           <div>
             <p class="text-body text-cv-muted">Email: {cvData.contact.email}</p>
@@ -54,20 +56,21 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
         </div>
       </div>
 
-      <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-        <h2 class="text-section text-cv-content font-semibold mb-4">Interests</h2>
+        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
+          <h3 class="text-section text-cv-content font-semibold mb-4" id="interests-section">Interests</h3>
         <div class="grid grid-cols-2 gap-x-12 gap-y-4">
           {cvData.interests.map((interest) => (
             <p class="text-body text-cv-muted">{interest}</p>
           ))}
         </div>
       </div>
-    </GridSection>
+      </GridSection>
+    </section>
 
-    <section class="mb-section">
+    <section class="mb-section" aria-labelledby="experience-section">
       <div class="flex items-baseline gap-4 mb-8">
-        <h2 class="text-section text-cv-content font-semibold">Experience</h2>
-        <span class="text-body text-cv-muted">10+ years</span>
+        <h2 class="text-section text-cv-content font-semibold" id="experience-section">Experience</h2>
+        <span class="text-body text-cv-muted" aria-label="10 ans d'expérience professionnelle">10+ years</span>
       </div>
       
       <div class="space-y-section">
@@ -91,10 +94,10 @@ const description = "CV de Mathieu Drouet, Senior Product Manager avec plus de 1
       </div>
     </section>
 
-    <section class="mb-section">
+    <section class="mb-section" aria-labelledby="skills-section">
       <div class="flex items-baseline gap-4 mb-8">
-        <h2 class="text-section text-cv-content font-semibold">Skills</h2>
-        <span class="text-body text-cv-muted">Professional expertise</span>
+        <h2 class="text-section text-cv-content font-semibold" id="skills-section">Skills</h2>
+        <span class="text-body text-cv-muted" aria-label="Expertise professionnelle">Professional expertise</span>
       </div>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-section">

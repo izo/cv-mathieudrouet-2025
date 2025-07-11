@@ -81,7 +81,7 @@ Institut Supérieur d'Architecture Saint-Luc
 - VS Code, Git, CI/CD
 
 ### Languages
-**International Communication** | Fluent
+**International Communication**
 
 - Français - Langue maternelle
 - Anglais - Professionnel

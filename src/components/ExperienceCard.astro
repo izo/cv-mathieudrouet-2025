@@ -10,15 +10,36 @@ export interface Props {
 }
 
 const { company, companyUrl, role, period, current = false, logo, description } = Astro.props;
+
+// Generate initials as fallback for missing logos
+const getInitials = (name: string) => {
+  return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase().slice(0, 2);
+};
 ---
 
 <div class="glass-card mb-4 sm:mb-6 lg:mb-section">
   <div class="grid grid-cols-1 sm:grid-cols-[3rem_1fr] lg:grid-cols-[4rem_1fr] gap-4 sm:gap-6">
     <!-- Logo Column -->
     <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
-      {logo && (
-        <img src={logo} alt={`${company} logo`} class="w-full h-full object-contain rounded-xl" />
-      )}
+      {logo ? (
+        <img 
+          src={logo} 
+          alt={`Logo de ${company}`} 
+          class="w-full h-full object-contain rounded-xl lazy-load"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          width="64"
+          height="64"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        />
+      ) : null}
+      <div 
+        class={`w-full h-full rounded-xl bg-cv-accent text-white flex items-center justify-center text-sm font-semibold ${logo ? 'hidden' : 'flex'}`}
+        aria-label={`Initiales de ${company}`}
+      >
+        {getInitials(company)}
+      </div>
     </div>
     
     <!-- Content Column -->
@@ -27,7 +48,13 @@ const { company, companyUrl, role, period, current = false, logo, description } 
         <div class="mb-2 sm:mb-0">
           <h3 class="text-lg sm:text-xl lg:text-company text-cv-content font-semibold">
             {companyUrl ? (
-              <a href={companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-cv-accent transition-colors hover:underline">
+              <a 
+                href={companyUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="hover:text-cv-accent transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded"
+                aria-label={`Voir le projet chez ${company} (ouvre dans un nouvel onglet)`}
+              >
                 {company}
               </a>
             ) : (

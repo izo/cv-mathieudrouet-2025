@@ -1,33 +1,133 @@
 ---
 import '../styles/global.css';
+import { siteConfig } from '../config/site.ts';
 
 export interface Props {
   title: string;
   description: string;
   showFooter?: boolean;
+  image?: string;
+  url?: string;
 }
 
-const { title, description, showFooter = true } = Astro.props;
+const { title, description, showFooter = true, image = siteConfig.author.image, url } = Astro.props;
+const canonicalUrl = url || Astro.url.href;
+const fullImageUrl = new URL(image, siteConfig.url).href;
 ---
 
 <!doctype html>
-<html lang="fr" class="h-full" data-theme="zed">
+<html lang="fr" class="h-full" data-theme="zed" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content={siteConfig.author.name} />
+    <meta name="keywords" content={siteConfig.seo.keywords.join(", ")} />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content={siteConfig.seo.locale} />
+    <meta property="profile:first_name" content="Mathieu" />
+    <meta property="profile:last_name" content="Drouet" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+    
+    <!-- Additional Meta -->
+    <meta name="theme-color" content={siteConfig.seo.themeColor} />
+    <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
     <!-- Font Awesome removed - using Iconify instead -->
     <!-- Google Fonts removed - using system fonts instead -->
     
     <!-- Iconify API -->
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
     
+    <!-- Performance optimizations -->
+    <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg">
+    <link rel="dns-prefetch" href="https://code.iconify.design">
+    
+    <!-- Service Worker for caching -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              // Development logging only
+              if (import.meta.env.DEV) {
+                console.log('SW registered: ', registration);
+              }
+            })
+            .catch((registrationError) => {
+              // Development logging only
+              if (import.meta.env.DEV) {
+                console.log('SW registration failed: ', registrationError);
+              }
+            });
+        });
+      }
+    </script>
+    
+    <!-- Performance monitoring -->
+    <script type="module">
+      import { initPerformanceMonitoring } from '/src/utils/performance.ts';
+      initPerformanceMonitoring();
+    </script>
+    
     <!-- Using system fonts for performance -->
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": siteConfig.author.name,
+      "jobTitle": siteConfig.author.jobTitle,
+      "url": siteConfig.url,
+      "email": siteConfig.author.email,
+      "telephone": siteConfig.author.phone,
+      "image": new URL(siteConfig.author.image, siteConfig.url).href,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lille",
+        "addressCountry": "France"
+      },
+      "sameAs": [
+        siteConfig.social.linkedin.url,
+        siteConfig.social.github.url,
+        siteConfig.social.portfolio.url
+      ],
+      "knowsAbout": [
+        "Product Management",
+        "Digital Transformation", 
+        "UX Strategy",
+        "Data Analysis",
+        "Team Leadership"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "CH-Studio - GEHealthcare"
+      }
+    })}></script>
     <title>{title}</title>
   </head>
-  <body class="min-h-full font-sans text-cv-content antialiased">
+  <body class="min-h-full font-sans text-cv-content antialiased" itemscope itemtype="https://schema.org/ProfilePage">
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cv-accent focus:text-white focus:rounded focus:no-underline focus:shadow-lg">Aller au contenu principal</a>
+    <a href="#navigation" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-32 focus:z-50 focus:px-4 focus:py-2 focus:bg-cv-accent focus:text-white focus:rounded focus:no-underline focus:shadow-lg">Aller à la navigation</a>
+    
     <!-- Main content container -->
     <div class="zed-container">
       <!-- Glass theme wrapper (for liquid-glass theme) -->
@@ -45,29 +145,31 @@ const { title, description, showFooter = true } = Astro.props;
       <!-- Content -->
       <div class="relative z-10">
         <!-- Main content slot -->
-        <slot name="content">
-          <slot />
-        </slot>
+        <main id="main-content" role="main" class="focus:outline-none" tabindex="-1">
+          <slot name="content">
+            <slot />
+          </slot>
+        </main>
         
         <!-- Footer (conditional) -->
         {showFooter && (
-          <footer class="border border-cv-border/20 mt-16 rounded-lg">
+          <footer class="border border-cv-border/20 mt-16 rounded-lg" role="contentinfo" id="navigation">
             <div class="pl-page pr-8 py-8 sm:py-10 lg:py-12 lg:flex lg:items-center lg:justify-between">
               <div class="flex justify-center gap-x-4 sm:gap-x-6 lg:order-2">
-                <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                <a href={siteConfig.social.linkedin.url} class="text-cv-muted hover:text-cv-content transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded" aria-label="Profil LinkedIn">
                   <span class="sr-only">LinkedIn</span>
-                  <iconify-icon icon="carbon:logo-linkedin" width="24" height="24"></iconify-icon>
+                  <iconify-icon icon="carbon:logo-linkedin" width="24" height="24" aria-hidden="true"></iconify-icon>
                 </a>
-                <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-content transition-colors">
+                <a href={siteConfig.social.github.url} class="text-cv-muted hover:text-cv-content transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded" aria-label="Profil GitHub">
                   <span class="sr-only">GitHub</span>
-                  <iconify-icon icon="carbon:logo-github" width="24" height="24"></iconify-icon>
+                  <iconify-icon icon="carbon:logo-github" width="24" height="24" aria-hidden="true"></iconify-icon>
                 </a>
-                <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-content transition-colors">
+                <a href={`mailto:${siteConfig.author.email}`} class="text-cv-muted hover:text-cv-content transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded" aria-label="Envoyer un email">
                   <span class="sr-only">Email</span>
-                  <iconify-icon icon="carbon:email" width="24" height="24"></iconify-icon>
+                  <iconify-icon icon="carbon:email" width="24" height="24" aria-hidden="true"></iconify-icon>
                 </a>
               </div>
-              <p class="mt-6 sm:mt-8 lg:mt-0 text-center text-xs sm:text-sm/6 text-cv-muted lg:order-1">&copy; 2025 Mathieu Drouet. Tous droits réservés.</p>
+              <p class="mt-6 sm:mt-8 lg:mt-0 text-center text-xs sm:text-sm/6 text-cv-muted lg:order-1">&copy; 2025 {siteConfig.author.name}. Tous droits réservés.</p>
             </div>
           </footer>
         )}

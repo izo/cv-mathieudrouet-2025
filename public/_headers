@@ -1,0 +1,46 @@
+# Cache Control Headers for Performance Optimization
+
+# Static Assets - Long-term caching
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/logos/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Image assets
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - Short-term caching
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+  
+/
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Security Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  
+# Content Security Policy
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';

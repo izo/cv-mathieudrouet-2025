@@ -1,13 +1,15 @@
 ---
 ---
-<div id="mobileSidebar" class="fixed inset-0 bg-cv-shadow backdrop-blur-sm z-40 transform translate-x-full transition-all duration-300 lg:hidden">
-  <div class="fixed right-0 top-0 h-full w-[300px] transform translate-x-full transition-transform duration-300 overflow-y-auto">
+<div id="mobileSidebar" class="fixed inset-0 bg-cv-shadow backdrop-blur-sm z-40 transform translate-x-full transition-all duration-300 lg:hidden" role="dialog" aria-modal="true" aria-labelledby="sidebar-title">
+  <div class="fixed right-0 top-0 h-full w-[300px] transform translate-x-full transition-transform duration-300 overflow-y-auto" role="document">
     <div class="h-full bg-cv-glass backdrop-blur-heavy border-l border-cv-glass-border shadow-glass">
+      <h2 id="sidebar-title" class="sr-only">Menu de navigation</h2>
       <button 
         id="closeSidebar" 
-        class="absolute top-4 right-4 p-2 text-cv-content hover:text-cv-muted transition-colors"
-        aria-label="Fermer le menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        class="absolute top-4 right-4 p-2 text-cv-content hover:text-cv-muted transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded"
+        aria-label="Fermer le menu" 
+        type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -18,9 +20,12 @@
 
 <button 
   id="openSidebar" 
-  class="fixed top-4 right-4 p-3 bg-cv-glass backdrop-blur-glass rounded-2xl shadow-glass border border-cv-glass-border text-cv-content hover:bg-cv-glass transition-all lg:hidden z-30"
-  aria-label="Ouvrir le menu">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  class="fixed top-4 right-4 p-3 bg-cv-glass backdrop-blur-glass rounded-2xl shadow-glass border border-cv-glass-border text-cv-content hover:bg-cv-glass transition-all lg:hidden z-30 focus:outline-none focus:ring-2 focus:ring-cv-accent"
+  aria-label="Ouvrir le menu" 
+  type="button" 
+  aria-expanded="false" 
+  aria-controls="mobileSidebar">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
   </svg>
 </button>
@@ -30,17 +35,46 @@
   const sidebarContent = sidebar?.querySelector('div');
   const openButton = document.getElementById('openSidebar');
   const closeButton = document.getElementById('closeSidebar');
+  
+  // Focus management variables
+  let lastFocusedElement: HTMLElement | null = null;
+  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
   function openSidebar() {
+    // Store the currently focused element
+    lastFocusedElement = document.activeElement as HTMLElement;
+    
     sidebar?.classList.remove('translate-x-full');
     sidebarContent?.classList.remove('translate-x-full');
     document.body.style.overflow = 'hidden';
+    
+    // Accessibility improvements
+    openButton?.setAttribute('aria-expanded', 'true');
+    sidebar?.setAttribute('aria-hidden', 'false');
+    
+    // Focus the close button and trap focus
+    setTimeout(() => {
+      closeButton?.focus();
+      trapFocus(sidebarContent);
+    }, 100);
   }
 
   function closeSidebar() {
     sidebar?.classList.add('translate-x-full');
     sidebarContent?.classList.add('translate-x-full');
     document.body.style.overflow = '';
+    
+    // Accessibility improvements
+    openButton?.setAttribute('aria-expanded', 'false');
+    sidebar?.setAttribute('aria-hidden', 'true');
+    
+    // Return focus to the element that opened the sidebar
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+      lastFocusedElement = null;
+    } else {
+      openButton?.focus();
+    }
   }
 
   openButton?.addEventListener('click', openSidebar);
@@ -51,10 +85,38 @@
     }
   });
 
-  // Gestion de l'accessibilité
+  // Focus trap function
+  function trapFocus(container: HTMLElement | null) {
+    if (!container) return;
+    
+    const focusableElements = container.querySelectorAll(focusableSelectors) as NodeListOf<HTMLElement>;
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+    
+    container.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable?.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable?.focus();
+          }
+        }
+      }
+    });
+  }
+  
+  // Enhanced keyboard accessibility
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && !sidebar?.classList.contains('translate-x-full')) {
       closeSidebar();
     }
   });
+  
+  // Initialize aria-hidden state
+  sidebar?.setAttribute('aria-hidden', 'true');
 </script>
