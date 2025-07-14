@@ -46,7 +46,7 @@ const getInitials = (name: string) => {
     <div>
       <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 sm:mb-4 text-center sm:text-left">
         <div class="mb-2 sm:mb-0">
-          <h3 class="text-lg sm:text-xl lg:text-company text-cv-content font-semibold">
+          <h3 class="text-lg sm:text-xl lg:text-company text-cv-content font-semibold font-lora">
             {companyUrl ? (
               <a 
                 href={companyUrl} 
@@ -66,19 +66,13 @@ const getInitials = (name: string) => {
         
         <!-- Period Badge -->
         <div class="flex justify-center sm:justify-end">
-          {current ? (
-            <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm font-medium">
-              <iconify-icon icon="carbon:time" width="14" height="14" class="sm:w-4 sm:h-4"></iconify-icon>
-              <span class="hidden sm:inline">{period}</span>
-              <span class="sm:hidden">{period.split(' ')[0]}</span>
-            </span>
-          ) : (
-            <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-muted/10 text-cv-muted rounded-sm border border-cv-border shadow-sm">
-              <iconify-icon icon="carbon:calendar" width="14" height="14" class="sm:w-4 sm:h-4"></iconify-icon>
-              <span class="hidden sm:inline">{period}</span>
-              <span class="sm:hidden">{period.split(' ')[0]}</span>
-            </span>
-          )}
+          <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm font-medium">
+            <svg width="14" height="14" viewBox="0 0 32 32" fill="white" class="flex-shrink-0 sm:w-4 sm:h-4">
+              <path d="M26 4h-4V2h-2v2h-8V2h-2v2H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM6 6h4v2h2V6h8v2h2V6h4v4H6zm0 6h20v14H6z"/>
+            </svg>
+            <span class="hidden sm:inline font-ibm-plex-mono">{period}</span>
+            <span class="sm:hidden font-ibm-plex-mono">{period.split(' ')[0]}</span>
+          </span>
         </div>
       </div>
       

@@ -8,8 +8,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/watch-content.js check && astro build",
+    "build:watch": "node scripts/watch-content.js watch & astro dev",
     "preview": "astro preview",
+    "content:check": "node scripts/watch-content.js check",
+    "content:watch": "node scripts/watch-content.js watch",
     "astro": "astro"
   },
   "dependencies": {

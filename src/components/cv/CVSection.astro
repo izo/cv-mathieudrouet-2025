@@ -1,0 +1,22 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  id?: string;
+}
+
+const { title, subtitle, id } = Astro.props;
+---
+
+<section class="mb-section" aria-labelledby={id}>
+  <div class="flex items-baseline gap-4 mb-8">
+    <h2 class="text-section text-cv-accent font-semibold font-lora" id={id}>{title}</h2>
+    {subtitle && (
+      <span class="text-body text-cv-muted" aria-label={subtitle}>{subtitle}</span>
+    )}
+  </div>
+  
+  <div class="space-y-section">
+    <slot />
+  </div>
+</section>

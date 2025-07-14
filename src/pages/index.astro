@@ -1,107 +1,92 @@
 ---
 import CVLayout from '../layouts/CVLayout.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
-import GridSection from '../components/mdx/GridSection.astro';
-import { cvData } from '../data/cv.ts';
+import CVSection from '../components/cv/CVSection.astro';
+import CVGrid from '../components/cv/CVGrid.astro';
+import CVCard from '../components/cv/CVCard.astro';
+import { getEntry } from 'astro:content';
 import { siteConfig } from '../config/site.ts';
+import { parseCVContent } from '../utils/cvParser.ts';
 
+// Get CV content from Markdown
+const cvEntry = await getEntry('cv', 'cv');
+if (!cvEntry) {
+  throw new Error('CV content not found');
+}
 const { title, description } = siteConfig;
+
+// Parse structured data from Markdown content
+const cvContent = parseCVContent(cvEntry.body, cvEntry.data);
 ---
 
 <CVLayout title={title} description={description}>
   <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-12 sm:pb-16">
     <header class="mb-section" role="banner">
-      <h1 class="text-hero text-cv-content font-semibold" id="main-title">{cvData.name}</h1>
+      <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">{cvContent.name}</h1>
     </header>
 
-    <section aria-labelledby="overview-heading">
-      <h2 id="overview-heading" class="sr-only">Informations générales</h2>
-      <GridSection>
-        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-          <h3 class="text-section text-cv-content font-semibold mb-4" id="education-section">Education</h3>
-        <div class="space-y-4">
-          {cvData.education.map((edu) => (
-            <div>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm hover:bg-cv-accent/80 transition-colors mb-2">
-                <iconify-icon icon="carbon:download" width="16" height="16"></iconify-icon>
-                {edu.period}
-              </span>
-              <h3 class="flex gap-2 text-sm text-cv-content mb-1 items-center">
-                <span class="shrink-0" aria-hidden="true">
-                  <iconify-icon icon="carbon:server" width="24" height="24"></iconify-icon>
-                </span>
-                <span>{edu.title}</span>
-              </h3>
-              <p class="text-body text-cv-muted">{edu.institution}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-          <h3 class="text-section text-cv-content font-semibold mb-4" id="contact-section">Contact Info</h3>
-        <div class="space-y-4">
+    <CVGrid>
+      <CVCard title="Education" id="education-section">
+        {cvContent.education.map((edu) => (
           <div>
-            <p class="text-body text-cv-muted">Email: {cvData.contact.email}</p>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm hover:bg-cv-accent/80 transition-colors mb-2 font-ibm-plex-mono">
+              <svg width="16" height="16" viewBox="0 0 32 32" fill="white" class="flex-shrink-0">
+                <path d="M26 4h-4V2h-2v2h-8V2h-2v2H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM6 6h4v2h2V6h8v2h2V6h4v4H6zm0 6h20v14H6z"/>
+              </svg>
+              {edu.period}
+            </span>
+            <h4 class="text-sm text-cv-content mb-1 font-semibold font-lora">
+              {edu.title}
+            </h4>
+            <p class="text-body text-cv-muted">{edu.institution}</p>
           </div>
-          <div>
-            <p class="text-body text-cv-muted">Portfolio: <a href={cvData.contact.portfolio.url} class="text-cv-accent">{cvData.contact.portfolio.text}</a></p>
-          </div>
-          <div>
-            <p class="text-body text-cv-muted">LinkedIn: {cvData.contact.linkedin}</p>
-          </div>
-          <div>
-            <p class="text-body text-cv-muted">{cvData.contact.location}</p>
-          </div>
-        </div>
-      </div>
-
-        <div class="relative p-6 pattern-boxes sh-alt rounded-sm">
-          <h3 class="text-section text-cv-content font-semibold mb-4" id="interests-section">Interests</h3>
-        <div class="grid grid-cols-2 gap-x-12 gap-y-4">
-          {cvData.interests.map((interest) => (
-            <p class="text-body text-cv-muted">{interest}</p>
-          ))}
-        </div>
-      </div>
-      </GridSection>
-    </section>
-
-    <section class="mb-section" aria-labelledby="experience-section">
-      <div class="flex items-baseline gap-4 mb-8">
-        <h2 class="text-section text-cv-content font-semibold" id="experience-section">Experience</h2>
-        <span class="text-body text-cv-muted" aria-label="10 ans d'expérience professionnelle">10+ years</span>
-      </div>
-      
-      <div class="space-y-section">
-        {cvData.experience.map((exp) => (
-          <ExperienceCard
-            company={exp.company}
-            companyUrl={exp.companyUrl}
-            role={exp.role}
-            period={exp.period}
-            current={exp.current}
-            logo={exp.logo}
-          >
-            {exp.achievements.map((achievement) => (
-              <li class="text-body text-cv-content flex">
-                <span class="mr-3">•</span>
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ExperienceCard>
         ))}
-      </div>
-    </section>
+      </CVCard>
 
-    <section class="mb-section" aria-labelledby="skills-section">
-      <div class="flex items-baseline gap-4 mb-8">
-        <h2 class="text-section text-cv-content font-semibold" id="skills-section">Skills</h2>
-        <span class="text-body text-cv-muted" aria-label="Expertise professionnelle">Professional expertise</span>
-      </div>
-      
+      <CVCard title="Contact Info" id="contact-section">
+        <div class="space-y-3">
+          <p class="text-body text-cv-muted">Email: <a href={`mailto:${cvContent.contact.email}`} class="text-cv-accent hover:underline">{cvContent.contact.email}</a></p>
+          <p class="text-body text-cv-muted">Portfolio: <a href={cvContent.contact.portfolio.url} class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">{cvContent.contact.portfolio.text}</a></p>
+          <p class="text-body text-cv-muted">LinkedIn: {cvContent.contact.linkedin}</p>
+          <p class="text-body text-cv-muted">{cvContent.contact.location}</p>
+        </div>
+      </CVCard>
+
+      <CVCard title="Interests" id="interests-section">
+        <div class="grid grid-cols-1 gap-y-2">
+          {cvContent.interests.map((interest) => (
+            <p class="text-body text-cv-muted flex items-center gap-2">
+              <span class="w-2 h-2 bg-cv-accent rounded-full"></span>
+              {interest}
+            </p>
+          ))}
+        </div>
+      </CVCard>
+    </CVGrid>
+
+    <CVSection title="Experience" subtitle="10+ years" id="experience-section">
+      {cvContent.experience.map((exp) => (
+        <ExperienceCard
+          company={exp.company}
+          companyUrl={exp.companyUrl}
+          role={exp.role}
+          period={exp.period}
+          current={exp.current}
+          logo={exp.logo}
+        >
+          {exp.achievements.map((achievement) => (
+            <li class="text-body text-cv-content flex">
+              <span class="mr-3">•</span>
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ExperienceCard>
+      ))}
+    </CVSection>
+
+    <CVSection title="Skills" subtitle="Professional expertise" id="skills-section">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-section">
-        {cvData.skills.map((skill) => (
+        {cvContent.skills.map((skill) => (
           <ExperienceCard
             company={skill.title}
             role={skill.subtitle}
@@ -117,6 +102,6 @@ const { title, description } = siteConfig;
           </ExperienceCard>
         ))}
       </div>
-    </section>
+    </CVSection>
   </div>   
 </CVLayout>

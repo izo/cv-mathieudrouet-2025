@@ -1,3 +1,9 @@
+---
+name: "Mathieu Drouet"
+title: "Senior Product Manager"
+description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale."
+---
+
 # Mathieu Drouet
 
 ## Education
@@ -10,22 +16,22 @@ Simplon.co - Lille
 **1997 - 1999**
 Institut Supérieur d'Architecture Saint-Luc
 
-## Contact Info
+## Coordonnées
 
-- Email: hello@mathieu-drouet.com
-- Portfolio: [cv.mathieu-drouet.com](https://cv.mathieu-drouet.com)
+- Email: m@mdr.cool
+- Portfolio: [cv.drouet.io](https://cv.drouet.io)
 - LinkedIn: linkedin.com/in/mathieu-drouet
-- Location: Lille, France
+- Localisation: Lille, France
 
-## Interests
+## Centres d’intérêt
 
-- Technologies
-- Innovation
-- Photographie
-- Architecture
-- Sport
+- Photographie documentaire
+- Musique expérimentale
+- Sciences Humaines
+- Permaculture
+- Design
 
-## Experience
+## Expérience
 
 ### CH-Studio - GEHealthcare
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)
@@ -34,7 +40,7 @@ Institut Supérieur d'Architecture Saint-Luc
 - Conduit une analyse croisée des usages (logs, sondages, interviews)
 - Produit une cartographie des parcours utilisateurs et évaluation de la gouvernance
 - Livré un rapport de recommandations stratégiques pour la roadmap
-- Reflexion autour des LLM dans le projet
+- Réflexion autour des LLM dans le projet
 
 ### Group Actual
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)
@@ -57,7 +63,7 @@ Institut Supérieur d'Architecture Saint-Luc
 - Supervisé l'UX/UI, augmentant la satisfaction utilisateur de 35%
 - Géré le lancement du produit aux États-Unis
 
-## Skills
+## Compétences
 
 ### Product Management
 **Strategic Leadership** | Expert
@@ -67,11 +73,11 @@ Institut Supérieur d'Architecture Saint-Luc
 - User research et A/B testing
 
 ### Technologies
-**Full-Stack Development** | Advanced
-
-- HTML/CSS, Node.js, JavaScript
-- Flutter, SwiftUI, React
-- WordPress, Drupal, CMS
+**Full-Stack Development & IA** | Advanced
+ 
+- LLM, RAG, MCP, API, modele open source
+- Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
+- Flutter, Swift/UI, React
 
 ### Tools & Platforms
 **Digital Workflow** | Expert

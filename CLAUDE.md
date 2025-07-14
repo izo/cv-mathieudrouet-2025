@@ -8,12 +8,15 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
 ## Commands
 - Install: `npm install`
 - Development: `npm run dev` (starts server at localhost:4321)
-- Build: `npm run build` (builds to ./dist/)
+- Build: `npm run build` (detects content changes and builds to ./dist/)
 - Preview: `npm run preview` (preview build locally)
 - Type-check: `npm run astro check` (validate TypeScript)
+- Content Check: `npm run content:check` (check for CV content changes)
+- Content Watch: `npm run content:watch` (watch CV content for changes)
+- Build with Watch: `npm run build:watch` (starts dev server with content watching)
 
 ## Architecture & Structure
-- **Content Management**: CV content is stored in `src/content/cv.mdx` using MDX format, allowing rich text formatting with React components
+- **Content Management**: CV content is stored in `src/content/cv/cv.md` using Markdown format with Astro Content Collections, parsed dynamically through `src/utils/cvParser.ts`
 - **Layout System**: Two-layout architecture:
   - `Layout.astro`: Base layout with HTML structure and meta tags
   - `CVLayout.astro`: Specific CV layout with sidebar (desktop) and mobile sidebar (responsive)
@@ -71,9 +74,10 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
 **Recommendation**: Self-host Font Awesome or implement CSP headers
 
 ### Modernization Opportunities
-- **Content Collections**: Migrate from MDX to type-safe Astro content collections
+- ✅ **Content Collections**: Successfully migrated to type-safe Astro content collections with dynamic Markdown parsing
 - **Image Optimization**: Use `astro:assets` for automatic image optimization
 - **Configuration Externalization**: Move hardcoded data to `src/config/` files
+- ✅ **Content Change Detection**: Implemented build-time content change detection and caching system
 
 ### Performance Metrics
 - CSS Bundle: 31KB (excellent)
@@ -132,5 +136,56 @@ src/
 - Maintain static site generation for optimal security posture
 - Consider implementing Content Security Policy for production
 
+## Content Management System
+
+### Dynamic Markdown Parsing
+- **Source**: `src/content/cv/cv.md` - Single source of truth for CV content
+- **Parser**: `src/utils/cvParser.ts` - Converts Markdown to structured TypeScript data
+- **Integration**: Astro Content Collections automatically handle frontmatter and content separation
+- **Change Detection**: `scripts/watch-content.js` - Detects content changes during build
+
+### Content Structure
+```markdown
+---
+name: "Mathieu Drouet"
+title: "Senior Product Manager"
+description: "CV description"
+---
+
+# Mathieu Drouet
+
+## Education
+### Title
+**Period**
+Institution
+
+## Experience
+### Company
+**Role** | Period | [Company Link](url)
+- Achievement 1
+- Achievement 2
+
+## Skills
+### Skill Category
+**Subtitle** | Level
+- Skill item 1
+- Skill item 2
+```
+
+### Change Detection System
+- **Cache File**: `.content-cache.json` - Stores content hash and modification timestamp
+- **Build Integration**: `npm run build` automatically checks for content changes
+- **Watch Mode**: `npm run content:watch` continuously monitors for changes
+- **Hash Comparison**: SHA256 hashing detects even minor content modifications
+
+### Editing Workflow
+1. Edit `src/content/cv/cv.md` directly
+2. Run `npm run build` to detect changes and rebuild
+3. Content is automatically parsed and integrated into the design system
+4. Changes are cached to avoid unnecessary rebuilds
+
 ## Memories & Notes
-- une remarque , on garde un seul theme = zed
+- une remarque , on garde un seul theme = lumon
+- ✅ Content management system fully operational - edit `src/content/cv/cv.md` for updates
+- ✅ Dynamic Markdown parsing with Lumon Design System integration complete
+- ✅ Build-time content change detection implemented
