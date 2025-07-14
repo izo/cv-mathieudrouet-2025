@@ -4,36 +4,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Zed Core Colors
-        'accent-blue': 'var(--color-accent-blue)',
-        'accent-blue-alt': 'var(--color-accent-blue-alt)',
+        // Lumon MDR Core Colors
+        'accent-green': 'var(--color-accent-green)',
+        'accent-green-alt': 'var(--color-accent-green-alt)',
         'neutral': 'var(--color-neutral)',
+        'dark': 'var(--color-dark)',
+        'light-blue': 'var(--color-light-blue)',
         
-        // Zed Cream Palette
-        'cream-50': 'var(--color-cream-50)',
-        'cream-100': 'var(--color-cream-100)',
-        'cream-200': 'var(--color-cream-200)',
-        'cream-300': 'var(--color-cream-300)',
-        'cream-400': 'var(--color-cream-400)',
-        'cream-500': 'var(--color-cream-500)',
-        'cream-600': 'var(--color-cream-600)',
-        'cream-700': 'var(--color-cream-700)',
-        'cream-800': 'var(--color-cream-800)',
-        'cream-900': 'var(--color-cream-900)',
+        // Lumon MDR Green Palette
+        'green-50': 'var(--color-green-50)',
+        'green-100': 'var(--color-green-100)',
+        'green-200': 'var(--color-green-200)',
+        'green-300': 'var(--color-green-300)',
+        'green-400': 'var(--color-green-400)',
+        'green-500': 'var(--color-green-500)',
+        'green-600': 'var(--color-green-600)',
+        'green-700': 'var(--color-green-700)',
+        'green-800': 'var(--color-green-800)',
+        'green-900': 'var(--color-green-900)',
         
-        // Zed OffGray Palette
-        'offgray-50': 'var(--color-offgray-50)',
-        'offgray-100': 'var(--color-offgray-100)',
-        'offgray-200': 'var(--color-offgray-200)',
-        'offgray-300': 'var(--color-offgray-300)',
-        'offgray-400': 'var(--color-offgray-400)',
-        'offgray-500': 'var(--color-offgray-500)',
-        'offgray-600': 'var(--color-offgray-600)',
-        'offgray-700': 'var(--color-offgray-700)',
-        'offgray-800': 'var(--color-offgray-800)',
-        'offgray-900': 'var(--color-offgray-900)',
-        'offgray-950': 'var(--color-offgray-950)',
-        'offgray-1000': 'var(--color-offgray-1000)',
+        // Lumon MDR Neutral Palette
+        'neutral-50': 'var(--color-neutral-50)',
+        'neutral-100': 'var(--color-neutral-100)',
+        'neutral-200': 'var(--color-neutral-200)',
+        'neutral-300': 'var(--color-neutral-300)',
+        'neutral-400': 'var(--color-neutral-400)',
+        'neutral-500': 'var(--color-neutral-500)',
+        'neutral-600': 'var(--color-neutral-600)',
+        'neutral-700': 'var(--color-neutral-700)',
+        'neutral-800': 'var(--color-neutral-800)',
+        'neutral-900': 'var(--color-neutral-900)',
+        'neutral-950': 'var(--color-neutral-950)',
+        'neutral-1000': 'var(--color-neutral-1000)',
         
         // CV-specific mappings (legacy compatibility)
         'cv-bg': 'var(--cv-bg)',
@@ -133,18 +135,19 @@ export default {
         'page': '4rem'       // 64px left margin
       },
       borderRadius: {
-        // Zed Radius System
-        'xs': 'var(--radius-xs)',
-        'sm': 'var(--radius-sm)',
-        'md': 'var(--radius-md)',
-        'lg': 'var(--radius-lg)',
-        'xl': 'var(--radius-xl)',
-        '2xl': 'var(--radius-2xl)',
-        '3xl': 'var(--radius-3xl)',
-        '4xl': 'var(--radius-4xl)',
+        // Lumon MDR - No rounded corners
+        'none': '0',
+        'xs': '0',
+        'sm': '0',
+        'md': '0',
+        'lg': '0',
+        'xl': '0',
+        '2xl': '0',
+        '3xl': '0',
+        '4xl': '0',
         
         // Legacy compatibility
-        'card': 'var(--radius-lg)'
+        'card': '0'
       },
       fontWeight: {
         'normal': '400',

@@ -6,29 +6,30 @@ description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d
 
 # Mathieu Drouet
 
-## Education
+## Education **carbon:ibm-cloud-for-education**
 
-### Programmation iOS - Swift
-**2022**
+### Programmation iOS - Swift/UI
+**2022 - 2023**
 Simplon.co - Lille
 
 ### Photographie / Histoire de l'art
 **1997 - 1999**
 Institut Supérieur d'Architecture Saint-Luc
 
-## Coordonnées
+## Coordonnées **carbon:email-new**
 
 - Email: m@mdr.cool
 - Portfolio: [cv.drouet.io](https://cv.drouet.io)
 - LinkedIn: linkedin.com/in/mathieu-drouet
 - Localisation: Lille, France
 
-## Centres d’intérêt
+## Centres d’intérêt **carbon:face-cool**
 
 - Photographie documentaire
 - Musique expérimentale
 - Sciences Humaines
 - Permaculture
+- Sciences Politiques
 - Design
 
 ## Expérience
@@ -66,28 +67,32 @@ Institut Supérieur d'Architecture Saint-Luc
 ## Compétences
 
 ### Product Management
-**Strategic Leadership** | Expert
+**carbon:cafe**
+**Strategic Leadership** | **carbon:badge** Expert
 
 - Roadmap produit et stratégie go-to-market
 - OKR et gestion d'équipes Agile
 - User research et A/B testing
 
 ### Technologies
-**Full-Stack Development & IA** | Advanced
+**carbon:ai-generate**
+**Full-Stack Development & IA** | **carbon:bat** Avancé
  
 - LLM, RAG, MCP, API, modele open source
 - Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
 - Flutter, Swift/UI, React
 
 ### Tools & Platforms
-**Digital Workflow** | Expert
+**carbon:branch**
+**Digital Workflow** | **carbon:badge** Expert
 
 - Jira, Confluence, Notion
 - Figma, Adobe Creative Suite
 - VS Code, Git, CI/CD
 
-### Languages
-**International Communication**
+### Langues
+**carbon:ibm-watson-language-translator**
+**International Communication** |  **carbon:bat** Avancé
 
 - Français - Langue maternelle
 - Anglais - Professionnel

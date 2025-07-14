@@ -2,13 +2,29 @@
 export interface Props {
   title: string;
   id?: string;
+  icon?: string;
 }
 
-const { title, id } = Astro.props;
+const { title, id, icon } = Astro.props;
+
+// Get icon SVG from Iconify API
+const getIconSVG = async (iconName: string) => {
+  try {
+    const response = await fetch(`https://api.iconify.design/${iconName}.svg?color=%23163f38&width=20&height=20`);
+    return await response.text();
+  } catch {
+    return null;
+  }
+};
+
+const iconSVG = icon ? await getIconSVG(icon) : null;
 ---
 
 <div class="glass-card">
-  <h3 class="text-section text-cv-content font-semibold font-lora mb-4" id={id}>{title}</h3>
+  <h3 class="text-section text-cv-content font-semibold font-lora mb-4 flex items-center gap-2" id={id}>
+    {iconSVG && <div class="flex items-center justify-center" set:html={iconSVG} />}
+    {title}
+  </h3>
   <div class="space-y-4">
     <slot />
   </div>

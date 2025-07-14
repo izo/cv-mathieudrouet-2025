@@ -6,59 +6,61 @@
   /* ===== LUMON DESIGN SYSTEM ===== */
   
   :root, [data-theme="lumon"] {
-    /* Lumon Core Brand Colors */
-    --color-accent-blue: #0751cf;
-    --color-accent-blue-alt: #084CCF;
-    --color-neutral: #f6f4ef;
+    /* Lumon MDR Core Colors */
+    --color-accent-green: #7da17e;
+    --color-accent-green-alt: #98b6b0;
+    --color-neutral: #f7f6f9;
+    --color-dark: #163f38;
+    --color-light-blue: #d6e0e2;
     
-    /* Lumon Cream Palette (Warm Tones) */
-    --color-cream-50: #f5f4ef;
-    --color-cream-100: #e8e6d9;
-    --color-cream-200: #d9d5bf;
-    --color-cream-300: #cfcaaf;
-    --color-cream-400: #bab38c;
-    --color-cream-500: #aba273;
-    --color-cream-600: #998f5c;
-    --color-cream-700: #80774d;
-    --color-cream-800: #665f3d;
-    --color-cream-900: #4c472e;
+    /* Lumon MDR Green Palette */
+    --color-green-50: #f7f9f7;
+    --color-green-100: #e8f0e9;
+    --color-green-200: #c9dccb;
+    --color-green-300: #98b6b0;
+    --color-green-400: #7da17e;
+    --color-green-500: #6a8f6c;
+    --color-green-600: #5a7d5c;
+    --color-green-700: #4a674c;
+    --color-green-800: #3a513c;
+    --color-green-900: #2a3b2c;
     
-    /* Lumon OffGray Palette (Cool Tones) */
-    --color-offgray-50: #f1f2f4;
-    --color-offgray-100: #dddfe4;
-    --color-offgray-200: #c6cad2;
-    --color-offgray-300: #b8bdc7;
-    --color-offgray-400: #98a0ae;
-    --color-offgray-500: #818b9c;
-    --color-offgray-600: #6c7689;
-    --color-offgray-700: #5a6372;
-    --color-offgray-800: #4c5461;
-    --color-offgray-900: #363b45;
-    --color-offgray-950: #22252b;
-    --color-offgray-1000: #0b0c0e;
+    /* Lumon MDR Neutral Palette */
+    --color-neutral-50: #f7f6f9;
+    --color-neutral-100: #ebe9ee;
+    --color-neutral-200: #d6e0e2;
+    --color-neutral-300: #c1cdd0;
+    --color-neutral-400: #98b6b0;
+    --color-neutral-500: #7da17e;
+    --color-neutral-600: #5a7d5c;
+    --color-neutral-700: #4a674c;
+    --color-neutral-800: #3a513c;
+    --color-neutral-900: #2a3b2c;
+    --color-neutral-950: #1a2b1c;
+    --color-neutral-1000: #163f38;
     
-    /* Lumon Light Theme Colors */
-    --background: #f6f4ef;
-    --foreground: #4c5461;
-    --nav-bg-color: #f7f7f2f5;
+    /* Lumon MDR Theme Colors */
+    --background: var(--color-neutral);
+    --foreground: var(--color-dark);
+    --nav-bg-color: rgba(247, 246, 249, 0.95);
     
-    /* CV-specific mapping to Lumon colors */
-    --cv-bg: var(--background);
-    --cv-paper: var(--color-cream-50);
-    --cv-content: var(--color-offgray-800);
-    --cv-muted: var(--color-offgray-600);
-    --cv-light: var(--color-offgray-500);
-    --cv-card: var(--color-cream-50);
-    --cv-accent: var(--color-accent-blue);
-    --cv-section: var(--color-cream-100);
-    --cv-border: var(--color-offgray-200);
-    --cv-shadow: rgba(76, 84, 97, 0.08);
+    /* CV-specific mapping to Lumon MDR colors */
+    --cv-bg: var(--color-neutral);
+    --cv-paper: var(--color-green-50);
+    --cv-content: var(--color-dark);
+    --cv-muted: var(--color-neutral-600);
+    --cv-light: var(--color-neutral-400);
+    --cv-card: var(--color-green-50);
+    --cv-accent: var(--color-dark);
+    --cv-section: var(--color-green-100);
+    --cv-border: var(--color-light-blue);
+    --cv-shadow: rgba(22, 63, 56, 0.08);
     
     /* Accessibility colors */
-    --cv-focus: var(--color-accent-blue);
-    --cv-focus-bg: rgba(7, 81, 207, 0.1);
+    --cv-focus: var(--color-dark);
+    --cv-focus-bg: rgba(22, 63, 56, 0.1);
     --cv-error: #dc2626;
-    --cv-success: #16a34a;
+    --cv-success: var(--color-accent-green);
     
     /* Lumon Font Families */
     --font-agrandir: "__agrandir_24f3dc", "__agrandir_Fallback_24f3dc", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -76,15 +78,15 @@
     --sh-alt: 6px 6px 0 #074dcf0f;
     --sh-alt-opposite: -6px -6px 0 #074dcf0f;
     
-    /* Lumon Border Radius */
-    --radius-xs: 0.125rem;
-    --radius-sm: 0.25rem;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-    --radius-2xl: 1rem;
-    --radius-3xl: 1.5rem;
-    --radius-4xl: 2rem;
+    /* Lumon MDR Border Radius - No rounded corners */
+    --radius-xs: 0;
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-3xl: 0;
+    --radius-4xl: 0;
     
     /* Lumon Shadows System */
     --shadow-2xs: 0 1px #0000000d;
@@ -357,7 +359,7 @@
   /* Enhanced Glass Card with Zed styling */
   .glass-card {
     background: var(--cv-card);
-    border-radius: var(--radius-lg);
+    border-radius: 0;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--cv-border);
     padding: 1.5rem;
@@ -366,8 +368,13 @@
   }
   
   .glass-card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-offgray-300);
+    box-shadow: 2px 2px 0 #7da17e;
+    border-color: var(--cv-accent);
+    background-image: 
+      linear-gradient(to right, #d6e0e2 1px, transparent 1px),
+      linear-gradient(to bottom, #d6e0e2 1px, transparent 1px);
+    background-size: 12.5px 12.5px;
+    background-repeat: repeat;
   }
   
   /* Lumon Interactive Elements */
@@ -563,7 +570,7 @@
     border: 1px solid var(--cv-border);
     color: var(--cv-content);
     transition: all 0.2s ease;
-    @apply rounded-lg p-6;
+    @apply p-6;
   }
 
   /* Lumon Pattern Boxes (optimized) */
@@ -582,7 +589,12 @@
   /* Clean hover effects */
   .glass-card:hover {
     border-color: var(--cv-accent);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 0 #7da17e;
+    background-image: 
+      linear-gradient(to right, #d6e0e2 1px, transparent 1px),
+      linear-gradient(to bottom, #d6e0e2 1px, transparent 1px);
+    background-size: 12.5px 12.5px;
+    background-repeat: repeat;
   }
   
   /* Touch target accessibility */
@@ -625,7 +637,7 @@
   .glass-card {
     background: var(--cv-card);
     border: 1px solid var(--cv-border);
-    border-radius: 8px;
+    border-radius: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     font-family: var(--font-family);
     padding: 1.5rem 2rem;
@@ -635,7 +647,12 @@
 
   .glass-card:hover {
     border-color: var(--cv-accent);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 0 #7da17e;
+    background-image: 
+      linear-gradient(to right, #d6e0e2 1px, transparent 1px),
+      linear-gradient(to bottom, #d6e0e2 1px, transparent 1px);
+    background-size: 12.5px 12.5px;
+    background-repeat: repeat;
   }
 
   /* Enhanced focus indicators for better visibility */

@@ -6,6 +6,9 @@ export interface CVData {
   interests: string[];
   experience: Experience[];
   skills: Skill[];
+  educationIcon?: string;
+  contactIcon?: string;
+  interestsIcon?: string;
 }
 
 export interface Education {
@@ -40,6 +43,13 @@ export interface Skill {
   level: string;
   current?: boolean;
   items: string[];
+  icon?: string;
+  levelIcon?: string;
+}
+
+// Helper to convert Carbon icons in text
+function replaceCarbonIcons(text: string): string {
+  return text.replace(/carbon:([a-zA-Z0-9-_]+)/g, '<iconify-icon icon="carbon:$1" width="16" height="16" class="inline-block"></iconify-icon>');
 }
 
 // Helper to parse CV content from Markdown
@@ -47,11 +57,14 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   // Use frontmatter data from Astro Content Collections
   const name = frontmatterData?.name || 'Mathieu Drouet';
   
-  // Parse education section
-  const educationMatches = content.match(/## Education\n\n([\s\S]*?)(?=\n## )/);
+  // Parse education section and extract icon
+  const educationSectionMatch = content.match(/## Education\s*(\*\*carbon:[a-zA-Z0-9-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
+  const educationIconMatch = content.match(/## Education\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+  const educationIcon = educationIconMatch ? educationIconMatch[1] : undefined;
+  
   const education: Education[] = [];
-  if (educationMatches) {
-    const eduContent = educationMatches[1];
+  if (educationSectionMatch) {
+    const eduContent = educationSectionMatch[2];
     const eduBlocks = eduContent.split(/(?=### )/);
     eduBlocks.forEach(block => {
       const titleMatch = block.match(/### (.*)/);
@@ -68,8 +81,12 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     });
   }
 
-  // Parse contact info
-  const contactMatch = content.match(/## Contact Info\n\n([\s\S]*?)(?=\n## )/);
+  // Parse contact info (French: Coordonnées) and extract icon
+  const contactSectionMatch = content.match(/## Coordonnées\s*(\*\*carbon:[a-zA-Z0-9-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
+  const contactIconMatch = content.match(/## Coordonnées\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+  const contactIcon = contactIconMatch ? contactIconMatch[1] : undefined;
+  
+  const contactMatch = contactSectionMatch;
   const contact: Contact = {
     email: "m@mdr.cool",
     portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
@@ -81,7 +98,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     const emailMatch = contactMatch[1].match(/Email: (.*)/);
     const portfolioMatch = contactMatch[1].match(/Portfolio: \[(.*?)\]\((.*?)\)/);
     const linkedinMatch = contactMatch[1].match(/LinkedIn: (.*)/);
-    const locationMatch = contactMatch[1].match(/Location: (.*)/);
+    const locationMatch = contactMatch[1].match(/Localisation: (.*)/);
     
     if (emailMatch) contact.email = emailMatch[1];
     if (portfolioMatch) {
@@ -91,16 +108,36 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     if (locationMatch) contact.location = locationMatch[1];
   }
 
-  // Parse interests
-  const interestsMatch = content.match(/## Interests\n\n([\s\S]*?)(?=\n## )/);
+  // Parse interests icon and content
+  let interestsIcon: string | undefined = undefined;
   const interests: string[] = [];
-  if (interestsMatch) {
-    const interestLines = interestsMatch[1].split('\n').filter(line => line.startsWith('- '));
-    interests.push(...interestLines.map(line => line.replace('- ', '')));
+  const lines = content.split('\n');
+  let inSection = false;
+  
+  for (const line of lines) {
+    // Extract icon from section header
+    if (line.includes('Centres d') && line.includes('intérêt') && line.includes('carbon:')) {
+      const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      if (iconMatch) {
+        interestsIcon = iconMatch[1];
+      }
+      inSection = true;
+      continue;
+    }
+    
+    // Stop at next section
+    if (inSection && line.startsWith('## ')) {
+      break;
+    }
+    
+    // Extract interest items
+    if (inSection && line.trim().startsWith('- ')) {
+      interests.push(replaceCarbonIcons(line.replace('- ', '').trim()));
+    }
   }
 
-  // Parse experience
-  const experienceMatch = content.match(/## Experience\n\n([\s\S]*?)(?=\n## )/);
+  // Parse experience (French: Expérience)
+  const experienceMatch = content.match(/## Expérience\n\n([\s\S]*?)(?=\n## )/);
   const experience: Experience[] = [];
   if (experienceMatch) {
     const expBlocks = experienceMatch[1].split(/(?=### )/);
@@ -117,7 +154,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
         
         // Extract achievements
         const achievementLines = block.split('\n').filter(line => line.startsWith('- '));
-        const achievements = achievementLines.map(line => line.replace('- ', ''));
+        const achievements = achievementLines.map(line => replaceCarbonIcons(line.replace('- ', '')));
         
         // Map company names to logo filenames
         const logoMap: { [key: string]: string } = {
@@ -140,8 +177,8 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     });
   }
 
-  // Parse skills
-  const skillsMatch = content.match(/## Skills\n\n([\s\S]*?)$/);
+  // Parse skills (French: Compétences)
+  const skillsMatch = content.match(/## Compétences\n\n([\s\S]*?)$/);
   const skills: Skill[] = [];
   if (skillsMatch) {
     const skillBlocks = skillsMatch[1].split(/(?=### )/);
@@ -150,21 +187,39 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const subtitleMatch = block.match(/\*\*(.*?)\*\*/);
       const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
       
+      // Extract main icon from block (first **carbon:xxx** pattern)
+      const iconMatch = block.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      const icon = iconMatch ? iconMatch[1] : undefined;
+      
+      // Extract level icon from level line (look for **carbon:xxx** in | line)
+      const levelIconMatch = block.match(/\|\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      const levelIcon = levelIconMatch ? levelIconMatch[1] : undefined;
+      
       if (titleMatch && subtitleMatch) {
-        const title = titleMatch[1];
-        const subtitle = subtitleMatch[1];
-        const level = levelMatch?.[1] || 'Advanced';
+        const title = replaceCarbonIcons(titleMatch[1]);
+        const subtitle = replaceCarbonIcons(subtitleMatch[1]);
         
-        // Extract skill items
-        const itemLines = block.split('\n').filter(line => line.startsWith('- '));
-        const items = itemLines.map(line => line.replace('- ', ''));
+        // Extract level text, removing the carbon icon part
+        let level = levelMatch?.[1] || 'Advanced';
+        if (levelIcon) {
+          level = level.replace(/\*\*carbon:[a-zA-Z0-9-_]+\*\*\s*/, '').trim();
+        }
+        
+        // Extract skill items (avoid icon lines)
+        const itemLines = block.split('\n')
+          .filter(line => line.startsWith('- ') || (line.trim().startsWith('**carbon:') && !line.includes('|')))
+          .filter(line => !line.match(/\*\*carbon:[a-zA-Z0-9-_]+\*\*/))
+          .filter(line => line.startsWith('- '));
+        const items = itemLines.map(line => replaceCarbonIcons(line.replace('- ', '')));
         
         skills.push({
           title,
           subtitle,
           level,
           current: title === 'Product Management',
-          items
+          items,
+          icon,
+          levelIcon
         });
       }
     });
@@ -176,6 +231,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     contact,
     interests,
     experience,
-    skills
+    skills,
+    educationIcon,
+    contactIcon,
+    interestsIcon
   };
 }

@@ -7,14 +7,40 @@ export interface Props {
   current?: boolean;
   logo?: string;
   description?: string[];
+  icon?: string;
+  levelIcon?: string;
 }
 
-const { company, companyUrl, role, period, current = false, logo, description } = Astro.props;
+const { company, companyUrl, role, period, current = false, logo, description, icon, levelIcon } = Astro.props;
 
 // Generate initials as fallback for missing logos
 const getInitials = (name: string) => {
   return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase().slice(0, 2);
 };
+
+// Get icon SVG from Iconify API
+const getIconifySVG = async (iconName: string) => {
+  try {
+    const response = await fetch(`https://api.iconify.design/${iconName}.svg?color=%23d6e0e2&width=60%25&height=60%25`);
+    return await response.text();
+  } catch {
+    return null;
+  }
+};
+
+// Get level icon SVG from Iconify API (24x24 size, white color)
+const getLevelIconSVG = async (iconName: string) => {
+  try {
+    const response = await fetch(`https://api.iconify.design/${iconName}.svg?color=white&width=24&height=24`);
+    return await response.text();
+  } catch {
+    return null;
+  }
+};
+
+// Get icons for component
+const iconSVG = icon ? await getIconifySVG(icon) : null;
+const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
 ---
 
 <div class="glass-card mb-4 sm:mb-6 lg:mb-section">
@@ -25,7 +51,7 @@ const getInitials = (name: string) => {
         <img 
           src={logo} 
           alt={`Logo de ${company}`} 
-          class="w-full h-full object-contain rounded-xl lazy-load"
+          class="w-full h-full object-contain lazy-load"
           loading="lazy"
           decoding="async"
           fetchpriority="low"
@@ -35,10 +61,14 @@ const getInitials = (name: string) => {
         />
       ) : null}
       <div 
-        class={`w-full h-full rounded-xl bg-cv-accent text-white flex items-center justify-center text-sm font-semibold ${logo ? 'hidden' : 'flex'}`}
-        aria-label={`Initiales de ${company}`}
+        class={`w-full h-full bg-cv-accent text-white flex items-center justify-center text-sm font-semibold ${logo ? 'hidden' : 'flex'}`}
+        aria-label={icon ? `Icône de ${company}` : `Initiales de ${company}`}
       >
-        {getInitials(company)}
+        {icon && iconSVG ? (
+          <div class="flex items-center justify-center w-full h-full" set:html={iconSVG} />
+        ) : (
+          getInitials(company)
+        )}
       </div>
     </div>
     
@@ -55,23 +85,22 @@ const getInitials = (name: string) => {
                 class="hover:text-cv-accent transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded"
                 aria-label={`Voir le projet chez ${company} (ouvre dans un nouvel onglet)`}
               >
-                {company}
+                <span set:html={company}></span>
               </a>
             ) : (
-              company
+              <span set:html={company}></span>
             )}
           </h3>
-          <p class="text-base sm:text-lg lg:text-role text-cv-muted">{role}</p>
+          <p class="text-base sm:text-lg lg:text-role text-cv-muted" set:html={role}></p>
         </div>
         
-        <!-- Period Badge -->
+        <!-- Level Badge -->
         <div class="flex justify-center sm:justify-end">
-          <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm bg-cv-accent text-white rounded-sm border border-cv-accent shadow-sm font-medium">
-            <svg width="14" height="14" viewBox="0 0 32 32" fill="white" class="flex-shrink-0 sm:w-4 sm:h-4">
-              <path d="M26 4h-4V2h-2v2h-8V2h-2v2H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM6 6h4v2h2V6h8v2h2V6h4v4H6zm0 6h20v14H6z"/>
-            </svg>
-            <span class="hidden sm:inline font-ibm-plex-mono">{period}</span>
-            <span class="sm:hidden font-ibm-plex-mono">{period.split(' ')[0]}</span>
+          <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm text-white border shadow-sm font-medium" style="background-color: #98b6b0; border-color: #98b6b0;">
+            {levelIcon && levelIconSVG ? (
+              <div class="flex items-center justify-center w-6 h-6" set:html={levelIconSVG} />
+            ) : null}
+            <span class="font-ibm-plex-mono">{period}</span>
           </span>
         </div>
       </div>

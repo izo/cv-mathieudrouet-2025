@@ -8,9 +8,10 @@ const STATIC_ASSETS = [
   '/index.html',
   '/profile.jpg',
   '/favicon.svg',
-  '/fonts/',
-  '/_astro/',
-  '/logos/'
+  '/logos/actual.png',
+  '/logos/bookr.png', 
+  '/logos/fluidra.png',
+  '/logos/ge-healtcare.png'
 ];
 
 // Install event - cache static assets
