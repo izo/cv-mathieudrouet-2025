@@ -6,14 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3, TypeScript, and Tailwind CSS. The site is statically generated and deployed to https://cv.mathieu-drouet.com.
 
 ## Commands
-- Install: `npm install`
-- Development: `npm run dev` (starts server at localhost:4321)
-- Build: `npm run build` (detects content changes and builds to ./dist/)
-- Preview: `npm run preview` (preview build locally)
-- Type-check: `npm run astro check` (validate TypeScript)
-- Content Check: `npm run content:check` (check for CV content changes)
-- Content Watch: `npm run content:watch` (watch CV content for changes)
-- Build with Watch: `npm run build:watch` (starts dev server with content watching)
+- Install: `pnpm install`
+- Development: `pnpm run dev` or `pnpm start` (starts server at localhost:4321)
+- Build: `pnpm run build` (detects content changes and builds to ./dist/)
+- Preview: `pnpm run preview` (preview build locally)
+- Type-check: `pnpm run astro check` (validate TypeScript)
+- Content Check: `pnpm run content:check` (check for CV content changes)
+- Content Watch: `pnpm run content:watch` (watch CV content for changes)
+- Build with Watch: `pnpm run build:watch` (starts dev server with content watching)
 
 ## Architecture & Structure
 - **Content Management**: CV content is stored in `src/content/cv/cv.md` using Markdown format with Astro Content Collections, parsed dynamically through `src/utils/cvParser.ts`
@@ -21,14 +21,19 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
   - `Layout.astro`: Base layout with HTML structure and meta tags
   - `CVLayout.astro`: Specific CV layout with sidebar (desktop) and mobile sidebar (responsive)
 - **Component Organization**:
-  - `Card.astro`: Reusable card component for section containers
   - `ExperienceCard.astro`: Work experience display with company links, roles, and descriptions
   - `SidebarContent.astro`: Contact info, languages, and interests
   - `MobileSidebar.astro`: Responsive navigation for mobile devices
-- **Styling Architecture**: Tailwind CSS with custom theme configuration in `tailwind.config.mjs`:
-  - Custom colors: `cv-bg` (background), `cv-paper` (paper texture), `cv-content` (text), `cv-muted`, `cv-light`, `cv-card`, `cv-accent`
-  - Custom typography using Cormorant serif font
-  - Extensive typography plugin customization for professional appearance
+  - `cv/CVCard.astro`: CV-specific card component with icon support
+  - `cv/CVGrid.astro`: Grid layout system for CV sections
+  - `cv/CVSection.astro`: Section headers with icons
+  - `mdx/`: MDX-specific components for content rendering
+- **Styling Architecture**: Tailwind CSS with Lumon Design System configuration in `tailwind.config.mjs`:
+  - **Lumon Theme**: Green-based color system with comprehensive neutral scale
+  - **Typography**: IBM Plex Sans/Mono + Lora fonts via Google Fonts
+  - **Glass Morphism**: Backdrop blur effects and gradient overlays
+  - **Legacy CV Colors**: Mapped for backward compatibility (`cv-bg`, `cv-paper`, `cv-content`, etc.)
+  - **No Border Radius**: Clean, square design aesthetic
 
 ## Code Style Guidelines
 - **TypeScript**: Use TypeScript for type safety (extends astro/tsconfigs/base)
@@ -42,10 +47,11 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.9.3,
 - **Naming**: Use camelCase for variables/functions, PascalCase for components
 
 ## Key Configuration Files
-- `astro.config.mjs`: Configures Tailwind and MDX integrations
-- `tailwind.config.mjs`: Contains custom theme, colors, and typography settings
+- `astro.config.mjs`: Configures Tailwind integration, build optimizations, and performance settings
+- `tailwind.config.mjs`: Contains Lumon Design System theme, colors, and typography settings
 - `tsconfig.json`: TypeScript configuration extending Astro's base
 - `renovate.json`: Automated dependency updates configuration
+- `package.json`: Uses pnpm as package manager with Puppeteer for PDF generation
 
 ## Code Analysis & Architecture Review
 
@@ -112,10 +118,10 @@ src/
 4. **Configuration Externalization** - Move hardcoded values to config files
 
 ### Development Workflow
-- Always run `npm run build` before committing to ensure no build errors
-- Use `npm run astro check` for TypeScript validation
+- Always run `pnpm run build` before committing to ensure no build errors
+- Use `pnpm run astro check` for TypeScript validation
 - Test responsive design on mobile devices due to glass morphism effects
-- Verify CDN dependencies are loading correctly
+- Verify CDN dependencies are loading correctly (Iconify, Google Fonts)
 
 ### Code Quality Standards
 - All components must have TypeScript interfaces for props

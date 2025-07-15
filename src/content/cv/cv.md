@@ -26,6 +26,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - **carbon:report** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
 - **carbon:logo-linkedin** **LinkedIn:** [linkedin.com/in/mathieu-drouet](https://linkedin.com/in/mathieu-drouet)
 - **carbon:map** **Localisation:** Lille, France
+- **carbon:navaid-seaplane** **Mobilié:** Lille, Paris, France, Belgique, Canada
 
 ## Centres d’intérêt **carbon:face-cool**
 

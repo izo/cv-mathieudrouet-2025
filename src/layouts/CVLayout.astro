@@ -73,7 +73,24 @@ const emailIconSVG = await getFooterIconSVG('carbon:email');
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Iconify API -->
-    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js" defer></script>
+    
+    <!-- Iconify initialization script -->
+    <script is:inline>
+      // Ensure Iconify is loaded
+      if (typeof customElements !== 'undefined' && !customElements.get('iconify-icon')) {
+        // Wait for Iconify to load
+        document.addEventListener('DOMContentLoaded', function() {
+          // Force reload of iconify-icon elements
+          const icons = document.querySelectorAll('iconify-icon');
+          icons.forEach(icon => {
+            if (icon.shadowRoot && icon.shadowRoot.innerHTML === '') {
+              icon.setAttribute('icon', icon.getAttribute('icon'));
+            }
+          });
+        });
+      }
+    </script>
     
     <!-- Performance optimizations -->
     <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg">

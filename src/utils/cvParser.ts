@@ -50,17 +50,43 @@ export interface Skill {
 
 // Helper to convert Carbon icons and markdown formatting in text
 function replaceCarbonIcons(text: string): string {
-  // Convert Carbon icons
-  let result = text.replace(/carbon:([a-zA-Z0-9-_]+)/g, '<iconify-icon icon="carbon:$1" width="16" height="16" class="inline-block"></iconify-icon>');
+  // First, extract and replace all carbon icons with placeholders
+  const iconMatches: { placeholder: string; replacement: string }[] = [];
+  let iconIndex = 0;
   
-  // Convert markdown formatting BEFORE links to avoid conflicts
-  result = result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
-  result = result.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
+  // Handle **carbon:icon** pattern
+  text = text.replace(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/g, (match, iconName) => {
+    const placeholder = `__ICON_${iconIndex++}__`;
+    iconMatches.push({
+      placeholder,
+      replacement: `<iconify-icon icon="${iconName}" width="16" height="16" class="inline-block text-cv-accent mr-2"></iconify-icon>`
+    });
+    return placeholder;
+  });
   
-  // Convert markdown links [text](url) AFTER formatting
-  result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">$1</a>');
+  // Handle standalone carbon:icon pattern (not preceded by ** or >)
+  text = text.replace(/(?<!\*\*|\>)(carbon:[a-zA-Z0-9-_]+)(?!\*\*)/g, (match, iconName) => {
+    const placeholder = `__ICON_${iconIndex++}__`;
+    iconMatches.push({
+      placeholder,
+      replacement: `<iconify-icon icon="${iconName}" width="16" height="16" class="inline-block text-cv-accent mr-2"></iconify-icon>`
+    });
+    return placeholder;
+  });
   
-  return result;
+  // Convert markdown formatting
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
+  
+  // Convert markdown links
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">$1</a>');
+  
+  // Replace icon placeholders with actual icons
+  iconMatches.forEach(({ placeholder, replacement }) => {
+    text = text.replace(placeholder, replacement);
+  });
+  
+  return text;
 }
 
 // Helper to parse CV content from Markdown
