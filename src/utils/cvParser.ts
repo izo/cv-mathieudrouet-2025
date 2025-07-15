@@ -54,12 +54,19 @@ function replaceCarbonIcons(text: string): string {
   const iconMatches: { placeholder: string; replacement: string }[] = [];
   let iconIndex = 0;
   
+  // Helper function to create SVG icon for unplugin-icons
+  const createSVGIcon = (iconName: string) => {
+    const name = iconName.replace('carbon:', '');
+    // For now, use a simple span that will be styled
+    return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>')"></span>`;
+  };
+  
   // Handle **carbon:icon** pattern
   text = text.replace(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/g, (match, iconName) => {
     const placeholder = `__ICON_${iconIndex++}__`;
     iconMatches.push({
       placeholder,
-      replacement: `<iconify-icon icon="${iconName}" width="16" height="16" class="inline-block text-cv-accent mr-2"></iconify-icon>`
+      replacement: createSVGIcon(iconName)
     });
     return placeholder;
   });
@@ -69,7 +76,7 @@ function replaceCarbonIcons(text: string): string {
     const placeholder = `__ICON_${iconIndex++}__`;
     iconMatches.push({
       placeholder,
-      replacement: `<iconify-icon icon="${iconName}" width="16" height="16" class="inline-block text-cv-accent mr-2"></iconify-icon>`
+      replacement: createSVGIcon(iconName)
     });
     return placeholder;
   });

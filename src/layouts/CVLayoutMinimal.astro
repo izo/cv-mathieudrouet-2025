@@ -13,20 +13,6 @@ export interface Props {
 const { title, description, showFooter = true, image = siteConfig.author.image, url } = Astro.props;
 const canonicalUrl = url || Astro.url.href;
 const fullImageUrl = new URL(image, siteConfig.url).href;
-
-// Get footer icons from Iconify API
-const getFooterIconSVG = async (iconName: string) => {
-  try {
-    const response = await fetch(`https://api.iconify.design/${iconName}.svg?color=%23163f38&width=16&height=16`);
-    return await response.text();
-  } catch {
-    return null;
-  }
-};
-
-const linkedinIconSVG = await getFooterIconSVG('carbon:logo-linkedin');
-const githubIconSVG = await getFooterIconSVG('carbon:logo-github');
-const emailIconSVG = await getFooterIconSVG('carbon:email');
 ---
 
 <!doctype html>
@@ -64,32 +50,15 @@ const emailIconSVG = await getFooterIconSVG('carbon:email');
     <!-- Additional Meta -->
     <meta name="theme-color" content={siteConfig.seo.themeColor} />
     <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
-    <!-- Font Awesome removed - using Iconify instead -->
-    <!-- Google Fonts removed - using system fonts instead -->
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Iconify API disabled for dev mode -->
-    <!-- <script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js" defer></script> -->
-    
     <!-- Performance optimizations -->
     <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg">
-    <link rel="dns-prefetch" href="https://code.iconify.design">
     
-    <!-- Service Worker disabled for dev mode -->
-    
-    <!-- Performance monitoring - disabled in dev mode -->
-    <!-- <script type="module">
-      import { initPerformanceMonitoring } from '/src/utils/performance.ts';
-      initPerformanceMonitoring();
-    </script> -->
-    
-    <!-- Using system fonts for performance -->
-    
-    <!-- Structured Data disabled for dev mode -->
     <title>{title}</title>
   </head>
   <body class="min-h-full font-sans text-cv-content antialiased" itemscope itemtype="https://schema.org/ProfilePage">
@@ -128,13 +97,13 @@ const emailIconSVG = await getFooterIconSVG('carbon:email');
                 <p class="text-xs text-cv-muted order-2 sm:order-1 font-ibm-plex-mono">&copy; 2025 {siteConfig.author.name}</p>
                 <div class="flex items-center gap-3 order-1 sm:order-2">
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
-                    {linkedinIconSVG && <div set:html={linkedinIconSVG} aria-hidden="true" />}
+                    <span class="inline-block w-4 h-4">💼</span>
                   </a>
                   <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="GitHub (ouvre dans un nouvel onglet)">
-                    {githubIconSVG && <div set:html={githubIconSVG} aria-hidden="true" />}
+                    <span class="inline-block w-4 h-4">🔗</span>
                   </a>
                   <a href={`mailto:${siteConfig.author.email}`} class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Envoyer un email">
-                    {emailIconSVG && <div set:html={emailIconSVG} aria-hidden="true" />}
+                    <span class="inline-block w-4 h-4">📧</span>
                   </a>
                 </div>
               </div>

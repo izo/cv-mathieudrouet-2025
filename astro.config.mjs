@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
   integrations: [tailwind()],
@@ -15,16 +16,18 @@ export default defineConfig({
   
   // Vite optimizations
   vite: {
+    plugins: [
+      Icons({
+        compiler: 'astro',
+        autoInstall: true,
+      })
+    ],
     build: {
       // Enable CSS code splitting
       cssCodeSplit: true,
       // Optimize chunks
       rollupOptions: {
         output: {
-          // Manual chunk splitting for better caching
-          manualChunks: {
-            'vendor': ['iconify']
-          },
           // Optimize asset naming for caching
           assetFileNames: (assetInfo) => {
             const info = assetInfo.name.split('.');

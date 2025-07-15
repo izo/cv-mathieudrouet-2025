@@ -1,0 +1,33 @@
+---
+export interface Props {
+  icon: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { icon, class: className = "inline-block text-cv-accent mr-2", width = 16, height = 16 } = Astro.props;
+
+// Convert carbon:icon-name to Carbon/IconName format for unplugin-icons
+const convertIconName = (iconName: string) => {
+  if (!iconName.startsWith('carbon:')) {
+    return iconName;
+  }
+  
+  const name = iconName.replace('carbon:', '');
+  // Convert kebab-case to PascalCase
+  const pascalCase = name
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('');
+  
+  return `~icons/carbon/${name}`;
+};
+
+const iconComponent = convertIconName(icon);
+---
+
+<span class={className} style={`width: ${width}px; height: ${height}px;`}>
+  <!-- This will be replaced by unplugin-icons at build time -->
+  <span data-icon={iconComponent}></span>
+</span>
