@@ -54,12 +54,14 @@ const calendarIconSVG = await getCalendarIconSVG();
       </CVCard>
 
       <CVCard title="Coordonnées" id="contact-section" icon={cvContent.contactIcon}>
-        <div class="space-y-3">
-          <p class="text-body text-cv-muted">Email: <a href={`mailto:${cvContent.contact.email}`} class="text-cv-accent hover:underline">{cvContent.contact.email}</a></p>
-          <p class="text-body text-cv-muted">Portfolio: <a href={cvContent.contact.portfolio.url} class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">{cvContent.contact.portfolio.text}</a></p>
-          <p class="text-body text-cv-muted">LinkedIn: {cvContent.contact.linkedin}</p>
-          <p class="text-body text-cv-muted">{cvContent.contact.location}</p>
-        </div>
+        <ul class="space-y-2">
+          {cvContent.contactContent?.map((contactItem) => (
+            <li class="text-body text-cv-content flex items-center">
+              <span class="mr-3 text-cv-accent">•</span>
+              <span class="flex-1" set:html={contactItem}></span>
+            </li>
+          ))}
+        </ul>
       </CVCard>
 
       <CVCard title="Centres d'intérêt" id="interests-section" icon={cvContent.interestsIcon}>

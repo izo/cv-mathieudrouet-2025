@@ -12,16 +12,20 @@ description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d
 **2022 - 2023**
 Simplon.co - Lille
 
-### Photographie / Histoire de l'art
+### Photographie documentaire
+**1999 - 2001**
+ARIAP - Lille
+
+### Photographie documentaire
 **1997 - 1999**
-Institut Supérieur d'Architecture Saint-Luc
+Institut Supérieur d'Architecture Saint-Luc - Tournai
 
 ## Coordonnées **carbon:email-new**
 
-- Email: m@mdr.cool
-- Portfolio: [cv.drouet.io](https://cv.drouet.io)
-- LinkedIn: linkedin.com/in/mathieu-drouet
-- Localisation: Lille, France
+- **carbon:email** **Email:** m@mdr.cool
+- **carbon:report** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
+- **carbon:logo-linkedin** **LinkedIn:** [linkedin.com/in/mathieu-drouet](https://linkedin.com/in/mathieu-drouet)
+- **carbon:map** **Localisation:** Lille, France
 
 ## Centres d’intérêt **carbon:face-cool**
 

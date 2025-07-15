@@ -10,7 +10,7 @@ Générer le PDF directement depuis la version web existante.
 
 #### Installation
 ```bash
-npm install puppeteer
+pnpm install puppeteer
 ```
 
 #### Script de génération

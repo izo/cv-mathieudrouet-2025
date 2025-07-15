@@ -3,6 +3,7 @@ export interface CVData {
   name: string;
   education: Education[];
   contact: Contact;
+  contactContent?: string[];
   interests: string[];
   experience: Experience[];
   skills: Skill[];
@@ -47,9 +48,19 @@ export interface Skill {
   levelIcon?: string;
 }
 
-// Helper to convert Carbon icons in text
+// Helper to convert Carbon icons and markdown formatting in text
 function replaceCarbonIcons(text: string): string {
-  return text.replace(/carbon:([a-zA-Z0-9-_]+)/g, '<iconify-icon icon="carbon:$1" width="16" height="16" class="inline-block"></iconify-icon>');
+  // Convert Carbon icons
+  let result = text.replace(/carbon:([a-zA-Z0-9-_]+)/g, '<iconify-icon icon="carbon:$1" width="16" height="16" class="inline-block"></iconify-icon>');
+  
+  // Convert markdown formatting BEFORE links to avoid conflicts
+  result = result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+  result = result.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
+  
+  // Convert markdown links [text](url) AFTER formatting
+  result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">$1</a>');
+  
+  return result;
 }
 
 // Helper to parse CV content from Markdown
@@ -81,12 +92,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     });
   }
 
-  // Parse contact info (French: Coordonnées) and extract icon
-  const contactSectionMatch = content.match(/## Coordonnées\s*(\*\*carbon:[a-zA-Z0-9-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
-  const contactIconMatch = content.match(/## Coordonnées\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
-  const contactIcon = contactIconMatch ? contactIconMatch[1] : undefined;
-  
-  const contactMatch = contactSectionMatch;
+  // Parse contact info (French: Coordonnées) - simple line-by-line approach
+  let contactIcon: string | undefined = undefined;
+  let contactContent: string[] = [];
   const contact: Contact = {
     email: "m@mdr.cool",
     portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
@@ -94,44 +102,55 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     location: "Lille, France"
   };
   
-  if (contactMatch) {
-    const emailMatch = contactMatch[1].match(/Email: (.*)/);
-    const portfolioMatch = contactMatch[1].match(/Portfolio: \[(.*?)\]\((.*?)\)/);
-    const linkedinMatch = contactMatch[1].match(/LinkedIn: (.*)/);
-    const locationMatch = contactMatch[1].match(/Localisation: (.*)/);
-    
-    if (emailMatch) contact.email = emailMatch[1];
-    if (portfolioMatch) {
-      contact.portfolio = { text: portfolioMatch[1], url: portfolioMatch[2] };
+  const contactLines = content.split('\n');
+  let inContactSection = false;
+  
+  for (const line of contactLines) {
+    // Extract icon from section header
+    if (line.includes('Coordonnées') && line.includes('carbon:')) {
+      const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      if (iconMatch) {
+        contactIcon = iconMatch[1];
+      }
+      inContactSection = true;
+      continue;
     }
-    if (linkedinMatch) contact.linkedin = linkedinMatch[1];
-    if (locationMatch) contact.location = locationMatch[1];
+    
+    // Stop at next section
+    if (inContactSection && line.startsWith('## ')) {
+      break;
+    }
+    
+    // Extract contact items
+    if (inContactSection && line.trim().startsWith('- ')) {
+      contactContent.push(replaceCarbonIcons(line.replace('- ', '').trim()));
+    }
   }
 
   // Parse interests icon and content
   let interestsIcon: string | undefined = undefined;
   const interests: string[] = [];
-  const lines = content.split('\n');
-  let inSection = false;
+  const interestLines = content.split('\n');
+  let inInterestsSection = false;
   
-  for (const line of lines) {
+  for (const line of interestLines) {
     // Extract icon from section header
     if (line.includes('Centres d') && line.includes('intérêt') && line.includes('carbon:')) {
       const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
       if (iconMatch) {
         interestsIcon = iconMatch[1];
       }
-      inSection = true;
+      inInterestsSection = true;
       continue;
     }
     
     // Stop at next section
-    if (inSection && line.startsWith('## ')) {
+    if (inInterestsSection && line.startsWith('## ')) {
       break;
     }
     
     // Extract interest items
-    if (inSection && line.trim().startsWith('- ')) {
+    if (inInterestsSection && line.trim().startsWith('- ')) {
       interests.push(replaceCarbonIcons(line.replace('- ', '').trim()));
     }
   }
@@ -229,6 +248,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     name,
     education,
     contact,
+    contactContent,
     interests,
     experience,
     skills,
