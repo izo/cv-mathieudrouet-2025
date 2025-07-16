@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuditDashboard from '../components/audit/AuditDashboard.astro';
+import { AuditSystem } from '../utils/auditSystem';
+import { siteConfig } from '../config/site.ts';
+
+const title = `${siteConfig.name} - Audit Dashboard`;
+const description = 'Comprehensive audit dashboard showing code quality, security, and performance metrics.';
+
+// Run audit system
+const auditSystem = new AuditSystem();
+const auditResult = await auditSystem.runAudit();
+
+// Check if detailed view is requested
+const showDetails = Astro.url.searchParams.get('details') === 'true';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Navigation -->
+      <div class="mb-8">
+        <nav class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">
+              ← Back to CV
+            </a>
+            <span class="text-gray-400">|</span>
+            <h1 class="text-2xl font-bold text-gray-900">Audit Dashboard</h1>
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <a 
+              href={showDetails ? "/audit" : "/audit?details=true"}
+              class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              {showDetails ? 'Hide Details' : 'Show Details'}
+            </a>
+            
+            <a
+              href="/audit/export"
+              class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Export Report
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Audit Dashboard -->
+      <AuditDashboard auditResult={auditResult} showDetails={showDetails} />
+
+      <!-- Footer -->
+      <div class="mt-12 text-center text-sm text-gray-500">
+        <p>
+          Audit generated on {new Date(auditResult.timestamp).toLocaleString()} 
+          by Audit System v{auditResult.version}
+        </p>
+        <p class="mt-2">
+          Next scheduled audit: {new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleDateString()}
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Additional styling for audit page */
+  .audit-page {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  
+  .audit-page nav a {
+    transition: all 0.2s ease;
+  }
+  
+  .audit-page nav a:hover {
+    transform: translateY(-1px);
+  }
+</style>

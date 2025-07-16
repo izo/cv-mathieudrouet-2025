@@ -1,4 +1,6 @@
 // CV Parser utility to extract structured data from Markdown
+import { cvDebug } from './debug';
+
 export interface CVData {
   name: string;
   education: Education[];
@@ -50,56 +52,121 @@ export interface Skill {
 
 // Helper to convert Carbon icons and markdown formatting in text
 function replaceCarbonIcons(text: string): string {
-  // First, extract and replace all carbon icons with placeholders
-  const iconMatches: { placeholder: string; replacement: string }[] = [];
-  let iconIndex = 0;
-  
-  // Helper function to create SVG icon for unplugin-icons
-  const createSVGIcon = (iconName: string) => {
-    const name = iconName.replace('carbon:', '');
-    // For now, use a simple span that will be styled
-    return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>')"></span>`;
-  };
-  
-  // Handle **carbon:icon** pattern
-  text = text.replace(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/g, (match, iconName) => {
-    const placeholder = `__ICON_${iconIndex++}__`;
-    iconMatches.push({
-      placeholder,
-      replacement: createSVGIcon(iconName)
+  if (!text || typeof text !== 'string') {
+    console.warn('Invalid text input to replaceCarbonIcons:', text);
+    return '';
+  }
+
+  try {
+    // First, extract and replace all carbon icons with placeholders
+    const iconMatches: { placeholder: string; replacement: string }[] = [];
+    let iconIndex = 0;
+    
+    // Helper function to create SVG icon for unplugin-icons
+    const createSVGIcon = (iconName: string) => {
+      try {
+        const name = iconName.replace('carbon:', '');
+        
+        // Validate icon name
+        if (!name || !/^[a-zA-Z0-9-_]+$/.test(name)) {
+          cvDebug.icon(iconName, false, 'Invalid icon name format');
+          return `<span class="inline-block w-4 h-4 text-cv-muted" title="Invalid icon: ${iconName}">⚠️</span>`;
+        }
+        
+        // For now, use a simple span that will be styled
+        cvDebug.icon(iconName, true);
+        return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>')"></span>`;
+      } catch (error) {
+        cvDebug.icon(iconName, false, error);
+        return `<span class="inline-block w-4 h-4 text-cv-muted" title="Error loading icon">❌</span>`;
+      }
+    };
+    
+    // Handle **carbon:icon** pattern
+    text = text.replace(/\*\*(carbon:[a-zA-Z0-9-_]*)\*\*/g, (match, iconName) => {
+      try {
+        const placeholder = `__ICON_${iconIndex++}__`;
+        iconMatches.push({
+          placeholder,
+          replacement: createSVGIcon(iconName)
+        });
+        return placeholder;
+      } catch (error) {
+        console.error('Error processing carbon icon pattern:', match, error);
+        return match; // Return original text if processing fails
+      }
     });
-    return placeholder;
-  });
-  
-  // Handle standalone carbon:icon pattern (not preceded by ** or >)
-  text = text.replace(/(?<!\*\*|\>)(carbon:[a-zA-Z0-9-_]+)(?!\*\*)/g, (match, iconName) => {
-    const placeholder = `__ICON_${iconIndex++}__`;
-    iconMatches.push({
-      placeholder,
-      replacement: createSVGIcon(iconName)
+    
+    // Handle standalone carbon:icon pattern (not preceded by ** or >)
+    text = text.replace(/(?<!\*\*|\>)(carbon:[a-zA-Z0-9-_]*)(?!\*\*)/g, (match, iconName) => {
+      try {
+        const placeholder = `__ICON_${iconIndex++}__`;
+        iconMatches.push({
+          placeholder,
+          replacement: createSVGIcon(iconName)
+        });
+        return placeholder;
+      } catch (error) {
+        console.error('Error processing standalone carbon icon:', match, error);
+        return match; // Return original text if processing fails
+      }
     });
-    return placeholder;
-  });
-  
-  // Convert markdown formatting
-  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
-  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
-  
-  // Convert markdown links
-  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">$1</a>');
-  
-  // Replace icon placeholders with actual icons
-  iconMatches.forEach(({ placeholder, replacement }) => {
-    text = text.replace(placeholder, replacement);
-  });
-  
-  return text;
+    
+    // Convert markdown formatting with error handling
+    try {
+      text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+    } catch (error) {
+      console.warn('Error processing bold markdown:', error);
+    }
+    
+    try {
+      text = text.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
+    } catch (error) {
+      console.warn('Error processing italic markdown:', error);
+    }
+    
+    // Convert markdown links with validation
+    try {
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+        // Basic URL validation
+        if (!url || url.trim() === '') {
+          return linkText; // Return just the text if URL is invalid
+        }
+        return `<a href="${url}" class="text-cv-accent hover:underline" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+      });
+    } catch (error) {
+      console.warn('Error processing markdown links:', error);
+    }
+    
+    // Replace icon placeholders with actual icons
+    iconMatches.forEach(({ placeholder, replacement }) => {
+      try {
+        text = text.replace(placeholder, replacement);
+      } catch (error) {
+        console.error('Error replacing icon placeholder:', placeholder, error);
+      }
+    });
+    
+    return text;
+  } catch (error) {
+    console.error('Critical error in replaceCarbonIcons:', error);
+    return text || ''; // Return original text or empty string as fallback
+  }
 }
 
 // Helper to parse CV content from Markdown
 export function parseCVContent(content: string, frontmatterData?: any): CVData {
-  // Use frontmatter data from Astro Content Collections
-  const name = frontmatterData?.name || 'Mathieu Drouet';
+  if (!content || typeof content !== 'string') {
+    console.warn('Invalid content provided to parseCVContent:', typeof content);
+    content = '';
+  }
+
+  try {
+    const parseProfiler = cvDebug.profile('full-parse');
+    
+    // Use frontmatter data from Astro Content Collections
+    const name = frontmatterData?.name || 'Mathieu Drouet';
+    cvDebug.section('name', { name });
   
   // Parse education section and extract icon
   const educationSectionMatch = content.match(/## Education\s*(\*\*carbon:[a-zA-Z0-9-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
@@ -277,16 +344,49 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     });
   }
 
-  return {
-    name,
-    education,
-    contact,
-    contactContent,
-    interests,
-    experience,
-    skills,
-    educationIcon,
-    contactIcon,
-    interestsIcon
-  };
+    const result = {
+      name,
+      education,
+      contact,
+      contactContent,
+      interests,
+      experience,
+      skills,
+      educationIcon,
+      contactIcon,
+      interestsIcon
+    };
+    
+    cvDebug.section('final-result', {
+      educationCount: education.length,
+      experienceCount: experience.length,
+      skillsCount: skills.length,
+      interestsCount: interests.length,
+      contactContentCount: contactContent.length
+    });
+    
+    parseProfiler();
+    return result;
+  } catch (error) {
+    cvDebug.error('Critical error in parseCVContent', error);
+    
+    // Return safe default data structure
+    return {
+      name: frontmatterData?.name || 'Mathieu Drouet',
+      education: [],
+      contact: {
+        email: "m@mdr.cool",
+        portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
+        linkedin: "linkedin.com/in/mathieu-drouet",
+        location: "Lille, France"
+      },
+      contactContent: [],
+      interests: [],
+      experience: [],
+      skills: [],
+      educationIcon: undefined,
+      contactIcon: undefined,
+      interestsIcon: undefined
+    };
+  }
 }
