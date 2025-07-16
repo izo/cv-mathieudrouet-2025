@@ -3,9 +3,8 @@
  * Provides automated quality, security, and performance auditing
  */
 
-import { readFileSync, statSync, existsSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { createHash } from 'crypto';
 
 // Core audit interfaces
 export interface AuditResult {
