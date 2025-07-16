@@ -127,10 +127,10 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     </div>
     
     <!-- Debug mode activation -->
-    <script define:vars={{ enableDebugMode }}>
+    <script is:inline define:vars={{ enableDebugMode }}>
       if (enableDebugMode) {
         console.log('🔧 CV Debug Mode Active');
-        console.log('Environment:', import.meta.env?.MODE || 'unknown');
+        console.log('Environment:', 'development');
         console.log('Available debug tools: __cvDebug');
         if (typeof window !== 'undefined' && window.__cvDebug) {
           window.__cvDebug.help();
