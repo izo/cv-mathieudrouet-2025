@@ -27,16 +27,16 @@
 </button>
 
 <script>
-  const sidebar = document.getElementById('mobileSidebar');
-  const sidebarContent = sidebar?.querySelector('div');
-  const openButton = document.getElementById('openSidebar');
-  const closeButton = document.getElementById('closeSidebar');
+  const sidebar: HTMLElement | null = document.getElementById('mobileSidebar');
+  const sidebarContent: HTMLElement | null = sidebar?.querySelector('div') || null;
+  const openButton: HTMLElement | null = document.getElementById('openSidebar');
+  const closeButton: HTMLElement | null = document.getElementById('closeSidebar');
   
   // Focus management variables
   let lastFocusedElement: HTMLElement | null = null;
-  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  const focusableSelectors: string = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-  function openSidebar() {
+  function openSidebar(): void {
     // Store the currently focused element
     lastFocusedElement = document.activeElement as HTMLElement;
     
@@ -55,7 +55,7 @@
     }, 100);
   }
 
-  function closeSidebar() {
+  function closeSidebar(): void {
     sidebar?.classList.add('translate-x-full');
     sidebarContent?.classList.add('translate-x-full');
     document.body.style.overflow = '';
@@ -75,21 +75,21 @@
 
   openButton?.addEventListener('click', openSidebar);
   closeButton?.addEventListener('click', closeSidebar);
-  sidebar?.addEventListener('click', (e) => {
+  sidebar?.addEventListener('click', (e: Event): void => {
     if (e.target === sidebar) {
       closeSidebar();
     }
   });
 
   // Focus trap function
-  function trapFocus(container: HTMLElement | null) {
+  function trapFocus(container: HTMLElement | null): void {
     if (!container) return;
     
     const focusableElements = container.querySelectorAll(focusableSelectors) as NodeListOf<HTMLElement>;
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];
     
-    container.addEventListener('keydown', (e) => {
+    container.addEventListener('keydown', (e: KeyboardEvent): void => {
       if (e.key === 'Tab') {
         if (e.shiftKey) {
           if (document.activeElement === firstFocusable) {
@@ -107,7 +107,7 @@
   }
   
   // Enhanced keyboard accessibility
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', (e: KeyboardEvent): void => {
     if (e.key === 'Escape' && !sidebar?.classList.contains('translate-x-full')) {
       closeSidebar();
     }
