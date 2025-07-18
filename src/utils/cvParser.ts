@@ -52,6 +52,37 @@ export interface Skill {
   levelIcon?: string;
 }
 
+// Helper to transform a single icon string (for section headers)
+function transformSectionIcon(iconString: string, defaultIconSet: string = 'carbon'): string {
+  if (!iconString) return iconString;
+  
+  try {
+    // Configure icon engine with default set
+    iconEngine.updateConfig({ defaultSet: defaultIconSet as any });
+    
+    // Parse the icon
+    const parseResult = iconEngine.parseIcon(iconString);
+    
+    if (parseResult.success && parseResult.icon) {
+      cvDebug.icon(parseResult.icon.mapped, true);
+      return parseResult.icon.mapped;
+    } else {
+      // Use fallback
+      const fallbackIcon = parseResult.fallback || {
+        set: defaultIconSet as any,
+        name: 'alert-circle',
+        original: iconString,
+        mapped: `${defaultIconSet}:alert-circle`
+      };
+      cvDebug.icon(iconString, false, parseResult.error);
+      return fallbackIcon.mapped;
+    }
+  } catch (error) {
+    cvDebug.icon(iconString, false, error);
+    return `${defaultIconSet}:alert-circle`; // fallback
+  }
+}
+
 // Helper to convert flexible icons and markdown formatting in text
 function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): string {
   if (!text || typeof text !== 'string') {
@@ -203,7 +234,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   // Parse education section and extract icon (flexible icon support)
   const educationSectionMatch = content.match(/## Education\s*(\*\*[a-zA-Z0-9:-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
   const educationIconMatch = content.match(/## Education\s*\*\*([a-zA-Z0-9:-_]+)\*\*/);
-  const educationIcon = educationIconMatch ? educationIconMatch[1] : undefined;
+  const educationIcon = educationIconMatch ? transformSectionIcon(educationIconMatch[1], defaultIconSet) : undefined;
   
   const education: Education[] = [];
   if (educationSectionMatch) {
@@ -242,7 +273,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     if (line.startsWith('## ') && line.includes('Coordonnées')) {
       const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       if (iconMatch) {
-        contactIcon = iconMatch[1];
+        contactIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
       inContactSection = true;
       continue;
@@ -270,7 +301,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     if (line.includes('Centres d') && line.includes('intérêt')) {
       const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       if (iconMatch) {
-        interestsIcon = iconMatch[1];
+        interestsIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
       inInterestsSection = true;
       continue;
@@ -332,22 +363,24 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       
       // Extract main icon from block (flexible icon support)
       const iconMatch = block.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
-      const icon = iconMatch ? iconMatch[1] : undefined;
+      const icon = iconMatch ? transformSectionIcon(iconMatch[1], defaultIconSet) : undefined;
       
       // Extract level icon from level line (flexible icon support)
       const levelIconMatch = block.match(/\|[^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
-      const levelIcon = levelIconMatch ? levelIconMatch[1] : undefined;
+      const levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
       
       if (titleMatch && subtitleMatch) {
         const rawTitle = titleMatch[1];
-        const title = replaceFlexibleIcons(rawTitle, defaultIconSet);
+        // Remove icons from title since they're handled separately
+        const cleanTitle = rawTitle.replace(/\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
+        const title = replaceFlexibleIcons(cleanTitle, defaultIconSet);
         const subtitle = replaceFlexibleIcons(subtitleMatch[1], defaultIconSet);
         
         const levelRaw = levelMatch?.[1] || 'Advanced';
         const isCurrent = rawTitle.startsWith('Product Management');
         const level = isCurrent
-          ? levelRaw
-          : levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
+          ? replaceFlexibleIcons(levelRaw, defaultIconSet)
+          : replaceFlexibleIcons(levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim(), defaultIconSet);
         
         // Extract skill items (avoid icon lines)
         const itemLines = block.split('\n')
