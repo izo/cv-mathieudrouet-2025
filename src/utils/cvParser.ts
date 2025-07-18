@@ -59,28 +59,32 @@ function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): 
   }
 
   try {
+    // Import icon engine
+    const { iconEngine } = require('./iconEngine');
+    
+    // Configure icon engine with default set
+    iconEngine.updateConfig({ defaultSet: defaultIconSet as any });
+    
     // First, extract and replace all icons with placeholders
     const iconMatches: { placeholder: string; replacement: string }[] = [];
     let iconIndex = 0;
     
-    // Helper function to create Iconify icon
-    const createIconifyIcon = (iconName: string, iconSet: string) => {
+    // Helper function to create Iconify icon using the engine
+    const createIconifyIcon = (iconString: string) => {
       try {
-        // Clean icon name
-        const cleanName = iconName.replace(/^(carbon|icon|tabler|lucide|heroicons):/, '');
+        const parseResult = iconEngine.parseIcon(iconString);
         
-        // Validate icon name
-        if (!cleanName || !/^[a-zA-Z0-9-_]+$/.test(cleanName)) {
-          cvDebug.icon(`${iconSet}:${cleanName}`, false, 'Invalid icon name format');
-          return `<span class="inline-block w-4 h-4 text-cv-muted" title="Invalid icon: ${iconSet}:${cleanName}">⚠️</span>`;
+        if (parseResult.success && parseResult.icon) {
+          cvDebug.icon(parseResult.icon.mapped, true);
+          return iconEngine.renderIcon(parseResult.icon);
+        } else {
+          // Use fallback
+          const fallbackIcon = parseResult.fallback || iconEngine.createFallbackIcon(iconString);
+          cvDebug.icon(iconString, false, parseResult.error);
+          return iconEngine.renderIcon(fallbackIcon);
         }
-        
-        // Create iconify-icon element
-        const fullIconName = `${iconSet}:${cleanName}`;
-        cvDebug.icon(fullIconName, true);
-        return `<iconify-icon icon="${fullIconName}" width="16" height="16" class="inline-block mr-2"></iconify-icon>`;
       } catch (error) {
-        cvDebug.icon(`${iconSet}:${iconName}`, false, error);
+        cvDebug.icon(iconString, false, error);
         return `<span class="inline-block w-4 h-4 text-cv-muted" title="Error loading icon">❌</span>`;
       }
     };
