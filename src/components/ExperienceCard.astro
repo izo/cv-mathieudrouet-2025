@@ -44,9 +44,9 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
 ---
 
 <div class="glass-card mb-4 sm:mb-6 lg:mb-section">
-  <div class="grid grid-cols-1 sm:grid-cols-[3rem_1fr] lg:grid-cols-[4rem_1fr] gap-4 sm:gap-6">
+  <div class="flex flex-col sm:grid sm:grid-cols-[3rem_1fr] lg:grid-cols-[4rem_1fr] gap-4 sm:gap-6">
     <!-- Logo Column -->
-    <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
+    <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 order-1 sm:order-none">
       {logo ? (
         <img 
           src={logo} 
@@ -73,7 +73,7 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
     </div>
     
     <!-- Content Column -->
-    <div>
+    <div class="order-2 sm:order-none">
       <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 sm:mb-4 text-center sm:text-left">
         <div class="mb-2 sm:mb-0">
           <h3 class="text-lg sm:text-xl lg:text-company text-cv-content font-semibold font-lora">

@@ -66,6 +66,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <!-- Performance optimizations -->
     <link rel="preload" href={siteConfig.author.image} as="image" type="image/jpeg">
     
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    
     <!-- Security Headers -->
     {securityConfig.enableCSP && (
       <meta http-equiv="Content-Security-Policy" content={`
@@ -107,16 +110,16 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                 <p class="text-xs text-cv-muted order-2 sm:order-1 font-ibm-plex-mono">&copy; 2025 {siteConfig.author.name}</p>
                 <div class="flex items-center gap-3 order-1 sm:order-2">
                   <a href="/audit" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Audit Dashboard">
-                    <span class="inline-block w-4 h-4">🔍</span>
+                    <iconify-icon icon="carbon:search" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
-                    <span class="inline-block w-4 h-4">💼</span>
+                    <iconify-icon icon="carbon:logo-linkedin" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
                   <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="GitHub (ouvre dans un nouvel onglet)">
-                    <span class="inline-block w-4 h-4">🔗</span>
+                    <iconify-icon icon="carbon:logo-github" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
                   <a href={`mailto:${siteConfig.author.email}`} class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Envoyer un email">
-                    <span class="inline-block w-4 h-4">📧</span>
+                    <iconify-icon icon="carbon:email" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
                 </div>
               </div>
