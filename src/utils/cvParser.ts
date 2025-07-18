@@ -51,65 +51,86 @@ export interface Skill {
   levelIcon?: string;
 }
 
-// Helper to convert Carbon icons and markdown formatting in text
-function replaceCarbonIcons(text: string): string {
+// Helper to convert flexible icons and markdown formatting in text
+function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): string {
   if (!text || typeof text !== 'string') {
-    console.warn('Invalid text input to replaceCarbonIcons:', text);
+    console.warn('Invalid text input to replaceFlexibleIcons:', text);
     return '';
   }
 
   try {
-    // First, extract and replace all carbon icons with placeholders
+    // First, extract and replace all icons with placeholders
     const iconMatches: { placeholder: string; replacement: string }[] = [];
     let iconIndex = 0;
     
-    // Helper function to create SVG icon for unplugin-icons
-    const createSVGIcon = (iconName: string) => {
+    // Helper function to create Iconify icon
+    const createIconifyIcon = (iconName: string, iconSet: string) => {
       try {
-        const name = iconName.replace('carbon:', '');
+        // Clean icon name
+        const cleanName = iconName.replace(/^(carbon|icon|tabler|lucide|heroicons):/, '');
         
         // Validate icon name
-        if (!name || !/^[a-zA-Z0-9-_]+$/.test(name)) {
-          cvDebug.icon(iconName, false, 'Invalid icon name format');
-          return `<span class="inline-block w-4 h-4 text-cv-muted" title="Invalid icon: ${iconName}">⚠️</span>`;
+        if (!cleanName || !/^[a-zA-Z0-9-_]+$/.test(cleanName)) {
+          cvDebug.icon(`${iconSet}:${cleanName}`, false, 'Invalid icon name format');
+          return `<span class="inline-block w-4 h-4 text-cv-muted" title="Invalid icon: ${iconSet}:${cleanName}">⚠️</span>`;
         }
         
-        // For now, use a simple span that will be styled
-        cvDebug.icon(iconName, true);
-        return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 32 32&quot;><rect width=&quot;32&quot; height=&quot;32&quot; fill=&quot;currentColor&quot;/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 32 32&quot;><rect width=&quot;32&quot; height=&quot;32&quot; fill=&quot;currentColor&quot;/></svg>')"></span>`;
+        // Create iconify-icon element
+        const fullIconName = `${iconSet}:${cleanName}`;
+        cvDebug.icon(fullIconName, true);
+        return `<iconify-icon icon="${fullIconName}" width="16" height="16" class="inline-block mr-2"></iconify-icon>`;
       } catch (error) {
-        cvDebug.icon(iconName, false, error);
+        cvDebug.icon(`${iconSet}:${iconName}`, false, error);
         return `<span class="inline-block w-4 h-4 text-cv-muted" title="Error loading icon">❌</span>`;
       }
     };
     
-    // Handle **carbon:icon** pattern
-    text = text.replace(/\*\*(carbon:[a-zA-Z0-9-_]*)\*\*/g, (match, iconName) => {
+    // Handle explicit icon sets: **carbon:icon**, **tabler:icon**, etc.
+    text = text.replace(/\*\*(carbon|tabler|lucide|heroicons):[a-zA-Z0-9-_]*\*\*/g, (match) => {
       try {
+        const iconName = match.replace(/\*\*/g, '');
+        const [iconSet, name] = iconName.split(':');
         const placeholder = `__ICON_${iconIndex++}__`;
         iconMatches.push({
           placeholder,
-          replacement: createSVGIcon(iconName)
+          replacement: createIconifyIcon(name, iconSet)
         });
         return placeholder;
       } catch (error) {
-        console.error('Error processing carbon icon pattern:', match, error);
-        return match; // Return original text if processing fails
+        console.error('Error processing explicit icon set:', match, error);
+        return match;
       }
     });
     
-    // Handle standalone carbon:icon pattern (not preceded by ** or >)
-    text = text.replace(/(?<!\*\*|\>)(carbon:[a-zA-Z0-9-_]*)(?!\*\*)/g, (match, iconName) => {
+    // Handle generic icon pattern: **icon:name** (uses defaultIconSet)
+    text = text.replace(/\*\*icon:[a-zA-Z0-9-_]*\*\*/g, (match) => {
       try {
+        const iconName = match.replace(/\*\*icon:/, '').replace(/\*\*/, '');
         const placeholder = `__ICON_${iconIndex++}__`;
         iconMatches.push({
           placeholder,
-          replacement: createSVGIcon(iconName)
+          replacement: createIconifyIcon(iconName, defaultIconSet)
         });
         return placeholder;
       } catch (error) {
-        console.error('Error processing standalone carbon icon:', match, error);
-        return match; // Return original text if processing fails
+        console.error('Error processing generic icon pattern:', match, error);
+        return match;
+      }
+    });
+    
+    // Handle standalone patterns (not preceded by ** or >)
+    text = text.replace(/(?<!\*\*|\>)(carbon|tabler|lucide|heroicons):[a-zA-Z0-9-_]*(?!\*\*)/g, (match) => {
+      try {
+        const [iconSet, name] = match.split(':');
+        const placeholder = `__ICON_${iconIndex++}__`;
+        iconMatches.push({
+          placeholder,
+          replacement: createIconifyIcon(name, iconSet)
+        });
+        return placeholder;
+      } catch (error) {
+        console.error('Error processing standalone icon:', match, error);
+        return match;
       }
     });
     
@@ -167,11 +188,12 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     
     // Use frontmatter data from Astro Content Collections
     const name = frontmatterData?.name || 'Mathieu Drouet';
-    cvDebug.section('name', { name });
+    const defaultIconSet = frontmatterData?.iconSet || 'carbon';
+    cvDebug.section('name', { name, defaultIconSet });
   
-  // Parse education section and extract icon
-  const educationSectionMatch = content.match(/## Education\s*(\*\*carbon:[a-zA-Z0-9-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
-  const educationIconMatch = content.match(/## Education\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+  // Parse education section and extract icon (flexible icon support)
+  const educationSectionMatch = content.match(/## Education\s*(\*\*[a-zA-Z0-9:-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
+  const educationIconMatch = content.match(/## Education\s*\*\*([a-zA-Z0-9:-_]+)\*\*/);
   const educationIcon = educationIconMatch ? educationIconMatch[1] : undefined;
   
   const education: Education[] = [];
@@ -207,9 +229,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   let inContactSection = false;
   
   for (const line of contactLines) {
-    // Extract icon from section header
+    // Extract icon from section header (flexible icon support)
     if (line.startsWith('## ') && line.includes('Coordonnées')) {
-      const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       if (iconMatch) {
         contactIcon = iconMatch[1];
       }
@@ -224,7 +246,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     
     // Extract contact items
     if (inContactSection && line.trim().startsWith('- ')) {
-      contactContent.push(replaceCarbonIcons(line.replace('- ', '').trim()));
+      contactContent.push(replaceFlexibleIcons(line.replace('- ', '').trim(), defaultIconSet));
     }
   }
 
@@ -235,9 +257,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   let inInterestsSection = false;
   
   for (const line of interestLines) {
-    // Extract icon from section header
-    if (line.includes('Centres d') && line.includes('intérêt') && line.includes('carbon:')) {
-      const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+    // Extract icon from section header (flexible icon support)
+    if (line.includes('Centres d') && line.includes('intérêt')) {
+      const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       if (iconMatch) {
         interestsIcon = iconMatch[1];
       }
@@ -252,7 +274,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     
     // Extract interest items
     if (inInterestsSection && line.trim().startsWith('- ')) {
-      interests.push(replaceCarbonIcons(line.replace('- ', '').trim()));
+      interests.push(replaceFlexibleIcons(line.replace('- ', '').trim(), defaultIconSet));
     }
   }
 
@@ -274,7 +296,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
         
         // Extract achievements
         const achievementLines = block.split('\n').filter(line => line.startsWith('- '));
-        const achievements = achievementLines.map(line => replaceCarbonIcons(line.replace('- ', '')));
+        const achievements = achievementLines.map(line => replaceFlexibleIcons(line.replace('- ', ''), defaultIconSet));
         
         experience.push({
           company,
@@ -299,31 +321,31 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const subtitleMatch = block.match(/\*\*(.*?)\*\*/);
       const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
       
-      // Extract main icon from block (first **carbon:xxx** pattern)
-      const iconMatch = block.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      // Extract main icon from block (flexible icon support)
+      const iconMatch = block.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const icon = iconMatch ? iconMatch[1] : undefined;
       
-      // Extract level icon from level line (look for **carbon:xxx** in | line)
-      const levelIconMatch = block.match(/\|[^\n]*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      // Extract level icon from level line (flexible icon support)
+      const levelIconMatch = block.match(/\|[^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const levelIcon = levelIconMatch ? levelIconMatch[1] : undefined;
       
       if (titleMatch && subtitleMatch) {
         const rawTitle = titleMatch[1];
-        const title = replaceCarbonIcons(rawTitle);
-        const subtitle = replaceCarbonIcons(subtitleMatch[1]);
+        const title = replaceFlexibleIcons(rawTitle, defaultIconSet);
+        const subtitle = replaceFlexibleIcons(subtitleMatch[1], defaultIconSet);
         
         const levelRaw = levelMatch?.[1] || 'Advanced';
         const isCurrent = rawTitle.startsWith('Product Management');
         const level = isCurrent
           ? levelRaw
-          : levelRaw.replace(/\*\*carbon:[a-zA-Z0-9-_]+\*\*\s*/, '').trim();
+          : levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
         
         // Extract skill items (avoid icon lines)
         const itemLines = block.split('\n')
-          .filter(line => line.startsWith('- ') || (line.trim().startsWith('**carbon:') && !line.includes('|')))
-          .filter(line => !line.match(/\*\*carbon:[a-zA-Z0-9-_]+\*\*/))
+          .filter(line => line.startsWith('- ') || (line.trim().startsWith('**') && !line.includes('|')))
+          .filter(line => !line.match(/\*\*[a-zA-Z0-9:-_]+\*\*/))
           .filter(line => line.startsWith('- '));
-        const items = itemLines.map(line => replaceCarbonIcons(line.replace('- ', '')));
+        const items = itemLines.map(line => replaceFlexibleIcons(line.replace('- ', ''), defaultIconSet));
         
         skills.push({
           title,

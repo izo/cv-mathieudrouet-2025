@@ -2,11 +2,12 @@
 name: "Mathieu Drouet"
 title: "Senior Product Manager"
 description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale."
+iconSet: "carbon"
 ---
 
 # Mathieu Drouet
 
-## Education **carbon:ibm-cloud-for-education**
+## Education **icon:school**
 
 ### Programmation iOS - Swift/UI
 **2022 - 2023**
@@ -20,15 +21,15 @@ ARIAP - Lille
 **1997 - 1999**
 Institut Supérieur d'Architecture Saint-Luc - Tournai
 
-## Coordonnées **carbon:email-new**
+## Coordonnées **icon:identification**
 
-- **carbon:email** **Email:** m@mdr.cool
-- **carbon:report** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
+- **icon:email** **Email:** m@mdr.cool
+- **icon:globe** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
 - **carbon:logo-linkedin** **LinkedIn:** [linkedin.com/in/mathieu-drouet](https://linkedin.com/in/mathieu-drouet)
-- **carbon:map** **Localisation:** Lille, France
-- **carbon:navaid-seaplane** **Mobilié:** Lille, Paris, France, Belgique, Canada
+- **icon:location** **Localisation:** Lille, France
+- **icon:airplane** **Mobilié:** Lille, Paris, France, Belgique, Canada
 
-## Centres d’intérêt **carbon:face-cool**
+## Centres d'intérêt **icon:heart**
 
 - Photographie documentaire
 - Musique expérimentale
@@ -71,11 +72,21 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 
 ## Compétences
 
-### Product Management
-**carbon:cafe**
-**Strategic Leadership** | **carbon:badge** Expert
+### Product Management **icon:briefcase**
+**Strategic Leadership** | Expert **icon:star**
 
 - Roadmap produit et stratégie go-to-market
+- Architecture produit et transformation digitale
+- Leadership d'équipes cross-fonctionnelles
+- Analyse de données et métriques produit
+
+### UX/UI Design **carbon:design-services**
+**User-Centered Design** | Avancé **tabler:award**
+
+- Recherche utilisateur et personas
+- Prototypage et wireframing
+- Tests d'usabilité et A/B testing
+- Design systems et composants
 - OKR et gestion d'équipes Agile
 - User research et A/B testing
 
