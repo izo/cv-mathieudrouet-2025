@@ -64,7 +64,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <!-- System Fonts (no external dependencies) -->
     
     <!-- Performance optimizations -->
-    <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href={siteConfig.author.image} as="image" type="image/jpeg">
     
     <!-- Security Headers -->
     {securityConfig.enableCSP && (

@@ -1,4 +1,6 @@
 // Performance monitoring utilities
+import { siteConfig } from '../config/site';
+declare const gtag: (...args: any[]) => void;
 export interface PerformanceMetrics {
   lcp: number;
   fid: number;
@@ -20,7 +22,8 @@ export function measureWebVitals(callback: (metrics: Partial<PerformanceMetrics>
   new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach((entry) => {
-      callback({ fid: entry.processingStart - entry.startTime });
+      const e = entry as any;
+      callback({ fid: e.processingStart - e.startTime });
     });
   }).observe({ entryTypes: ['first-input'] });
 
@@ -29,8 +32,9 @@ export function measureWebVitals(callback: (metrics: Partial<PerformanceMetrics>
   new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach((entry) => {
-      if (!entry.hadRecentInput) {
-        clsValue += entry.value;
+      const e = entry as any;
+      if (!e.hadRecentInput) {
+        clsValue += e.value;
       }
     });
     callback({ cls: clsValue });
@@ -40,7 +44,8 @@ export function measureWebVitals(callback: (metrics: Partial<PerformanceMetrics>
   new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach((entry) => {
-      callback({ ttfb: entry.responseStart - entry.requestStart });
+      const e = entry as any;
+      callback({ ttfb: e.responseStart - e.requestStart });
     });
   }).observe({ entryTypes: ['navigation'] });
 
@@ -88,7 +93,7 @@ export function addResourceHints() {
   
   // Preload critical resources
   const criticalResources = [
-    { href: '/profile.jpg', as: 'image' },
+    { href: siteConfig.author.image, as: 'image' },
     { href: 'https://code.iconify.design/3/3.1.1/iconify.min.js', as: 'script' }
   ];
 
