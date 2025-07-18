@@ -1,6 +1,7 @@
 // CV Parser utility to extract structured data from Markdown
 import { cvDebug } from './debug';
 import { getCompanyLogo } from '../config/images';
+import { iconEngine } from './iconEngine';
 
 export interface CVData {
   name: string;
@@ -59,9 +60,6 @@ function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): 
   }
 
   try {
-    // Import icon engine
-    const { iconEngine } = require('./iconEngine');
-    
     // Configure icon engine with default set
     iconEngine.updateConfig({ defaultSet: defaultIconSet as any });
     
@@ -70,21 +68,28 @@ function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): 
     let iconIndex = 0;
     
     // Helper function to create Iconify icon using the engine
-    const createIconifyIcon = (iconString: string) => {
+    const createIconifyIcon = (iconName: string, iconSet?: string) => {
       try {
+        // If iconSet is provided, use explicit format, otherwise use generic format
+        const iconString = iconSet ? `${iconSet}:${iconName}` : `icon:${iconName}`;
         const parseResult = iconEngine.parseIcon(iconString);
         
         if (parseResult.success && parseResult.icon) {
           cvDebug.icon(parseResult.icon.mapped, true);
           return iconEngine.renderIcon(parseResult.icon);
         } else {
-          // Use fallback
-          const fallbackIcon = parseResult.fallback || iconEngine.createFallbackIcon(iconString);
+          // Use fallback - create a simple fallback icon
+          const fallbackIcon = parseResult.fallback || {
+            set: (iconSet || defaultIconSet) as any,
+            name: 'alert-circle',
+            original: iconString,
+            mapped: `${iconSet || defaultIconSet}:alert-circle`
+          };
           cvDebug.icon(iconString, false, parseResult.error);
           return iconEngine.renderIcon(fallbackIcon);
         }
       } catch (error) {
-        cvDebug.icon(iconString, false, error);
+        cvDebug.icon(iconName, false, error);
         return `<span class="inline-block w-4 h-4 text-cv-muted" title="Error loading icon">❌</span>`;
       }
     };
