@@ -207,7 +207,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   
   for (const line of contactLines) {
     // Extract icon from section header
-    if (line.includes('Coordonnées') && line.includes('carbon:')) {
+    if (line.startsWith('## ') && line.includes('Coordonnées')) {
       const iconMatch = line.match(/\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
       if (iconMatch) {
         contactIcon = iconMatch[1];
@@ -256,7 +256,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   }
 
   // Parse experience (French: Expérience)
-  const experienceMatch = content.match(/## Expérience\n\n([\s\S]*?)(?=\n## )/);
+  const experienceMatch = content.match(/## Expérience\n\n([\s\S]*?)(?=\n## |$)/);
   const experience: Experience[] = [];
   if (experienceMatch) {
     const expBlocks = experienceMatch[1].split(/(?=### )/);
@@ -311,18 +311,19 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const icon = iconMatch ? iconMatch[1] : undefined;
       
       // Extract level icon from level line (look for **carbon:xxx** in | line)
-      const levelIconMatch = block.match(/\|\s*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
+      const levelIconMatch = block.match(/\|[^\n]*\*\*(carbon:[a-zA-Z0-9-_]+)\*\*/);
       const levelIcon = levelIconMatch ? levelIconMatch[1] : undefined;
       
       if (titleMatch && subtitleMatch) {
-        const title = replaceCarbonIcons(titleMatch[1]);
+        const rawTitle = titleMatch[1];
+        const title = replaceCarbonIcons(rawTitle);
         const subtitle = replaceCarbonIcons(subtitleMatch[1]);
         
-        // Extract level text, removing the carbon icon part
-        let level = levelMatch?.[1] || 'Advanced';
-        if (levelIcon) {
-          level = level.replace(/\*\*carbon:[a-zA-Z0-9-_]+\*\*\s*/, '').trim();
-        }
+        const levelRaw = levelMatch?.[1] || 'Advanced';
+        const isCurrent = rawTitle.startsWith('Product Management');
+        const level = isCurrent
+          ? levelRaw
+          : levelRaw.replace(/\*\*carbon:[a-zA-Z0-9-_]+\*\*\s*/, '').trim();
         
         // Extract skill items (avoid icon lines)
         const itemLines = block.split('\n')
@@ -335,7 +336,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           title,
           subtitle,
           level,
-          current: title === 'Product Management',
+          current: isCurrent,
           items,
           icon,
           levelIcon
