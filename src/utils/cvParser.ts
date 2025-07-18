@@ -76,7 +76,7 @@ function replaceCarbonIcons(text: string): string {
         
         // For now, use a simple span that will be styled
         cvDebug.icon(iconName, true);
-        return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\"><rect width=\\"32\\" height=\\"32\\" fill=\\"currentColor\\"/></svg>')"></span>`;
+        return `<span class="inline-block w-4 h-4 text-cv-accent mr-2" data-icon="${name}" style="background: currentColor; mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 32 32&quot;><rect width=&quot;32&quot; height=&quot;32&quot; fill=&quot;currentColor&quot;/></svg>'); -webkit-mask: url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 32 32&quot;><rect width=&quot;32&quot; height=&quot;32&quot; fill=&quot;currentColor&quot;/></svg>')"></span>`;
       } catch (error) {
         cvDebug.icon(iconName, false, error);
         return `<span class="inline-block w-4 h-4 text-cv-muted" title="Error loading icon">❌</span>`;
