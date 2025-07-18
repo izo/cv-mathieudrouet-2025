@@ -1,16 +1,17 @@
 ---
+import { siteConfig } from "../../config/site";
 ---
 
 <div class="flex gap-x-4">
-  <a href="https://linkedin.com/in/mathieu-drouet" class="text-cv-muted hover:text-cv-accent transition-colors">
+  <a href={siteConfig.social.linkedin.url} class="text-cv-muted hover:text-cv-accent transition-colors">
     <span class="sr-only">LinkedIn</span>
     <iconify-icon icon="carbon:logo-linkedin" class="w-5 h-5" aria-hidden="true"></iconify-icon>
   </a>
-  <a href="https://github.com/mathieu-drouet" class="text-cv-muted hover:text-cv-accent transition-colors">
+  <a href={siteConfig.social.github.url} class="text-cv-muted hover:text-cv-accent transition-colors">
     <span class="sr-only">GitHub</span>
     <iconify-icon icon="carbon:logo-github" class="w-5 h-5" aria-hidden="true"></iconify-icon>
   </a>
-  <a href="mailto:hello@mathieu-drouet.com" class="text-cv-muted hover:text-cv-accent transition-colors">
+  <a href={`mailto:${siteConfig.author.email}`} class="text-cv-muted hover:text-cv-accent transition-colors">
     <span class="sr-only">Email</span>
     <iconify-icon icon="carbon:email" class="w-5 h-5" aria-hidden="true"></iconify-icon>
   </a>

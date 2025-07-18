@@ -1,5 +1,6 @@
 // CV Parser utility to extract structured data from Markdown
 import { cvDebug } from './debug';
+import { getCompanyLogo } from '../config/images';
 
 export interface CVData {
   name: string;
@@ -275,21 +276,13 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
         const achievementLines = block.split('\n').filter(line => line.startsWith('- '));
         const achievements = achievementLines.map(line => replaceCarbonIcons(line.replace('- ', '')));
         
-        // Map company names to logo filenames
-        const logoMap: { [key: string]: string } = {
-          'CH-Studio - GEHealthcare': 'ge-healtcare.png',
-          'Group Actual': 'actual.png',
-          'Bookr.fm': 'bookr.png',
-          'Fluidra': 'fluidra.png'
-        };
-        
         experience.push({
           company,
           companyUrl,
           role,
           period,
           current: period.includes('2025'),
-          logo: `/logos/${logoMap[company] || `${company.toLowerCase().replace(/[^a-z0-9]/g, '')}.png`}`,
+          logo: getCompanyLogo(company),
           achievements
         });
       }

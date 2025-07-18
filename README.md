@@ -44,7 +44,7 @@ src/
 ├── content/            # Content management
 │   └── cv.mdx         # CV content in MDX format
 ├── layouts/           # Page layouts
-│   └── CVLayout.astro # Main layout with SEO & accessibility
+│   └── BaseLayout.astro # Main layout with SEO & accessibility
 ├── styles/            # Global styles
 │   └── global.css     # Tailwind + custom CSS
 ├── config/            # Configuration
