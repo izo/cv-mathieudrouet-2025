@@ -45,6 +45,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Skip dev resources and source maps
+  if (event.request.url.includes('/src/') || event.request.url.includes('.ts') || event.request.url.includes('.map')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((cachedResponse) => {
@@ -71,6 +76,11 @@ self.addEventListener('fetch', (event) => {
             }
 
             return response;
+          })
+          .catch((error) => {
+            console.log('Fetch failed for:', event.request.url, error);
+            // Return a basic response for failed requests
+            return new Response('Resource not available', { status: 404 });
           });
       })
   );

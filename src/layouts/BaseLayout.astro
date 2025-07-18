@@ -61,10 +61,13 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <meta name="theme-color" content={siteConfig.seo.themeColor} />
     <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
     
-    <!-- System Fonts (no external dependencies) -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Performance optimizations -->
-    <link rel="preload" href={siteConfig.author.image} as="image" type="image/jpeg">
+    <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg">
     
     <!-- Iconify Icons -->
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -74,9 +77,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
       <meta http-equiv="Content-Security-Policy" content={`
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://code.iconify.design;
-        style-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         img-src 'self' data:;
-        font-src 'self';
+        font-src 'self' https://fonts.gstatic.com;
         connect-src 'self' https://api.iconify.design;
         object-src 'none';
         base-uri 'self';
