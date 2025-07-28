@@ -7,7 +7,7 @@ iconSet: "carbon"
 
 # Mathieu Drouet
 
-## Education **icon:school**
+## Education **carbon:airline-passenger-care**
 
 ### Programmation iOS - Swift/UI
 **2022 - 2023**
@@ -21,15 +21,15 @@ ARIAP - Lille
 **1997 - 1999**
 Institut Supérieur d'Architecture Saint-Luc - Tournai
 
-## Coordonnées **icon:identification**
+## Coordonnées **carbon:identification**
 
 - **carbon:email** **Email:** m@mdr.cool
 - **carbon:content-delivery-network** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
 - **carbon:logo-linkedin** **LinkedIn:** [linkedin.com/in/mathieu-drouet](https://linkedin.com/in/mathieu-drouet)
-- **icon:location** **Localisation:** Lille, France
+- **carbon:location-heart-filled** **Localisation:** Lille, France
 - **carbon:rocket** **Mobilié:** Lille, Paris, France, Belgique, Canada
 
-## Centres d'intérêt **icon:heart**
+## Centres d'intérêt **carbon:gamification**
 
 - Photographie documentaire
 - Musique expérimentale
@@ -41,8 +41,8 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 ## Expérience
 
 ### CH-Studio - GEHealthcare
+**carbon:ibm-telehealth**
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)
-
 - Réalisé un audit stratégique de la plateforme interne Sherlock pour GE HealthCare
 - Conduit une analyse croisée des usages (logs, sondages, interviews)
 - Produit une cartographie des parcours utilisateurs et évaluation de la gouvernance
@@ -50,6 +50,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Réflexion autour des LLM dans le projet
 
 ### Group Actual
+**carbon:machine-learning**
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)
 
 - Développé une solution de gestion des comptes épargne-temps, réduisant le temps administratif de 25%
@@ -57,6 +58,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Encadré des équipes Agile pour aligner les objectifs métiers et techniques
 
 ### Bookr.fm
+**carbon:music**
 **Senior Product Manager** | 2021 - 2024 | [Company Link](https://bookr.fm/)
 
 - Conduit le développement d'un outil de gestion de festivals
@@ -64,6 +66,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Intégration réussie dans les workflows clients
 
 ### Fluidra
+**carbon:temperature-water**
 **Senior Product Manager, IoT** | 2018 - 2021 | [Company Link](https://www.fluidra.com/)
 
 - Développé des applications iOS et Android pour Blue Connect avec Flutter
@@ -72,16 +75,16 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 
 ## Compétences
 
-### Product Management **icon:briefcase**
-**Strategic Leadership** | Expert **icon:star**
+### Product Management **carbon:cognitive**
+**Strategic Leadership** | Expert **carbon:badge**
 
 - Roadmap produit et stratégie go-to-market
 - Architecture produit et transformation digitale
 - Leadership d'équipes cross-fonctionnelles
 - Analyse de données et métriques produit
 
-### UX/UI Design **carbon:design-services**
-**User-Centered Design** | Avancé **tabler:award**
+### UX/UI Design **carbon:ibm-engineering-test-mgmt**
+**User-Centered Design** | Avancé **carbon:task-star**
 
 - Recherche utilisateur et personas
 - Prototypage et wireframing

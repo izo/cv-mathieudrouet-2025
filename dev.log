@@ -1,0 +1,30 @@
+
+> cv-mathieudrouet-2025@1.0.0 dev /Users/izo/Sites/projets mdr/cv-mathieudrouet-2025
+> astro dev
+
+15:20:57 [types] Generated 0ms
+15:20:57 [content] Syncing content
+15:20:57 [content] Synced content
+15:20:57 [vite] Port 4321 is in use, trying another one...
+
+ astro  v5.12.0 ready in 428 ms
+
+┃ Local    http://localhost:4322/
+┃ Network  use --host to expose
+
+15:20:57 watching for file changes...
+15:22:20 Configuration file removed. Restarting...
+15:22:20 [vite] Re-optimizing dependencies because vite config has changed
+15:22:21 [content] Syncing content
+15:22:21 [content] Synced content
+15:22:21 [types] Generated 220ms
+15:22:21 [vite] Port 4321 is in use, trying another one...
+15:22:22 Configuration file added. Restarting...
+15:22:22 [vite] Re-optimizing dependencies because vite config has changed
+15:22:22 [ERROR] [config] ENOTEMPTY: directory not empty, rename '/Users/izo/Sites/projets mdr/cv-mathieudrouet-2025/node_modules/.vite/deps_temp_c1900566' -> '/Users/izo/Sites/projets mdr/cv-mathieudrouet-2025/node_modules/.vite/deps'
+  Stack trace:
+    at Object.renameSync (node:fs:1014:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+
+15:22:22 [ERROR] Continuing with previous valid configuration
+
