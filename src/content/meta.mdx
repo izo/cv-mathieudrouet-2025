@@ -1,6 +1,7 @@
 import FooterGrid from '../components/mdx/FooterGrid.astro';
 import FooterSection from '../components/mdx/FooterSection.astro';
 import SocialIcons from '../components/mdx/SocialIcons.astro';
+import FooterLinks from '../components/mdx/FooterLinks.astro';
 
 <FooterGrid>
   <FooterSection title="À propos">
@@ -10,10 +11,7 @@ import SocialIcons from '../components/mdx/SocialIcons.astro';
   </FooterSection>
 
   <FooterSection title="Liens rapides">
-    - [Portfolio](https://cv.mathieu-drouet.com)
-    - [LinkedIn](https://linkedin.com/in/mathieu-drouet)
-    - [GitHub](https://github.com/mathieu-drouet)
-    - [Contact](mailto:hello@mathieu-drouet.com)
+    <FooterLinks />
   </FooterSection>
 
   <FooterSection title="Informations">

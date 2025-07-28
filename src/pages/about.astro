@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+import { siteConfig } from '../config/site.ts';
+
+// Get about content from Markdown
+const aboutEntry = await getEntry('about', 'about');
+if (!aboutEntry) {
+  throw new Error('About content not found');
+}
+
+const { Content } = await aboutEntry.render();
+const { title, description } = siteConfig;
+---
+
+<BaseLayout title={`À propos - ${title}`} description={description}>
+  <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-2 sm:pb-4">
+    <header class="mb-section" role="banner">
+      <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">À propos</h1>
+    </header>
+
+    <main id="main-content" class="space-y-section">
+      <div class="glass-card">
+        <div class="prose prose-cv max-w-none">
+          <Content />
+        </div>
+      </div>
+      
+      <div class="glass-card">
+        <h2 class="text-section text-cv-content font-semibold font-lora mb-4">Retour au CV</h2>
+        <p class="text-body text-cv-muted mb-4">
+          Découvrez mon parcours professionnel complet et mes compétences.
+        </p>
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 px-4 py-2 bg-cv-accent text-white rounded-lg hover:bg-cv-accent/80 transition-colors"
+        >
+          <iconify-icon icon="tabler:arrow-left" width="16" height="16"></iconify-icon>
+          Voir le CV
+        </a>
+      </div>
+    </main>
+  </div>
+</BaseLayout>

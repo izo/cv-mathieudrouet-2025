@@ -10,6 +10,15 @@ const cvCollection = defineCollection({
   }),
 });
 
+const aboutCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+  }),
+});
+
 export const collections = {
   cv: cvCollection,
+  about: aboutCollection,
 };

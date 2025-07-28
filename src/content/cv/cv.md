@@ -2,7 +2,7 @@
 name: "Mathieu Drouet"
 title: "Senior Product Manager"
 description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale."
-iconSet: "tabler"
+iconSet: "carbon"
 ---
 
 # Mathieu Drouet
@@ -23,11 +23,11 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 
 ## Coordonnées **icon:identification**
 
-- **icon:email** **Email:** m@mdr.cool
-- **icon:globe** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
+- **carbon:email** **Email:** m@mdr.cool
+- **carbon:content-delivery-network** **Portfolio:** [cv.drouet.io](https://cv.drouet.io)
 - **carbon:logo-linkedin** **LinkedIn:** [linkedin.com/in/mathieu-drouet](https://linkedin.com/in/mathieu-drouet)
 - **icon:location** **Localisation:** Lille, France
-- **icon:airplane** **Mobilié:** Lille, Paris, France, Belgique, Canada
+- **carbon:rocket** **Mobilié:** Lille, Paris, France, Belgique, Canada
 
 ## Centres d'intérêt **icon:heart**
 

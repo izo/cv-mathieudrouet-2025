@@ -1,0 +1,115 @@
+---
+// Use default iconSet for footer (can be made configurable later)
+const iconSet = 'tabler';
+
+// Define footer links with icons
+const footerLinks = [
+  {
+    icon: 'user',
+    text: 'À propos',
+    url: '/about',
+    external: false
+  },
+  {
+    icon: 'file-type-pdf',
+    text: 'Télécharger le CV (PDF)',
+    url: '/cv-mathieu-drouet.pdf',
+    external: false
+  },
+  {
+    icon: 'globe',
+    text: 'Portfolio',
+    url: 'https://cv.mathieu-drouet.com',
+    external: true
+  },
+  {
+    icon: 'carbon:logo-linkedin', // Explicit icon (retrocompatible)
+    text: 'LinkedIn',
+    url: 'https://linkedin.com/in/mathieu-drouet',
+    external: true
+  },
+  {
+    icon: 'brand-github',
+    text: 'GitHub',
+    url: 'https://github.com/mathieu-drouet',
+    external: true
+  },
+  {
+    icon: 'mail',
+    text: 'Contact',
+    url: 'mailto:hello@mathieu-drouet.com',
+    external: true
+  }
+];
+
+// Transform icons using our icon system
+const getIconName = (icon: string) => {
+  if (icon.includes(':')) {
+    // Explicit icon (e.g., carbon:logo-linkedin)
+    return icon;
+  } else {
+    // Generic icon - transform according to iconSet
+    const iconMappings: Record<string, Record<string, string>> = {
+      'user': {
+        'carbon': 'user',
+        'tabler': 'user',
+        'lucide': 'user',
+        'heroicons': 'user',
+        'feather': 'user'
+      },
+      'file-type-pdf': {
+        'carbon': 'document-pdf',
+        'tabler': 'file-type-pdf',
+        'lucide': 'file-text',
+        'heroicons': 'document',
+        'feather': 'file-text'
+      },
+      'globe': {
+        'carbon': 'globe',
+        'tabler': 'globe',
+        'lucide': 'globe',
+        'heroicons': 'globe-alt',
+        'feather': 'globe'
+      },
+      'brand-github': {
+        'carbon': 'logo-github',
+        'tabler': 'brand-github',
+        'lucide': 'github',
+        'heroicons': 'academic-cap',
+        'feather': 'github'
+      },
+      'mail': {
+        'carbon': 'email',
+        'tabler': 'mail',
+        'lucide': 'mail',
+        'heroicons': 'envelope',
+        'feather': 'mail'
+      }
+    };
+    
+    const mapping = iconMappings[icon];
+    return mapping ? `${iconSet}:${mapping[iconSet] || icon}` : `${iconSet}:${icon}`;
+  }
+};
+---
+
+<ul class="space-y-3">
+  {footerLinks.map((link) => (
+    <li class="text-sm">
+      <a 
+        href={link.url}
+        class="inline-flex items-center gap-2 text-cv-muted hover:text-cv-accent transition-colors"
+        target={link.external ? '_blank' : undefined}
+        rel={link.external ? 'noopener noreferrer' : undefined}
+      >
+        <iconify-icon 
+          icon={getIconName(link.icon)} 
+          width="16" 
+          height="16"
+          class="flex-shrink-0"
+        ></iconify-icon>
+        {link.text}
+      </a>
+    </li>
+  ))}
+</ul>
