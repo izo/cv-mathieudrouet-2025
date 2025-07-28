@@ -17,11 +17,7 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "audit": "node scripts/audit-runner.js run",
-    "audit:watch": "node scripts/audit-runner.js watch",
-    "audit:schedule": "node scripts/audit-runner.js schedule",
-    "audit:export": "node scripts/audit-runner.js run --format markdown --output audit-report.md"
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

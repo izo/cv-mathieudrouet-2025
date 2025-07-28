@@ -15,7 +15,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - Content Watch: `pnpm run content:watch` (watch CV content for changes)
 - Build with Watch: `pnpm run build:watch` (starts dev server with content watching)
 - Testing: `pnpm run test` (run Vitest tests), `pnpm run test:watch` (watch mode), `pnpm run test:ui` (UI mode), `pnpm run test:coverage` (coverage report)
-- Audit: `pnpm run audit` (run comprehensive audit), `pnpm run audit:watch` (watch mode), `pnpm run audit:export` (export report)
 
 ## Architecture & Structure
 - **Content Management**: CV content is stored in `src/content/cv/cv.md` using Markdown format with Astro Content Collections, parsed dynamically through `src/utils/cvParser.ts`
@@ -28,7 +27,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
   - `cv/CVCard.astro`: CV-specific card component with icon support
   - `cv/CVGrid.astro`: Grid layout system for CV sections
   - `cv/CVSection.astro`: Section headers with icons
-  - `audit/AuditDashboard.astro`: Comprehensive audit system dashboard
 - **Styling Architecture**: Tailwind CSS with Lumon Design System configuration in `tailwind.config.mjs`:
   - **Lumon Theme**: Green-based color system with comprehensive neutral scale
   - **Typography**: IBM Plex Sans/Mono + Lora fonts via Google Fonts (async loaded)
@@ -59,13 +57,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - `src/config/env.ts`: Environment-specific configuration with type safety and security settings
 - `public/sw.js`: Service worker for performance optimization with intelligent caching
 
-## Audit System Architecture
-- **Comprehensive Audit System**: Built-in audit system (`src/utils/auditSystem.ts`) provides automated quality, security, and performance auditing
-- **Audit Categories**: Code quality, security, performance, accessibility, and maintainability assessments
-- **Automated Scoring**: Generates overall grades and category-specific scores with recommendations
-- **Risk Assessment**: Evaluates potential risks and provides mitigation strategies
-- **Export Capabilities**: Audit results can be exported in multiple formats (JSON, markdown)
-- **Monitoring**: Continuous monitoring with scheduled audits and watch mode
 
 ## Security Architecture
 - **Content Security Policy**: Properly configured CSP headers in BaseLayout.astro allowing:
@@ -91,7 +82,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - Always run `pnpm run build` before committing to ensure no build errors
 - Use `pnpm run astro check` for TypeScript validation
 - Run `pnpm run test` to execute the full test suite
-- Use `pnpm run audit` to run comprehensive quality checks
 - Test responsive design on mobile devices due to glass morphism effects
 - Verify CDN dependencies are loading correctly (Iconify, Google Fonts)
 
@@ -101,7 +91,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - Maintain consistent 2-space indentation
 - Use semantic HTML elements for accessibility
 - Test glass morphism effects across different browsers
-- Run audit system to verify code quality metrics
 
 ### Performance Considerations
 - Monitor CSS bundle size (current: 31KB baseline)
@@ -115,7 +104,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - Review any new CDN dependencies for supply chain risks
 - Maintain static site generation for optimal security posture
 - CSP is properly configured - update BaseLayout.astro when adding new external resources
-- Run security audits using the built-in audit system
 
 ### Mobile Responsive Design
 - **ExperienceCard.astro**: Uses flexbox layout for proper mobile display
