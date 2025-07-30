@@ -231,28 +231,58 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     const defaultIconSet = frontmatterData?.iconSet || 'carbon';
     cvDebug.section('name', { name, defaultIconSet });
   
-  // Parse education section and extract icon (flexible icon support)
-  const educationSectionMatch = content.match(/## Education\s*(\*\*[a-zA-Z0-9:-_]+\*\*)?\n([\s\S]*?)(?=\n## )/);
+  // Parse education section and extract icon (line-by-line approach)
   const educationIconMatch = content.match(/## Education\s*\*\*([a-zA-Z0-9:-_]+)\*\*/);
   const educationIcon = educationIconMatch ? transformSectionIcon(educationIconMatch[1], defaultIconSet) : undefined;
   
   const education: Education[] = [];
-  if (educationSectionMatch) {
-    const eduContent = educationSectionMatch[2];
-    const eduBlocks = eduContent.split(/(?=### )/);
-    eduBlocks.forEach(block => {
-      const titleMatch = block.match(/### (.*)/);
-      const periodMatch = block.match(/\*\*(.*?)\*\*/);
-      const institutionMatch = block.match(/\*\*.*?\*\*\n(.*)/);
-      
-      if (titleMatch && periodMatch && institutionMatch) {
-        education.push({
-          title: titleMatch[1],
-          period: periodMatch[1],
-          institution: institutionMatch[1]
-        });
+  const lines = content.split('\n');
+  let inEducationSection = false;
+  let currentEducation: Partial<Education> = {};
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Start of education section
+    if (line.startsWith('## Education')) {
+      inEducationSection = true;
+      continue;
+    }
+    
+    // End of education section (next ## section)
+    if (inEducationSection && line.startsWith('## ') && !line.startsWith('### ')) {
+      // Push any pending education entry
+      if (currentEducation.title && currentEducation.period && currentEducation.institution) {
+        education.push(currentEducation as Education);
       }
-    });
+      break;
+    }
+    
+    if (inEducationSection) {
+      // Education entry title
+      if (line.startsWith('### ')) {
+        // Push previous entry if complete
+        if (currentEducation.title && currentEducation.period && currentEducation.institution) {
+          education.push(currentEducation as Education);
+        }
+        currentEducation = {
+          title: line.replace('### ', '').trim()
+        };
+      }
+      // Period (bold text)
+      else if (line.match(/^\*\*.*\*\*$/)) {
+        currentEducation.period = line.replace(/\*\*/g, '').trim();
+      }
+      // Institution (next non-empty line after period)
+      else if (line.trim() && !line.startsWith('**') && currentEducation.period && !currentEducation.institution) {
+        currentEducation.institution = line.trim();
+      }
+    }
+  }
+  
+  // Push final entry if complete
+  if (currentEducation.title && currentEducation.period && currentEducation.institution) {
+    education.push(currentEducation as Education);
   }
 
   // Parse contact info (French: Coordonnées) - simple line-by-line approach
