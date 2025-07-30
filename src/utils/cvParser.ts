@@ -388,16 +388,18 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     const skillBlocks = skillsMatch[1].split(/(?=### )/);
     skillBlocks.forEach(block => {
       const titleMatch = block.match(/### (.*)/);
-      const subtitleMatch = block.match(/\*\*(.*?)\*\*/);
-      const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
       
-      // Extract main icon from title line only (flexible icon support)
+      // Extract main icon from title line first (flexible icon support)
       const titleLineMatch = block.match(/### [^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const icon = titleLineMatch ? transformSectionIcon(titleLineMatch[1], defaultIconSet) : undefined;
       
       // Extract level icon from level line (flexible icon support)
       const levelIconMatch = block.match(/\|[^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
+      
+      // Extract subtitle - avoid matching icon patterns by being more specific
+      const subtitleMatch = block.match(/\*\*([^*|]+)\*\*(?!\s*\|)/);
+      const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
       
       if (titleMatch && subtitleMatch) {
         const rawTitle = titleMatch[1];
