@@ -73,9 +73,12 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <!-- Iconify Icons -->
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     
+    <!-- Tally Forms -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    
     <!-- Security Headers -->
     {securityConfig.enableCSP && (
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://tally.so; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com https://tally.so https://api.tally.so; object-src 'none'; base-uri 'self'; form-action 'self' https://tally.so; frame-src https://tally.so;" />
     )}
     
     <title>{title}</title>
@@ -109,9 +112,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                   <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="GitHub (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-github" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
-                  <a href="https://tally.so/r/3EZMjX" target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Ouvrir le formulaire de contact">
+                  <button onclick="Tally.openPopup('3EZMjX', {layout: 'modal', width: 600, alignLeft: false, hideTitle: false, overlay: true, emoji: {text: '👋', animation: 'wave'}})" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Ouvrir le formulaire de contact">
                     <iconify-icon icon="carbon:email" width="16" height="16" class="inline-block"></iconify-icon>
-                  </a>
+                  </button>
                 </div>
               </div>
             </footer>
