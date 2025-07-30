@@ -107,9 +107,9 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Figma, Adobe Creative Suite
 - VS Code, Git, CI/CD
 
-### Langues **carbon:ibm-watson-language-translator**
+### Lanouigues **carbon:ibm-watson-language-translator**
 **International Communication** |  **carbon:bat** Avancé
 
 - Français - Langue maternelle
 - Anglais - Professionnel
-- Espagnol - Conversationnel
+- Espagnol - Conversationnel si je 
