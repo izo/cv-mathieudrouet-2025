@@ -7,7 +7,7 @@ iconSet: "carbon"
 
 # Mathieu Drouet
 
-## Education **carbon:airline-passenger-care**
+## **carbon:airline-passenger-care** Education
 
 ### Programmation iOS - Swift/UI
 **2022 - 2023**
@@ -21,27 +21,27 @@ ARIAP - Lille
 **1997 - 1999**
 Institut Supérieur d'Architecture Saint-Luc - Tournai
 
-## Coordonnées **carbon:identification**
+## **carbon:identification** Coordonnées
 
-- **carbon:email** **Email:** m@mdr.cool
-- **carbon:content-delivery-network**  [**Portfolio**](https://cv.drouet.io)
-- **carbon:logo-linkedin** [**LinkedIn**](https://linkedin.com/in/mathieu-drouet)
-- **carbon:location-heart-filled** **Localisation:** Lille, France
-- **carbon:rocket** **Mobilité:** Lille, Paris, France, Belgique, Canada
+**carbon:email** **Email:** m@mdr.cool
+**carbon:content-delivery-network**  [**Portfolio**](https://cv.drouet.io)
+**carbon:logo-linkedin** [**LinkedIn**](https://linkedin.com/in/mathieu-drouet)
+**carbon:location-heart-filled** **Localisation:** Lille, France
+**carbon:rocket** **Mobilité:** Lille, Paris, France, Belgique, Canada
 
-## Centres d'intérêt **carbon:gamification**
+## **carbon:gamification** Centres d'intérêt
 
-- **carbon:camera-action** Photographie documentaire
-- **carbon:music** Musique expérimentale
-- **carbon:scis-control-tower** Sciences Humaines
-- **carbon:agriculture-analytics** Permaculture
-- **carbon:policy** Sciences Politiques
-- **carbon:ibm-engineering-systems-design-rhapsody** Design
+**carbon:camera-action** Photographie documentaire
+**carbon:music** Musique expérimentale
+**carbon:scis-control-tower** Sciences Humaines
+**carbon:agriculture-analytics** Permaculture
+**carbon:policy** Sciences Politiques
+**carbon:ibm-engineering-systems-design-rhapsody** Design
 
 ## Expérience
 
 ### CH-Studio - GEHealthcare
-**carbon:ibm-telehealth**
+**carbon:ibm-telehealth** 
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)
 - Réalisé un audit stratégique de la plateforme interne Sherlock pour GE HealthCare
 - Conduit une analyse croisée des usages (logs, sondages, interviews)

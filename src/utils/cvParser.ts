@@ -232,7 +232,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     cvDebug.section('name', { name, defaultIconSet });
   
   // Parse education section and extract icon (line-by-line approach)
-  const educationIconMatch = content.match(/## Education\s*\*\*([a-zA-Z0-9:-_]+)\*\*/);
+  const educationIconMatch = content.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Education/);
   const educationIcon = educationIconMatch ? transformSectionIcon(educationIconMatch[1], defaultIconSet) : undefined;
   
   const education: Education[] = [];
@@ -301,7 +301,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   for (const line of contactLines) {
     // Extract icon from section header (flexible icon support)
     if (line.startsWith('## ') && line.includes('Coordonnées')) {
-      const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
+      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Coordonnées/);
       if (iconMatch) {
         contactIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
@@ -329,7 +329,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   for (const line of interestLines) {
     // Extract icon from section header (flexible icon support)
     if (line.includes('Centres d') && line.includes('intérêt')) {
-      const iconMatch = line.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
+      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Centres d'intérêt/);
       if (iconMatch) {
         interestsIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
@@ -358,6 +358,10 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const roleMatch = block.match(/\*\*(.*?)\*\* \| (.*?) \|/);
       const urlMatch = block.match(/\[Company Link\]\((.*?)\)/);
       
+      // Extract employer icon (on separate line after company name)
+      const employerIconMatch = block.match(/\*\*([a-zA-Z0-9:-_]+)\*\*\s*$/m);
+      const employerIcon = employerIconMatch ? transformSectionIcon(employerIconMatch[1], defaultIconSet) : undefined;
+      
       if (companyMatch && roleMatch) {
         const company = companyMatch[1];
         const role = roleMatch[1];
@@ -375,6 +379,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           period,
           current: period.includes('2025'),
           logo: getCompanyLogo(company),
+          icon: employerIcon, // Add employer icon
           achievements
         });
       }
