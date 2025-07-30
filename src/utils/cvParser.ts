@@ -397,8 +397,8 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const levelIconMatch = block.match(/\|[^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
       
-      // Extract subtitle - avoid matching icon patterns by being more specific
-      const subtitleMatch = block.match(/\*\*([^*|]+)\*\*(?!\s*\|)/);
+      // Extract subtitle - match first non-icon pattern before |
+      const subtitleMatch = block.match(/\*\*([^*:]+)\*\*(?=\s*\|)/);
       const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
       
       if (titleMatch && subtitleMatch) {
