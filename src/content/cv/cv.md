@@ -76,7 +76,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 ## Compétences
 
 ### Product Management **carbon:cognitive**
-**Strategic Leadership** | Expert **carbon:badge**
+**Strategic Leadership** |  **carbon:badge** Expert
 
 - Roadmap produit et stratégie go-to-market
 - Architecture produit et transformation digitale
@@ -84,7 +84,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Analyse de données et métriques produit
 
 ### UX/UI Design **carbon:ibm-engineering-test-mgmt**
-**User-Centered Design** | Avancé **carbon:task-star**
+**User-Centered Design** |  **carbon:task-star** Avancé
 
 - Recherche utilisateur et personas
 - Prototypage et wireframing
@@ -94,7 +94,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - User research et A/B testing
 
 ### Technologies **carbon:ai-generate**
-**Full-Stack Development & IA** | **carbon:bat** Avancé
+**Full-Stack Development & IA** | **carbon:task-star** Avancé
  
 - LLM, RAG, MCP, API, modele open source
 - Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
@@ -108,8 +108,8 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - VS Code, Git, CI/CD
 
 ### Langues **carbon:ibm-watson-language-translator**
-**International Communication** | **carbon:bat** Avancé
+**International Communication** | **carbon:task-star** Avancé
 
 - Français - Langue maternelle
 - Anglais - Professionnel
-- Espagnol - Conversationnel si je 
+- Espagnol - Conversationnel
