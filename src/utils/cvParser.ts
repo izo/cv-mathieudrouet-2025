@@ -314,9 +314,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       break;
     }
     
-    // Extract contact items
-    if (inContactSection && line.trim().startsWith('- ')) {
-      contactContent.push(replaceFlexibleIcons(line.replace('- ', '').trim(), defaultIconSet));
+    // Extract contact items (updated for new icon format)
+    if (inContactSection && line.trim().startsWith('**carbon:')) {
+      contactContent.push(replaceFlexibleIcons(line.trim(), defaultIconSet));
     }
   }
 
@@ -342,9 +342,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       break;
     }
     
-    // Extract interest items
-    if (inInterestsSection && line.trim().startsWith('- ')) {
-      interests.push(replaceFlexibleIcons(line.replace('- ', '').trim(), defaultIconSet));
+    // Extract interest items (updated for new icon format)
+    if (inInterestsSection && line.trim().startsWith('**carbon:')) {
+      interests.push(replaceFlexibleIcons(line.trim(), defaultIconSet));
     }
   }
 
