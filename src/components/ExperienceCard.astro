@@ -100,7 +100,7 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
             {levelIcon && levelIconSVG ? (
               <div class="flex items-center justify-center w-6 h-6" set:html={levelIconSVG} />
             ) : null}
-            <span class="font-ibm-plex-mono">{period}</span>
+            <span class="font-ibm-plex-mono" set:html={period}></span>
           </span>
         </div>
       </div>
