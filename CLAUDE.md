@@ -23,7 +23,6 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
   - Responsive design with mobile-first approach
 - **Component Organization**:
   - `ExperienceCard.astro`: Work experience display with company links, roles, and descriptions (mobile responsive with flexbox)
-  - `SidebarContent.astro`: Contact info, languages, and interests (used in index.astro cards)
   - `cv/CVCard.astro`: CV-specific card component with icon support
   - `cv/CVGrid.astro`: Grid layout system for CV sections
   - `cv/CVSection.astro`: Section headers with icons

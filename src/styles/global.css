@@ -559,9 +559,6 @@
     @apply p-8 lg:p-16 min-h-screen;
   }
   
-  .sidebar-content {
-    @apply h-full flex flex-col;
-  }
 
   /* Clean card component */
   .glass-card {

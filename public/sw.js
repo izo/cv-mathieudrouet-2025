@@ -1,6 +1,6 @@
 // Service Worker for Performance Optimization
-const CACHE_NAME = 'cv-mathieu-drouet-v1';
-const STATIC_CACHE_NAME = 'cv-static-v1';
+const CACHE_NAME = 'cv-mathieu-drouet-v2';
+const STATIC_CACHE_NAME = 'cv-static-v2';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -78,8 +78,12 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch((error) => {
-            console.log('Fetch failed for:', event.request.url, error);
-            // Return a basic response for failed requests
+            console.error('Fetch failed for:', event.request.url, error);
+            // For CSS/JS files, don't intercept - let browser handle
+            if (event.request.url.includes('.css') || event.request.url.includes('.js')) {
+              return fetch(event.request);
+            }
+            // Return a basic response for other failed requests
             return new Response('Resource not available', { status: 404 });
           });
       })

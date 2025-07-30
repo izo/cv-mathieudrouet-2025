@@ -43,4 +43,4 @@
   
 # Content Security Policy
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; object-src 'none'; base-uri 'self'; form-action 'self';
