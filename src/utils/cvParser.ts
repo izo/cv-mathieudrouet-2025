@@ -408,9 +408,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
         
         const levelRaw = levelMatch?.[1] || 'Advanced';
         const isCurrent = rawTitle.startsWith('Product Management');
-        const level = isCurrent
-          ? replaceFlexibleIcons(levelRaw, defaultIconSet)
-          : replaceFlexibleIcons(levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim(), defaultIconSet);
+        // Remove icon from level text if levelIcon exists to avoid duplication
+        const cleanLevelRaw = levelIcon ? levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim() : levelRaw;
+        const level = replaceFlexibleIcons(cleanLevelRaw, defaultIconSet);
         
         // Extract skill items (avoid icon lines)
         const itemLines = block.split('\n')
