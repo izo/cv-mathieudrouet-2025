@@ -387,47 +387,67 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   if (skillsMatch) {
     const skillBlocks = skillsMatch[1].split(/(?=### )/);
     skillBlocks.forEach(block => {
+      // Step 1: Extract title and main icon from title line
       const titleMatch = block.match(/### (.*)/);
-      const subtitleMatch = block.match(/\*\*(.*?)\*\*/);
-      const levelMatch = block.match(/\*\*.*?\*\* \| (.*)/);
+      const titleLine = titleMatch?.[1] || '';
+      const titleIconMatch = titleLine.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
+      const icon = titleIconMatch ? transformSectionIcon(titleIconMatch[1], defaultIconSet) : undefined;
       
-      // Extract main icon from block (flexible icon support)
-      const iconMatch = block.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
-      const icon = iconMatch ? transformSectionIcon(iconMatch[1], defaultIconSet) : undefined;
+      // Step 2: Extract subtitle (avoiding icon patterns)
+      const subtitleMatch = block.match(/\*\*([^*:]+?)\*\*(?=\s*\|)/);
       
-      // Extract level icon from level line (flexible icon support)
-      const levelIconMatch = block.match(/\|[^\n]*\*\*([a-zA-Z0-9:-_]+)\*\*/);
+      // Step 3: Extract level line and level icon
+      const levelLineMatch = block.match(/\*\*[^*]+?\*\*\s*\|\s*(.*)/);
+      const levelLine = levelLineMatch?.[1] || '';
+      const levelIconMatch = levelLine.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
       const levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
       
+      // Step 4: Validate and clean extracted data
       if (titleMatch && subtitleMatch) {
-        const rawTitle = titleMatch[1];
-        // Remove icons from title since they're handled separately
-        const cleanTitle = rawTitle.replace(/\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
+        // Clean title (remove icon)
+        const cleanTitle = titleLine.replace(/\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
         const title = replaceFlexibleIcons(cleanTitle, defaultIconSet);
+        
+        // Clean subtitle
         const subtitle = replaceFlexibleIcons(subtitleMatch[1], defaultIconSet);
         
-        const levelRaw = levelMatch?.[1] || 'Advanced';
-        const isCurrent = rawTitle.startsWith('Product Management');
-        // Remove icon from level text if levelIcon exists to avoid duplication
-        const cleanLevelRaw = levelIcon ? levelRaw.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim() : levelRaw;
-        const level = replaceFlexibleIcons(cleanLevelRaw, defaultIconSet);
+        // Clean level (remove icon if present)
+        const cleanLevel = levelIcon ? levelLine.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim() : levelLine;
+        const level = replaceFlexibleIcons(cleanLevel, defaultIconSet);
         
-        // Extract skill items (avoid icon lines)
+        // Determine if current (based on clean title)
+        const isCurrent = cleanTitle.startsWith('Product Management');
+        
+        // Step 5: Extract skill items (clean approach)
         const itemLines = block.split('\n')
-          .filter(line => line.startsWith('- ') || (line.trim().startsWith('**') && !line.includes('|')))
-          .filter(line => !line.match(/\*\*[a-zA-Z0-9:-_]+\*\*/))
-          .filter(line => line.startsWith('- '));
-        const items = itemLines.map(line => replaceFlexibleIcons(line.replace('- ', ''), defaultIconSet));
-        
-        skills.push({
-          title,
-          subtitle,
-          level,
-          current: isCurrent,
-          items,
-          icon,
-          levelIcon
+          .filter(line => line.trim().startsWith('- '))
+          .filter(line => !line.match(/^\s*-\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*$/)); // Exclude pure icon lines
+        const items = itemLines.map(line => {
+          const cleanLine = line.replace(/^\s*-\s*/, '').trim();
+          return replaceFlexibleIcons(cleanLine, defaultIconSet);
         });
+        
+        // Step 6: Validate before adding
+        if (title && subtitle && items.length > 0) {
+          skills.push({
+            title,
+            subtitle,
+            level: level || 'Advanced',
+            current: isCurrent,
+            items,
+            icon,
+            levelIcon
+          });
+          
+          // Debug logging for validation
+          cvDebug.section(`skill-${cleanTitle}`, {
+            title: cleanTitle,
+            subtitle: subtitleMatch[1],
+            icon: icon || 'none',
+            levelIcon: levelIcon || 'none',
+            itemCount: items.length
+          });
+        }
       }
     });
   }
