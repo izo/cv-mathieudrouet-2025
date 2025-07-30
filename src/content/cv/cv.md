@@ -108,7 +108,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - VS Code, Git, CI/CD
 
 ### Langues **carbon:ibm-watson-language-translator**
-**International Communication** |  **carbon:bat** Avancé
+**International Communication** | **carbon:bat** Avancé
 
 - Français - Langue maternelle
 - Anglais - Professionnel
