@@ -232,7 +232,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     cvDebug.section('name', { name, defaultIconSet });
   
   // Parse education section and extract icon (flexible icon support)
-  const educationSectionMatch = content.match(/## Education\s*(\*\*[a-zA-Z0-9:-_]+\*\*)?\n\n([\s\S]*?)(?=\n## )/);
+  const educationSectionMatch = content.match(/## Education\s*(\*\*[a-zA-Z0-9:-_]+\*\*)?\n([\s\S]*?)(?=\n## )/);
   const educationIconMatch = content.match(/## Education\s*\*\*([a-zA-Z0-9:-_]+)\*\*/);
   const educationIcon = educationIconMatch ? transformSectionIcon(educationIconMatch[1], defaultIconSet) : undefined;
   
