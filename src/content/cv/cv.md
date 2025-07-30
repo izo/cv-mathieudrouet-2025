@@ -93,24 +93,21 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - OKR et gestion d'équipes Agile
 - User research et A/B testing
 
-### Technologies
-**carbon:ai-generate**
+### Technologies **carbon:ai-generate**
 **Full-Stack Development & IA** | **carbon:bat** Avancé
  
 - LLM, RAG, MCP, API, modele open source
 - Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
 - Flutter, Swift/UI, React
 
-### Tools & Platforms
-**carbon:branch**
+### Tools & Platforms **carbon:branch**
 **Digital Workflow** | **carbon:badge** Expert
 
 - Jira, Confluence, Notion
 - Figma, Adobe Creative Suite
 - VS Code, Git, CI/CD
 
-### Langues
-**carbon:ibm-watson-language-translator**
+### Langues **carbon:ibm-watson-language-translator**
 **International Communication** |  **carbon:bat** Avancé
 
 - Français - Langue maternelle
