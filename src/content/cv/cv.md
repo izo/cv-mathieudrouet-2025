@@ -31,12 +31,12 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 
 ## Centres d'intérêt **carbon:gamification**
 
-- Photographie documentaire
-- Musique expérimentale
-- Sciences Humaines
-- Permaculture
-- Sciences Politiques
-- Design
+- **carbon:camera-action** Photographie documentaire
+- **carbon:music** Musique expérimentale
+- **carbon:scis-control-tower** Sciences Humaines
+- **carbon:agriculture-analytics** Permaculture
+- **carbon:policy** Sciences Politiques
+- **carbon:ibm-engineering-systems-design-rhapsody** Design
 
 ## Expérience
 
