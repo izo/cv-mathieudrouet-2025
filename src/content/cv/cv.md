@@ -9,14 +9,14 @@ iconSet: "carbon"
 
 ## **carbon:airline-passenger-care** Education
 
-### Programmation iOS - Swift/UI
-- **2022 - 2023** - Simplon.co - (Lille)
+### Programmation iOS - SwiftUI
+Simplon.co, Lille – 2022–2023
 
 ### Photographie documentaire
-- **1999 - 2001** - ARIAP (Lille)
+ARIAP, Lille – 1999–2001
 
 ### Photographie documentaire
-- **1997 - 1999** - Institut Supérieur d'Architecture Saint-Luc - (Tournai)
+Institut Supérieur d'Architecture Saint-Luc, Tournai – 1997–1999
 
 ## **carbon:identification** Coordonnées
 
@@ -35,32 +35,39 @@ iconSet: "carbon"
 **carbon:policy** Sciences Politiques
 **carbon:ibm-engineering-systems-design-rhapsody** Design
 
-## Expérience
+## Expériences
 
 ### CH-Studio - GEHealthcare **carbon:ibm-telehealth** 
+**carbon:location-heart-filled** Lille / full remote – 2025  
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)
 
-- Réalisé un audit stratégique de la plateforme interne Sherlock pour GE HealthCare
-- Conduit une analyse croisée des usages (logs, sondages, interviews)
-- Produit une cartographie des parcours utilisateurs et évaluation de la gouvernance
-- Livré un rapport de recommandations stratégiques pour la roadmap
-- Réflexion autour des LLM dans le projet
+- Réalisé un **audit stratégique** de la plateforme IA Sherlock pour GE HealthCare  
+- Analysé les usages via **logs, sondages et entretiens** utilisateurs  
+- Produit une **cartographie des parcours** et un diagnostic de gouvernance produit  
+- Livré un **rapport de recommandations** structurant la future roadmap  
+- Exploré les opportunités d'intégration de **LLM open source** dans la plateforme
 
 ### Group Actual **carbon:machine-learning**
+**carbon:location-heart-filled** Paris / Laval / Full remote – 2023 – 2024  
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)
 
-- Développé une solution de gestion des comptes épargne-temps, réduisant le temps administratif de 25%
-- Conçu une stratégie produit pour moderniser une application legacy DAF
-- Encadré des équipes Agile pour aligner les objectifs métiers et techniques
+- Conçu une solution de **gestion des comptes épargne-temps**, réduisant le temps administratif
+- Déployé une stratégie produit pour **moderniser une application DAF legacy**  
+- Encadré des **équipes Agile pluridisciplinaires** (tech, DAF, RH)
+- Piloté les livrables produit en coordination avec les enjeux métiers
 
 ### Bookr.fm **carbon:music**
+**carbon:location-heart-filled** Lille / Bruxelles / Valencia / Full remote – 2021 – 2024   
 **Senior Product Manager** | 2021 - 2024 | [Company Link](https://bookr.fm/)
 
-- Conduit le développement d'un outil de gestion de festivals
-- Supervisé la stratégie produit, le go-to-market et l'UX/UI
-- Intégration réussie dans les workflows clients
+- Piloté la **conception d’un outil SaaS** de gestion pour festivals et tourneurs
+- Défini la **stratégie produit**, UX/UI, et go-to-market
+- Intégré la plateforme dans les **workflows existants** des clients (API, CRM)  
+- Assuré le suivi produit sur plusieurs saisons de festivals
 
-### Fluidra **carbon:temperature-water**
+### Fluidra & Blueriiot **carbon:temperature-water**
+**carbon:location-heart-filled** Barcelone / Liege / Valencia / Full remote - 2018 – 2021  
+
 **Senior Product Manager, IoT** | 2018 - 2021 | [Company Link](https://www.fluidra.com/)
 
 - Développé des applications iOS et Android pour Blue Connect avec Flutter
@@ -72,42 +79,46 @@ iconSet: "carbon"
 ### Product Management **carbon:cognitive**
 **Strategic Leadership** | **carbon:badge** Expert
 
-- Roadmap produit et stratégie go-to-market
-- Architecture produit et transformation digitale
-- Leadership d'équipes cross-fonctionnelles
-- Analyse de données et métriques produit
+- Roadmap produit & stratégie go-to-market  
+- Architecture produit & transformation digitale  
+- Leadership d'équipes produit & cross-fonctionnelles  
+- Analyse de données & indicateurs clés
 
-### Technologies **carbon:ai-generate**
-**IA** | **carbon:task-star** Avancé
- 
-- LLM, RAG, MCP, API, modele open source
-
-### UX/UI Design **carbon:ibm-engineering-test-mgmt**
+### Expérience Utilisateur & Design **carbon:ibm-engineering-test-mgmt**
 **User-Centered Design** | **carbon:task-star** Avancé
 
-- Recherche utilisateur et personas
-- Prototypage et wireframing
-- Tests d'usabilité et A/B testing
-- Design systems et composants
-- OKR et gestion d'équipes Agile
-- User research et A/B testing
+- Recherche utilisateur, personas, user research
+- Prototypage, wireframes, design systems
+- Tests d’usabilité & A/B testing
+- Gestion d’équipes Agile & OKR
 
-### Technologies **carbon:ai-generate**
+### Intelligence Artificielle **carbon:ai-generate**
 **Full-Stack Development & IA** | **carbon:task-star** Avancé
  
-- Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
-- Flutter, Swift/UI, React
+- Modèles LLM, RAG, fine-tuning open source  
+- MCP (multi-chain prompting), embeddings, API
+- agents IA 
+- Intégration IA dans produits existants  
+- Veille technologique IA & audit d’usage  
 
-### Tools & Platforms **carbon:branch**
+### Développement **carbon:ai-generate**
+**IA** | **carbon:task-star** Avancé
+ 
+- Frameworks front-end : Astro.js, Nuxt, React  
+- Back-end : Laravel, Symfony  
+- Mobile : Flutter, SwiftUI  
+- Intégration API, CMS headless, architecture modulaire
+  
+### Outils & Méthodes **carbon:branch**
 **Digital Workflow** | **carbon:badge** Expert
 
-- Jira, Confluence, Notion
+- Jira, Confluence, Notion, Linear
+- Git, CI/CD, VS Code, Claude Code, Windsurf, Cursor
 - Figma, Adobe Creative Suite
-- VS Code, Git, CI/CD
 
 ### Langues **carbon:ibm-watson-language-translator**
 **International Communication** | **carbon:task-star** Avancé
 
-- Français - Langue maternelle
-- Anglais - Professionnel
-- Espagnol - Conversationnel
+- Français : langue maternelle
+- Anglais : professionnel courant
+- Espagnol : conversationnel

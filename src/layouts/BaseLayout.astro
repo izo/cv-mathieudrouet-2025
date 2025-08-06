@@ -68,7 +68,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Performance optimizations -->
-    <link rel="preload" href={siteConfig.author.image} as="image" type="image/jpeg" fetchpriority="high">
+    <!-- Image preload removed as profile.jpg is not used on main page -->
     
     <!-- Iconify Icons -->
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -78,7 +78,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     
     <!-- Security Headers -->
     {securityConfig.enableCSP && (
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design https://tally.so; script-src-elem 'self' 'unsafe-inline' https://code.iconify.design https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://tally.so; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com https://tally.so https://api.tally.so; object-src 'none'; base-uri 'self'; form-action 'self' https://tally.so; frame-src https://tally.so;" />
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.iconify.design https://tally.so; script-src-elem 'self' 'unsafe-inline' https://code.iconify.design https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tally.so; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://tally.so; img-src 'self' data: https://tally.so https://*.tally.so; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com https://tally.so https://api.tally.so https://*.tally.so; object-src 'none'; base-uri 'self'; form-action 'self' https://tally.so; frame-src https://tally.so https://*.tally.so; child-src https://tally.so https://*.tally.so;" />
     )}
     
     <title>{title}</title>
@@ -109,6 +109,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                   <a href="/about" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="À propos">
                     <iconify-icon icon="carbon:user-profile" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
+                  <button onclick="window.print()" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Télécharger le CV en PDF">
+                    <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
+                  </button>
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-linkedin" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
