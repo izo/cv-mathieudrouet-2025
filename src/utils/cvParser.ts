@@ -39,6 +39,7 @@ export interface Experience {
   period: string;
   current?: boolean;
   logo?: string;
+  icon?: string;
   achievements: string[];
 }
 
@@ -371,28 +372,35 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     }
   }
 
-  // Parse experience (French: Expérience)
-  const experienceMatch = content.match(/## Expérience\n\n([\s\S]*?)(?=\n## |$)/);
+  // Parse experience (French: Expériences)
+  const experienceMatch = content.match(/## Expériences[\s\S]*?(?=\n## |$)/);
   const experience: Experience[] = [];
   if (experienceMatch) {
-    const expBlocks = experienceMatch[1].split(/(?=### )/);
+    const expBlocks = experienceMatch[0].split(/(?=### )/).filter(block => block.trim());
     expBlocks.forEach(block => {
-      const companyMatch = block.match(/### (.*)/);
-      const roleMatch = block.match(/\*\*(.*?)\*\* \| (.*?) \|/);
-      const urlMatch = block.match(/\[Company Link\]\((.*?)\)/);
+      const lines = block.split('\n').filter(line => line.trim());
       
-      // Extract employer icon (on separate line after company name)
-      const employerIconMatch = block.match(/\*\*([a-zA-Z0-9:_-]+)\*\*\s*$/m);
-      const employerIcon = employerIconMatch ? transformSectionIcon(employerIconMatch[1], defaultIconSet) : undefined;
+      // Extract company name and icon from title line (e.g., "### CH-Studio - GEHealthcare **carbon:ibm-telehealth**")
+      const companyMatch = lines[0]?.match(/### (.+?)(?:\s+\*\*([a-zA-Z0-9:_-]+)\*\*)?$/);
+      if (!companyMatch) return;
       
-      if (companyMatch && roleMatch) {
-        const company = companyMatch[1];
+      const company = companyMatch[1].trim();
+      const employerIcon = companyMatch[2] ? transformSectionIcon(companyMatch[2], defaultIconSet) : undefined;
+      
+      // Find location line (e.g., "**carbon:location-heart-filled** Lille / full remote – 2025")
+      const locationLine = lines.find(line => line.includes('**carbon:location-heart-filled**'));
+      
+      // Find role line (e.g., "**Senior Product Manager** | 2025 | [Company Link](...)")
+      const roleLine = lines.find(line => line.match(/\*\*.*?\*\* \| .* \|/));
+      const roleMatch = roleLine?.match(/\*\*(.*?)\*\* \| (.*?) \| \[Company Link\]\((.*?)\)/);
+      
+      if (roleMatch) {
         const role = roleMatch[1];
         const period = roleMatch[2];
-        const companyUrl = urlMatch?.[1];
+        const companyUrl = roleMatch[3];
         
         // Extract achievements
-        const achievementLines = block.split('\n').filter(line => line.startsWith('- '));
+        const achievementLines = lines.filter(line => line.startsWith('- '));
         const achievements = achievementLines.map(line => replaceFlexibleIcons(line.replace('- ', ''), defaultIconSet));
         
         experience.push({
@@ -402,7 +410,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           period,
           current: period.includes('2025'),
           logo: getCompanyLogo(company),
-          icon: employerIcon, // Add employer icon
+          icon: employerIcon,
           achievements
         });
       }
