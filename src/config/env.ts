@@ -134,7 +134,7 @@ export const performanceConfig = {
 
 // Security configuration
 export const securityConfig = {
-  enableCSP: isProduction(),
+  enableCSP: true, // Force CSP activation to allow Tally
   enableHSTS: isProduction(),
   enableSecurityHeaders: isProduction(),
   allowedOrigins: isProduction() 
