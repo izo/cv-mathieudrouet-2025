@@ -44,7 +44,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 - Livré un **rapport de recommandations** structurant la future roadmap  
 - Exploré les opportunités d'intégration de **LLM open source** dans la plateforme
 
-### Group Actual
+### Groupe Actual
 **carbon:location-heart-filled** Paris / Laval / Full remote – 2023 – 2024  
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)
 
@@ -53,7 +53,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 - Encadré des **équipes Agile pluridisciplinaires** (tech, DAF, RH)
 - Piloté les livrables produit en coordination avec les enjeux métiers
 
-### Bookr.fm
+### Bookr.fm - Musicdata Studio 
 **carbon:location-heart-filled** Lille / Bruxelles / Valencia / Full remote – 2021 – 2024   
 **Senior Product Manager** | 2021 - 2024 | [Company Link](https://bookr.fm/)
 
@@ -62,7 +62,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 - Intégré la plateforme dans les **workflows existants** des clients (API, CRM)  
 - Assuré le suivi produit sur plusieurs saisons de festivals
 
-### Fluidra & Blueriiot
+### Fluidra - Blueriiot
 **carbon:location-heart-filled** Barcelone / Liege / Valencia / Full remote - 2018 – 2021  
 
 **Senior Product Manager, IoT** | 2018 - 2021 | [Company Link](https://www.fluidra.com/)
