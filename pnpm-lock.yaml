@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^5.11.1
         version: 5.12.0(@types/node@24.0.14)(jiti@1.21.7)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0)
+      cosmiconfig:
+        specifier: ^9.0.0
+        version: 9.0.0(typescript@5.8.3)
       puppeteer:
         specifier: ^24.12.1
         version: 24.14.0(typescript@5.8.3)
