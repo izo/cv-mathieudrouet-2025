@@ -232,7 +232,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
     cvDebug.section('name', { name, defaultIconSet });
   
   // Parse education section and extract icon (line-by-line approach)
-  const educationIconMatch = content.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Education/);
+  const educationIconMatch = content.match(/## \*\*([a-zA-Z0-9:_-]+)\*\*\s*Education/);
   const educationIcon = educationIconMatch ? transformSectionIcon(educationIconMatch[1], defaultIconSet) : undefined;
   
   const education: Education[] = [];
@@ -310,7 +310,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   for (const line of contactLines) {
     // Extract icon from section header (flexible icon support)
     if (line.startsWith('## ') && line.includes('Coordonnées')) {
-      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Coordonnées/);
+      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:_-]+)\*\*\s*Coordonnées/);
       if (iconMatch) {
         contactIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
@@ -338,7 +338,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   for (const line of interestLines) {
     // Extract icon from section header (flexible icon support)
     if (line.includes('Centres d') && line.includes('intérêt')) {
-      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:-_]+)\*\*\s*Centres d'intérêt/);
+      const iconMatch = line.match(/## \*\*([a-zA-Z0-9:_-]+)\*\*\s*Centres d'intérêt/);
       if (iconMatch) {
         interestsIcon = transformSectionIcon(iconMatch[1], defaultIconSet);
       }
@@ -368,7 +368,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const urlMatch = block.match(/\[Company Link\]\((.*?)\)/);
       
       // Extract employer icon (on separate line after company name)
-      const employerIconMatch = block.match(/\*\*([a-zA-Z0-9:-_]+)\*\*\s*$/m);
+      const employerIconMatch = block.match(/\*\*([a-zA-Z0-9:_-]+)\*\*\s*$/m);
       const employerIcon = employerIconMatch ? transformSectionIcon(employerIconMatch[1], defaultIconSet) : undefined;
       
       if (companyMatch && roleMatch) {
@@ -404,29 +404,45 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       // Step 1: Extract title and main icon from title line
       const titleMatch = block.match(/### (.*)/);
       const titleLine = titleMatch?.[1] || '';
-      const titleIconMatch = titleLine.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
+      const titleIconMatch = titleLine.match(/\*\*([a-zA-Z0-9:_-]+)\*\*/);
       const icon = titleIconMatch ? transformSectionIcon(titleIconMatch[1], defaultIconSet) : undefined;
       
-      // Step 2: Extract subtitle (avoiding icon patterns)
-      const subtitleMatch = block.match(/\*\*([^*:]+?)\*\*(?=\s*\|)/);
+      // Step 2: Extract subtitle and level from the line after title
+      const lines = block.split('\n').filter(line => line.trim());
+      let subtitleMatch: RegExpMatchArray | null = null;
+      let levelLine = '';
+      let levelIcon: string | undefined = undefined;
       
-      // Step 3: Extract level line and level icon
-      const levelLineMatch = block.match(/\*\*[^*]+?\*\*\s*\|\s*(.*)/);
-      const levelLine = levelLineMatch?.[1] || '';
-      const levelIconMatch = levelLine.match(/\*\*([a-zA-Z0-9:-_]+)\*\*/);
-      const levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
+      // Find the subtitle/level line (format: **subtitle** | **icon** level)
+      for (const line of lines) {
+        if (line.includes('|') && line.includes('**')) {
+          const parts = line.split('|');
+          if (parts.length === 2) {
+            // Extract subtitle from first part
+            const subtitlePart = parts[0].trim();
+            const subtitleRegex = /\*\*([^*]+?)\*\*/;
+            subtitleMatch = subtitlePart.match(subtitleRegex);
+            
+            // Extract level and icon from second part
+            levelLine = parts[1].trim();
+            const levelIconMatch = levelLine.match(/\*\*([a-zA-Z0-9:_-]+)\*\*/);
+            levelIcon = levelIconMatch ? transformSectionIcon(levelIconMatch[1], defaultIconSet) : undefined;
+            break;
+          }
+        }
+      }
       
       // Step 4: Validate and clean extracted data
       if (titleMatch && subtitleMatch) {
         // Clean title (remove icon)
-        const cleanTitle = titleLine.replace(/\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim();
+        const cleanTitle = titleLine.replace(/\s*\*\*[a-zA-Z0-9:_-]+\*\*\s*/, '').trim();
         const title = replaceFlexibleIcons(cleanTitle, defaultIconSet);
         
         // Clean subtitle
         const subtitle = replaceFlexibleIcons(subtitleMatch[1], defaultIconSet);
         
         // Clean level (remove icon if present)
-        const cleanLevel = levelIcon ? levelLine.replace(/\*\*[a-zA-Z0-9:-_]+\*\*\s*/, '').trim() : levelLine;
+        const cleanLevel = levelIcon ? levelLine.replace(/\*\*[a-zA-Z0-9:_-]+\*\*\s*/, '').trim() : levelLine;
         const level = replaceFlexibleIcons(cleanLevel, defaultIconSet);
         
         // Determine if current (based on clean title)
@@ -435,7 +451,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
         // Step 5: Extract skill items (clean approach)
         const itemLines = block.split('\n')
           .filter(line => line.trim().startsWith('- '))
-          .filter(line => !line.match(/^\s*-\s*\*\*[a-zA-Z0-9:-_]+\*\*\s*$/)); // Exclude pure icon lines
+          .filter(line => !line.match(/^\s*-\s*\*\*[a-zA-Z0-9:_-]+\*\*\s*$/)); // Exclude pure icon lines
         const items = itemLines.map(line => {
           const cleanLine = line.replace(/^\s*-\s*/, '').trim();
           return replaceFlexibleIcons(cleanLine, defaultIconSet);
