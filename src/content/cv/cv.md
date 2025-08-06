@@ -101,7 +101,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 - Intégration IA dans produits existants  
 - Veille technologique IA & audit d’usage  
 
-### Développement **carbon:ai-generate**
+### Développement **carbon:carbon:edge-device**
 **Full-Stack Development** | **carbon:task-star** Avancé
  
 - Frameworks front-end : Astro.js, Nuxt, React  
