@@ -73,7 +73,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 ## Compétences
 
 ### Product Management **carbon:cognitive**
-**Strategic Leadership** |  **carbon:badge** Expert
+**Strategic Leadership** | **carbon:badge** Expert
 
 - Roadmap produit et stratégie go-to-market
 - Architecture produit et transformation digitale
@@ -81,7 +81,7 @@ Institut Supérieur d'Architecture Saint-Luc - Tournai
 - Analyse de données et métriques produit
 
 ### UX/UI Design **carbon:ibm-engineering-test-mgmt**
-**User-Centered Design** |  **carbon:task-star** Avancé
+**User-Centered Design** | **carbon:task-star** Avancé
 
 - Recherche utilisateur et personas
 - Prototypage et wireframing
