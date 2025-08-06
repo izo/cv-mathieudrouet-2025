@@ -1,0 +1,326 @@
+---
+import { getEntry } from 'astro:content';
+import { siteConfig } from '../config/site.ts';
+import { parseCVContent } from '../utils/cvParser.ts';
+
+// Get CV content from Markdown
+const cvEntry = await getEntry('cv', 'cv');
+if (!cvEntry) {
+  throw new Error('CV content not found');
+}
+
+// Parse structured data from Markdown content
+const cvContent = parseCVContent(cvEntry.body, cvEntry.data);
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - {cvContent.name} - PDF</title>
+  <style>
+    /* PDF-optimized styles */
+    @page {
+      margin: 1.5cm;
+      size: A4;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+      color: #1f2937;
+      font-size: 11pt;
+      background: white;
+    }
+    
+    .container {
+      max-width: none;
+      padding: 0;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 1rem;
+    }
+    
+    .header h1 {
+      font-size: 24pt;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    /* Sections */
+    .section {
+      margin-bottom: 1.8rem;
+      page-break-inside: avoid;
+    }
+    
+    .section-title {
+      font-size: 14pt;
+      color: #1e40af;
+      margin-bottom: 1rem;
+      border-left: 4px solid #2563eb;
+      padding-left: 0.8rem;
+      font-weight: 600;
+    }
+    
+    /* Grid layout for contact/education/interests */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-card {
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      border-radius: 6px;
+      background: #f9fafb;
+    }
+    
+    .info-card h3 {
+      font-size: 12pt;
+      color: #374151;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .info-card ul {
+      list-style: none;
+    }
+    
+    .info-card li {
+      margin-bottom: 0.4rem;
+      font-size: 10pt;
+    }
+    
+    /* Experience items */
+    .experience-item {
+      margin-bottom: 1.5rem;
+      page-break-inside: avoid;
+      border-left: 2px solid #e5e7eb;
+      padding-left: 1rem;
+    }
+    
+    .experience-header {
+      margin-bottom: 0.8rem;
+    }
+    
+    .experience-title {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    
+    .experience-company {
+      font-size: 11pt;
+      color: #2563eb;
+      font-weight: 500;
+    }
+    
+    .experience-period {
+      font-size: 10pt;
+      color: #6b7280;
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+    
+    .experience-achievements {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+    
+    .experience-achievements li {
+      margin-bottom: 0.4rem;
+      font-size: 10pt;
+      padding-left: 1rem;
+      position: relative;
+    }
+    
+    .experience-achievements li:before {
+      content: "•";
+      color: #2563eb;
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .skill-item {
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      border-radius: 6px;
+      background: #f9fafb;
+    }
+    
+    .skill-title {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.3rem;
+    }
+    
+    .skill-level {
+      font-size: 9pt;
+      color: #2563eb;
+      background: #dbeafe;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+    
+    .skill-items {
+      list-style: none;
+    }
+    
+    .skill-items li {
+      margin-bottom: 0.3rem;
+      font-size: 9pt;
+      padding-left: 0.8rem;
+      position: relative;
+    }
+    
+    .skill-items li:before {
+      content: "•";
+      color: #2563eb;
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Print optimizations */
+    @media print {
+      body {
+        font-size: 10pt;
+      }
+      
+      .header h1 {
+        font-size: 20pt;
+      }
+      
+      .section-title {
+        font-size: 12pt;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    /* Hide elements not needed in PDF */
+    .no-print {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>{cvContent.name}</h1>
+    </header>
+
+    <!-- Contact, Education, Interests Grid -->
+    <div class="info-grid">
+      <!-- Contact -->
+      <div class="info-card">
+        <h3>Coordonnées</h3>
+        <ul>
+          {cvContent.contactContent?.map((contactItem) => (
+            <li set:html={contactItem.replace(/<[^>]*>/g, '')}></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div class="info-card">
+        <h3>Formation</h3>
+        {cvContent.education.map((edu) => (
+          <div style="margin-bottom: 0.8rem;">
+            <div class="experience-period">{edu.period}</div>
+            <div style="font-weight: 600; margin-top: 0.3rem; font-size: 10pt;">{edu.title}</div>
+            <div style="font-size: 9pt; color: #6b7280;">{edu.institution}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Interests -->
+      <div class="info-card">
+        <h3>Centres d'intérêt</h3>
+        <ul>
+          {cvContent.interests.map((interest) => (
+            <li set:html={interest.replace(/<[^>]*>/g, '')}></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section class="section">
+      <h2 class="section-title">Expériences Professionnelles</h2>
+      {cvContent.experience.map((exp) => (
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="experience-title">{exp.role}</div>
+            <div class="experience-company">{exp.company}</div>
+            <div class="experience-period">{exp.period}</div>
+          </div>
+          <ul class="experience-achievements">
+            {exp.achievements.map((achievement) => (
+              <li set:html={achievement.replace(/<[^>]*>/g, '')}></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section">
+      <h2 class="section-title">Compétences</h2>
+      <div class="skills-grid">
+        {cvContent.skills.map((skill) => (
+          <div class="skill-item">
+            <div class="skill-title">{skill.title}</div>
+            <div class="skill-level">{skill.level}</div>
+            <ul class="skill-items">
+              {skill.items.map((item) => (
+                <li set:html={item.replace(/<[^>]*>/g, '')}></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Print instructions -->
+  <div class="no-print" style="position: fixed; top: 10px; right: 10px; background: #2563eb; color: white; padding: 1rem; border-radius: 8px; font-size: 12px; max-width: 300px;">
+    <strong>📄 Génération PDF :</strong><br>
+    Utilisez Ctrl+P (Cmd+P sur Mac) puis choisissez "Enregistrer au format PDF" dans la destination.
+  </div>
+</body>
+</html>

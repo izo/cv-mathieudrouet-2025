@@ -35,7 +35,6 @@
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "jsdom": "^26.1.0",
-    "md-to-pdf": "^5.2.4",
     "unplugin-icons": "^22.1.0",
     "vitest": "^3.2.4"
   }
