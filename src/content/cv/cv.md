@@ -90,16 +90,16 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 - Gestion d’équipes Agile & OKR
 
 ### Intelligence Artificielle **carbon:ai-generate**
-**Full-Stack Development & IA** | **carbon:task-star** Avancé
+**IA** | **carbon:task-star** Avancé
  
 - Modèles LLM, RAG, fine-tuning open source  
 - MCP (multi-chain prompting), embeddings, API
-- agents IA 
+- Agents IA 
 - Intégration IA dans produits existants  
 - Veille technologique IA & audit d’usage  
 
 ### Développement **carbon:ai-generate**
-**IA** | **carbon:task-star** Avancé
+**Full-Stack Development** | **carbon:task-star** Avancé
  
 - Frameworks front-end : Astro.js, Nuxt, React  
 - Back-end : Laravel, Symfony  
