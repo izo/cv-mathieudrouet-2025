@@ -48,28 +48,41 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
     <!-- Logo Column -->
     <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 order-1 sm:order-none">
       {logo ? (
-        <img 
-          src={logo} 
-          alt={`Logo de ${company}`} 
-          class="w-full h-full object-contain lazy-load"
-          loading="lazy"
-          decoding="async"
-          fetchpriority="low"
-          width="64"
-          height="64"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-        />
-      ) : null}
-      <div 
-        class={`w-full h-full bg-cv-accent text-white flex items-center justify-center text-sm font-semibold ${logo ? 'hidden' : 'flex'}`}
-        aria-label={icon ? `Icône de ${company}` : `Initiales de ${company}`}
-      >
-        {icon && iconSVG ? (
-          <div class="flex items-center justify-center w-full h-full" set:html={iconSVG} />
-        ) : (
-          getInitials(company)
-        )}
-      </div>
+        <>
+          <img 
+            src={logo} 
+            alt={`Logo de ${company}`} 
+            class="w-full h-full object-contain lazy-load"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            width="64"
+            height="64"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          />
+          <div 
+            class="w-full h-full bg-cv-accent text-white hidden items-center justify-center text-sm font-semibold"
+            aria-label={icon ? `Icône de ${company}` : `Initiales de ${company}`}
+          >
+            {icon && iconSVG ? (
+              <div class="flex items-center justify-center w-full h-full" set:html={iconSVG} />
+            ) : (
+              getInitials(company)
+            )}
+          </div>
+        </>
+      ) : (
+        <div 
+          class="w-full h-full bg-cv-accent text-white flex items-center justify-center text-sm font-semibold"
+          aria-label={icon ? `Icône de ${company}` : `Initiales de ${company}`}
+        >
+          {icon && iconSVG ? (
+            <div class="flex items-center justify-center w-full h-full" set:html={iconSVG} />
+          ) : (
+            getInitials(company)
+          )}
+        </div>
+      )}
     </div>
     
     <!-- Content Column -->
