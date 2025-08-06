@@ -16,7 +16,7 @@ iconSet: "carbon"
 - **1999 - 2001** - ARIAP (Lille)
 
 ### Photographie documentaire
-- **1997 - 1999** -nstitut Supérieur d'Architecture Saint-Luc - (Tournai)
+- **1997 - 1999** - Institut Supérieur d'Architecture Saint-Luc - (Tournai)
 
 ## **carbon:identification** Coordonnées
 

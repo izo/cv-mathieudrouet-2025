@@ -243,8 +243,8 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    // Start of education section
-    if (line.startsWith('## Education')) {
+    // Start of education section (handle both formats: with and without icons)
+    if (line.startsWith('## Education') || (line.startsWith('## **') && line.includes('** Education'))) {
       inEducationSection = true;
       continue;
     }
@@ -269,11 +269,20 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           title: line.replace('### ', '').trim()
         };
       }
-      // Period (bold text)
+      // Education entry in single line format: - **YYYY - YYYY** - Institution - (Location)
+      else if (line.startsWith('- **') && line.includes('**')) {
+        const match = line.match(/^- \*\*(.+?)\*\* - (.+?) - \((.+?)\)$/);
+        if (match && currentEducation.title) {
+          const [, period, institution, location] = match;
+          currentEducation.period = period.trim();
+          currentEducation.institution = `${institution.trim()} (${location.trim()})`;
+        }
+      }
+      // Legacy format: Period (bold text)
       else if (line.match(/^\*\*.*\*\*$/)) {
         currentEducation.period = line.replace(/\*\*/g, '').trim();
       }
-      // Institution (next non-empty line after period)
+      // Legacy format: Institution (next non-empty line after period)
       else if (line.trim() && !line.startsWith('**') && currentEducation.period && !currentEducation.institution) {
         currentEducation.institution = line.trim();
       }
