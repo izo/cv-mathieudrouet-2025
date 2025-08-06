@@ -48,29 +48,15 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
     <!-- Logo Column -->
     <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 order-1 sm:order-none">
       {logo ? (
-        <>
-          <img 
-            src={logo} 
-            alt={`Logo de ${company}`} 
-            class="w-full h-full object-contain lazy-load"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-            width="64"
-            height="64"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-          />
-          <div 
-            class="w-full h-full bg-cv-accent text-white hidden items-center justify-center text-sm font-semibold"
-            aria-label={icon ? `Icône de ${company}` : `Initiales de ${company}`}
-          >
-            {icon && iconSVG ? (
-              <div class="flex items-center justify-center w-full h-full" set:html={iconSVG} />
-            ) : (
-              getInitials(company)
-            )}
-          </div>
-        </>
+        <img 
+          src={logo} 
+          alt={`Logo de ${company}`} 
+          class="w-full h-full object-contain"
+          loading="lazy"
+          decoding="async"
+          width="64"
+          height="64"
+        />
       ) : (
         <div 
           class="w-full h-full bg-cv-accent text-white flex items-center justify-center text-sm font-semibold"
@@ -120,16 +106,15 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
       
       <!-- Content: either description array or slot -->
       {description && description.length > 0 ? (
-        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left">
+        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left pl-4 border-l-2 hover:border-transparent ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
           {description.map((item) => (
             <li class="text-sm sm:text-base lg:text-body text-cv-content flex flex-col sm:flex-row sm:items-start">
-              <span class="mr-0 sm:mr-3 text-cv-accent hidden sm:inline">•</span>
               <span class="sm:flex-1">{item}</span>
             </li>
           ))}
         </ul>
       ) : (
-        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left">
+        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left pl-4 border-l-2 hover:border-transparent ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
           <slot />
         </ul>
       )}
