@@ -87,6 +87,69 @@
     --radius-2xl: 0;
     --radius-3xl: 0;
     --radius-4xl: 0;
+  }
+
+  /* ===== ATARI DESIGN SYSTEM ===== */
+  [data-theme="atari"] {
+    /* Atari Core Colors */
+    --color-atari-blue-sky: #3E85DA;
+    --color-gradient-deep-blue: #1C2C80;
+    --color-shell-beige: #D6D2C8;
+    --color-shadow-grey: #B2AEA2;
+    --color-monitor-glass-black: #111111;
+    --color-crt-border-grey: #E4E1D8;
+    --color-text-black-gem: #000000;
+    --color-cursor-white-gem: #FFFFFF;
+    --color-highlight-line-blue: #0078D7;
+    
+    /* Atari Theme Colors */
+    --background: var(--color-crt-border-grey);
+    --foreground: var(--color-text-black-gem);
+    --nav-bg-color: rgba(228, 225, 216, 0.95);
+    
+    /* CV-specific mapping to Atari colors */
+    --cv-bg: var(--color-crt-border-grey);
+    --cv-paper: var(--color-cursor-white-gem);
+    --cv-content: var(--color-text-black-gem);
+    --cv-muted: var(--color-shadow-grey);
+    --cv-light: var(--color-shell-beige);
+    --cv-card: var(--color-cursor-white-gem);
+    --cv-accent: var(--color-atari-blue-sky);
+    --cv-section: var(--color-shell-beige);
+    --cv-border: var(--color-shadow-grey);
+    --cv-shadow: rgba(17, 17, 17, 0.15);
+    
+    /* Accessibility colors */
+    --cv-focus: var(--color-highlight-line-blue);
+    --cv-focus-bg: rgba(0, 120, 215, 0.1);
+    --cv-error: #dc2626;
+    --cv-success: var(--color-atari-blue-sky);
+    
+    /* Atari Font Families (same as Lumon) */
+    --font-agrandir: "__agrandir_24f3dc", "__agrandir_Fallback_24f3dc", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-writer: "__writer_1deb74", "__writer_Fallback_1deb74", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-lora: "__lora_1fc044", "__lora_Fallback_1fc044", Georgia, serif;
+    --font-ibm-plex: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+    --font-mono: ui-monospace, 'SF Mono', monospace;
+    
+    /* Primary font family */
+    --font-family: var(--font-ibm-plex);
+    
+    /* Atari Shadows - more subtle for retro look */
+    --sh-default: 2px 2px 0 rgba(17, 17, 17, 0.2), -2px -2px 0 rgba(255, 255, 255, 0.3);
+    --sh-alt: 2px 2px 0 rgba(17, 17, 17, 0.2);
+    --sh-alt-opposite: -2px -2px 0 rgba(255, 255, 255, 0.3);
+    
+    /* Atari Border Radius - slightly rounded for retro CRT feel */
+    --radius-xs: 2px;
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+    --radius-2xl: 10px;
+    --radius-3xl: 12px;
+    --radius-4xl: 16px;
     
     /* Lumon Shadows System */
     --shadow-2xs: 0 1px #0000000d;

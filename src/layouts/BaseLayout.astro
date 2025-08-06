@@ -11,6 +11,7 @@ export interface Props {
   image?: string;
   url?: string;
   enableDebugMode?: boolean;
+  theme?: string;
 }
 
 const { 
@@ -19,7 +20,8 @@ const {
   showFooter = true, 
   image = siteConfig.author.image, 
   url,
-  enableDebugMode = isDevelopment()
+  enableDebugMode = isDevelopment(),
+  theme = "lumon"
 } = Astro.props;
 
 const canonicalUrl = url || Astro.url.href;
@@ -27,7 +29,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
 ---
 
 <!doctype html>
-<html lang="fr" class="h-full" data-theme="lumon" dir="ltr">
+<html lang="fr" class="h-full" data-theme={theme} dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -121,9 +123,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                   <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="GitHub (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-github" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
-                  <a href={siteConfig.social.portfolio.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="GitHub (ouvre dans un nouvel onglet)">
+                  <a href={siteConfig.social.portfolio.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Portfolio (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:ibm-cloud-vpc-images" width="16" height="16" class="inline-block"></iconify-icon>
-                  </a
+                  </a>
                   <button onclick="openContactModal()" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Ouvrir le formulaire de contact">
                     <iconify-icon icon="carbon:email" width="16" height="16" class="inline-block"></iconify-icon>
                   </button>

@@ -3,6 +3,8 @@ name: "Mathieu Drouet"
 title: "Senior Product Manager"
 description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale."
 iconSet: "carbon"
+theme: "atari"
+
 ---
 
 # Mathieu Drouet
