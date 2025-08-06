@@ -25,19 +25,31 @@ importers:
         version: 5.12.0(@types/node@24.0.14)(jiti@1.21.7)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0)
       chromium-bidi:
         specifier: ^0.8.0
-        version: 0.8.1(devtools-protocol@0.0.1464554)
+        version: 0.8.1(devtools-protocol@0.0.1495869)
       cosmiconfig:
         specifier: ^9.0.0
         version: 9.0.0(typescript@5.8.3)
+      devtools-protocol:
+        specifier: ^0.0.1495869
+        version: 0.0.1495869
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
       puppeteer:
         specifier: ^24.12.1
         version: 24.14.0(typescript@5.8.3)
+      puppeteer-core:
+        specifier: ^24.12.1
+        version: 24.14.0
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
       typescript:
         specifier: ^5.7.3
         version: 5.8.3
+      ws:
+        specifier: ^8.18.0
+        version: 8.18.3
     devDependencies:
       '@iconify-json/carbon':
         specifier: ^1.2.10
@@ -1134,6 +1146,9 @@ packages:
 
   devtools-protocol@0.0.1464554:
     resolution: {integrity: sha512-CAoP3lYfwAGQTaAXYvA6JZR0fjGUb7qec1qf4mToyoH2TZgUFeIqYcjh6f9jNuhHfuZiEdH+PONHYrLhRQX6aw==}
+
+  devtools-protocol@0.0.1495869:
+    resolution: {integrity: sha512-i+bkd9UYFis40RcnkW7XrOprCujXRAHg62IVh/Ah3G8MmNXpCGt1m0dTFhSdx/AVs8XEMbdOGRwdkR1Bcta8AA==}
 
   dfa@1.2.0:
     resolution: {integrity: sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==}
@@ -3879,9 +3894,9 @@ snapshots:
     dependencies:
       readdirp: 4.1.2
 
-  chromium-bidi@0.8.1(devtools-protocol@0.0.1464554):
+  chromium-bidi@0.8.1(devtools-protocol@0.0.1495869):
     dependencies:
-      devtools-protocol: 0.0.1464554
+      devtools-protocol: 0.0.1495869
       mitt: 3.0.1
       urlpattern-polyfill: 10.0.0
       zod: 3.23.8
@@ -4020,6 +4035,8 @@ snapshots:
       dequal: 2.0.3
 
   devtools-protocol@0.0.1464554: {}
+
+  devtools-protocol@0.0.1495869: {}
 
   dfa@1.2.0: {}
 

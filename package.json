@@ -27,9 +27,13 @@
     "astro": "^5.11.1",
     "chromium-bidi": "^0.8.0",
     "cosmiconfig": "^9.0.0",
+    "devtools-protocol": "^0.0.1495869",
+    "mitt": "^3.0.1",
     "puppeteer": "^24.12.1",
+    "puppeteer-core": "^24.12.1",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.10",
