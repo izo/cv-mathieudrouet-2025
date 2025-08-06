@@ -19,7 +19,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 
 **carbon:email** **Email:** m@mdr.cool
 **carbon:content-delivery-network**  [**Portfolio**](https://cv.drouet.io)
-**carbon:logo-linkedin** [**LinkedIn**](https://linkedin.com/in/mathieu-drouet)
+**carbon:logo-linkedin** [**LinkedIn**](https://linkedin.com/in/mathieudrouet)
 **carbon:location-heart-filled** **Localisation:** Lille, France
 **carbon:rocket** **Mobilité:** Lille, Paris, France, Belgique, Canada
 
@@ -38,38 +38,39 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 **carbon:location-heart-filled** Lille / full remote – 2025  
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)
 
-- Réalisé un **audit stratégique** de la plateforme IA Sherlock pour GE HealthCare  
-- Analysé les usages via **logs, sondages et entretiens** utilisateurs  
-- Produit une **cartographie des parcours** et un diagnostic de gouvernance produit  
-- Livré un **rapport de recommandations** structurant la future roadmap  
-- Exploré les opportunités d'intégration de **LLM open source** dans la plateforme
+- Dirigé l'**audit stratégique complet** de la plateforme IA Sherlock pour GE HealthCare (€2M+ de revenus annuels)
+- Analysé les comportements utilisateurs via **analytics avancés, enquêtes qualitatives et 15+ entretiens** approfondis
+- Conçu une **cartographie détaillée des parcours utilisateurs** et établi un diagnostic de gouvernance produit
+- Livré un **plan stratégique de 50+ recommandations** structurant la roadmap produit sur 18 mois
+- Identifié et évalué les **opportunités d'intégration LLM open source** (Llama, Mistral) dans l'écosystème existant
 
 ### Groupe Actual
 **carbon:location-heart-filled** Paris / Laval / Full remote – 2023 – 2024  
 **Senior Product Manager** | 2023 - 2024 | [Company Link](https://www.groupeactual.eu/)
 
-- Conçu une solution de **gestion des comptes épargne-temps**, réduisant le temps administratif
-- Déployé une stratégie produit pour **moderniser une application DAF legacy**  
-- Encadré des **équipes Agile pluridisciplinaires** (tech, DAF, RH)
-- Piloté les livrables produit en coordination avec les enjeux métiers
+- Conçu et lancé une **solution SaaS de gestion des comptes épargne-temps**, réduisant de **60% le temps administratif** pour 500+ entreprises clientes
+- Orchestré la **transformation digitale d'une application DAF legacy** (15 ans), migrant vers une architecture moderne cloud-native
+- Managé des **équipes cross-fonctionnelles de 12 personnes** (développeurs, DAF, RH) en méthodologie Agile/Scrum
+- Coordonné la livraison de **8 releases majeures** en alignement avec les objectifs business stratégiques
 
 ### Bookr.fm - Musicdata Studio 
 **carbon:location-heart-filled** Lille / Bruxelles / Valencia / Full remote – 2021 – 2024   
 **Senior Product Manager** | 2021 - 2024 | [Company Link](https://bookr.fm/)
 
-- Piloté la **conception d’un outil SaaS** de gestion pour festivals et tourneurs
-- Défini la **stratégie produit**, UX/UI, et go-to-market
-- Intégré la plateforme dans les **workflows existants** des clients (API, CRM)  
-- Assuré le suivi produit sur plusieurs saisons de festivals
+- Dirigé le **développement complet d'une plateforme SaaS B2B** pour la gestion d'événements musicaux (festivals, tournées)
+- Élaboré la **stratégie produit end-to-end**, de la conception UX/UI au lancement commercial, générant **€500K+ ARR**
+- Orchestré l'**intégration API native** avec les écosystèmes clients existants (CRM, systèmes de billetterie, comptabilité)
+- Supervisé le **déploiement opérationnel** sur 50+ festivals européens avec un taux de satisfaction client de **95%**
 
 ### Fluidra - Blueriiot
 **carbon:location-heart-filled** Barcelone / Liege / Valencia / Full remote - 2018 – 2021  
 
 **Senior Product Manager, IoT** | 2018 - 2021 | [Company Link](https://www.fluidra.com/)
 
-- Développé des applications iOS et Android pour Blue Connect avec Flutter
-- Supervisé l'UX/UI, augmentant la satisfaction utilisateur de 35%
-- Géré le lancement du produit aux États-Unis
+- Dirigé le **développement d'applications mobiles iOS/Android** pour l'écosystème IoT Blue Connect (Flutter/React Native)
+- Piloté la **refonte complète de l'expérience utilisateur**, augmentant la satisfaction de **35%** et réduisant le taux de churn de **20%**
+- Orchestré le **lancement stratégique sur le marché américain**, atteignant **10K+ utilisateurs actifs** en 6 mois
+- Managé une **équipe produit internationale de 8 personnes** répartie sur 3 fuseaux horaires
 
 ## Compétences
 

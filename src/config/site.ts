@@ -23,8 +23,8 @@ export const siteConfig = {
   // Social Links
   social: {
     linkedin: {
-      url: "https://linkedin.com/in/mathieu-drouet",
-      handle: "linkedin.com/in/mathieu-drouet"
+      url: "https://www.linkedin.com/in/mathieudrouet/",
+      handle: "linkedin.com/in/mathieudrouet"
     },
     github: {
       url: "https://github.com/izo",
