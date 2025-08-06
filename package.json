@@ -8,13 +8,13 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "node scripts/watch-content.js check && astro build && npm run pdf:generate",
+    "build": "node scripts/watch-content.js check && astro build",
     "build:watch": "node scripts/watch-content.js watch & astro dev",
     "preview": "astro preview",
     "content:check": "node scripts/watch-content.js check",
     "content:sync": "node scripts/watch-content.js sync",
     "content:watch": "node scripts/watch-content.js watch",
-    "pdf:generate": "node scripts/generate-pdf.js",
+
     "astro": "astro",
     "test": "vitest",
     "test:watch": "vitest --watch",

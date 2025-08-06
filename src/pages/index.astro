@@ -58,7 +58,6 @@ const calendarIconSVG = '<svg width="16" height="16" viewBox="0 0 32 32" fill="w
         <ul class="space-y-2">
           {cvContent.interests.map((interest) => (
             <li class="text-body text-cv-content flex items-center">
-              <span class="mr-3 text-cv-accent">•</span>
               <span class="flex-1" set:html={interest}></span>
             </li>
           ))}
