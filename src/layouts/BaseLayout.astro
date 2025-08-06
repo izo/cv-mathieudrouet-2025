@@ -3,7 +3,6 @@ import '../styles/global.css';
 import { siteConfig } from '../config/site.ts';
 import { env, securityConfig, isDevelopment } from '../config/env.ts';
 import ContactModal from '../components/ContactModal.astro';
-import PDFGenerator from '../components/PDFGenerator.astro';
 
 export interface Props {
   title: string;
@@ -109,17 +108,11 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                     <iconify-icon icon="carbon:user-profile" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
                   <button 
-                    onclick="generatePDF()" 
-                    data-pdf-button
-                    class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1 disabled:opacity-50 disabled:cursor-not-allowed" 
-                    aria-label="Télécharger le CV en PDF professionnel"
+                    id="footer-pdf-btn"
+                    class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" 
+                    aria-label="Imprimer le CV en PDF"
                   >
-                    <span data-pdf-text>
-                      <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
-                    </span>
-                    <span data-pdf-loading class="hidden">
-                      <iconify-icon icon="carbon:circle-dash" width="16" height="16" class="inline-block animate-spin"></iconify-icon>
-                    </span>
+                    <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
                   </button>
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-linkedin" width="16" height="16" class="inline-block"></iconify-icon>
@@ -150,8 +143,90 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
       }
     </script>
     
-    <!-- PDF Generator -->
-    <PDFGenerator />
+    <!-- PDF Print functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const pdfBtn = document.getElementById('footer-pdf-btn');
+        
+        if (pdfBtn) {
+          pdfBtn.addEventListener('click', function() {
+            // Add PDF-specific styles
+            const style = document.createElement('style');
+            style.id = 'pdf-print-styles';
+            style.textContent = `
+              @media print {
+                /* Hide elements that shouldn't appear in PDF */
+                nav, footer, .no-print {
+                  display: none !important;
+                }
+                
+                /* Optimize page layout for PDF */
+                body {
+                  font-size: 12pt;
+                  line-height: 1.4;
+                  color: #000;
+                  background: white;
+                }
+                
+                /* Ensure proper page breaks */
+                .cv-section {
+                  break-inside: avoid;
+                  margin-bottom: 1rem;
+                }
+                
+                /* Optimize images for print */
+                img {
+                  max-width: 100%;
+                  height: auto;
+                  -webkit-print-color-adjust: exact;
+                  print-color-adjust: exact;
+                }
+                
+                /* Preserve colors and backgrounds */
+                * {
+                  -webkit-print-color-adjust: exact;
+                  print-color-adjust: exact;
+                }
+                
+                /* Optimize typography */
+                h1, h2, h3 {
+                  color: #1f2937;
+                  break-after: avoid;
+                }
+                
+                /* Remove shadows and effects */
+                .shadow, .shadow-lg, .shadow-md {
+                  box-shadow: none !important;
+                }
+                
+                /* Ensure proper spacing */
+                .container {
+                  max-width: none;
+                  padding: 0;
+                }
+              }
+            `;
+            
+            document.head.appendChild(style);
+            
+            // Trigger print dialog
+            setTimeout(() => {
+              window.print();
+              
+              // Remove print styles after printing
+              setTimeout(() => {
+                const printStyle = document.getElementById('pdf-print-styles');
+                if (printStyle) {
+                  printStyle.remove();
+                }
+              }, 1000);
+            }, 100);
+          });
+        }
+      });
+    </script>
+    
+
     
     <!-- Contact Modal -->
     <ContactModal />
