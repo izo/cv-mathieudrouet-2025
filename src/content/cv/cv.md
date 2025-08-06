@@ -10,16 +10,13 @@ iconSet: "carbon"
 ## **carbon:airline-passenger-care** Education
 
 ### Programmation iOS - Swift/UI
-**2022 - 2023**
-Simplon.co - Lille
+- **2022 - 2023** - Simplon.co - (Lille)
 
 ### Photographie documentaire
-**1999 - 2001**
-ARIAP - Lille
+- **1999 - 2001** - ARIAP (Lille)
 
 ### Photographie documentaire
-**1997 - 1999**
-Institut Supérieur d'Architecture Saint-Luc - Tournai
+- **1997 - 1999** -nstitut Supérieur d'Architecture Saint-Luc - (Tournai)
 
 ## **carbon:identification** Coordonnées
 
