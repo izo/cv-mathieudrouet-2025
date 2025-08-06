@@ -107,13 +107,14 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                   <a href="/about" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="À propos">
                     <iconify-icon icon="carbon:user-profile" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
-                  <button 
-                    id="footer-pdf-btn"
+                  <a 
+                    href="/cv.pdf"
+                    download="CV-Mathieu-Drouet.pdf"
                     class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" 
-                    aria-label="Imprimer le CV en PDF"
+                    aria-label="Télécharger le CV en PDF"
                   >
                     <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
-                  </button>
+                  </a>
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-linkedin" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
@@ -143,88 +144,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
       }
     </script>
     
-    <!-- PDF Print functionality -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const pdfBtn = document.getElementById('footer-pdf-btn');
-        
-        if (pdfBtn) {
-          pdfBtn.addEventListener('click', function() {
-            // Add PDF-specific styles
-            const style = document.createElement('style');
-            style.id = 'pdf-print-styles';
-            style.textContent = `
-              @media print {
-                /* Hide elements that shouldn't appear in PDF */
-                nav, footer, .no-print {
-                  display: none !important;
-                }
-                
-                /* Optimize page layout for PDF */
-                body {
-                  font-size: 12pt;
-                  line-height: 1.4;
-                  color: #000;
-                  background: white;
-                }
-                
-                /* Ensure proper page breaks */
-                .cv-section {
-                  break-inside: avoid;
-                  margin-bottom: 1rem;
-                }
-                
-                /* Optimize images for print */
-                img {
-                  max-width: 100%;
-                  height: auto;
-                  -webkit-print-color-adjust: exact;
-                  print-color-adjust: exact;
-                }
-                
-                /* Preserve colors and backgrounds */
-                * {
-                  -webkit-print-color-adjust: exact;
-                  print-color-adjust: exact;
-                }
-                
-                /* Optimize typography */
-                h1, h2, h3 {
-                  color: #1f2937;
-                  break-after: avoid;
-                }
-                
-                /* Remove shadows and effects */
-                .shadow, .shadow-lg, .shadow-md {
-                  box-shadow: none !important;
-                }
-                
-                /* Ensure proper spacing */
-                .container {
-                  max-width: none;
-                  padding: 0;
-                }
-              }
-            `;
-            
-            document.head.appendChild(style);
-            
-            // Trigger print dialog
-            setTimeout(() => {
-              window.print();
-              
-              // Remove print styles after printing
-              setTimeout(() => {
-                const printStyle = document.getElementById('pdf-print-styles');
-                if (printStyle) {
-                  printStyle.remove();
-                }
-              }, 1000);
-            }, 100);
-          });
-        }
-      });
-    </script>
+
     
 
     
