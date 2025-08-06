@@ -77,6 +77,11 @@ iconSet: "carbon"
 - Leadership d'équipes cross-fonctionnelles
 - Analyse de données et métriques produit
 
+### Technologies **carbon:ai-generate**
+**IA** | **carbon:task-star** Avancé
+ 
+- LLM, RAG, MCP, API, modele open source
+
 ### UX/UI Design **carbon:ibm-engineering-test-mgmt**
 **User-Centered Design** | **carbon:task-star** Avancé
 
@@ -90,7 +95,6 @@ iconSet: "carbon"
 ### Technologies **carbon:ai-generate**
 **Full-Stack Development & IA** | **carbon:task-star** Avancé
  
-- LLM, RAG, MCP, API, modele open source
 - Framework JavaScript (Astro.js, Nuxt), Framework PHP (Laravel / Symphony)
 - Flutter, Swift/UI, React
 
