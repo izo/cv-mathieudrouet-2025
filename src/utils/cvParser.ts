@@ -269,7 +269,21 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           title: line.replace('### ', '').trim()
         };
       }
-      // Education entry in single line format: - **YYYY - YYYY** - Institution - (Location)
+      // New format: Institution, City – Years (e.g., "Simplon.co, Lille – 2022–2023")
+      else if (line.trim() && currentEducation.title && !currentEducation.institution && !line.startsWith('**') && !line.startsWith('###')) {
+        // Parse format: "Institution, City – Years"
+        const match = line.match(/^(.+?)\s*[,–-]\s*(.+?)\s*[–-]\s*(.+)$/);
+        if (match) {
+          const [, institution, location, period] = match;
+          currentEducation.institution = `${institution.trim()}, ${location.trim()}`;
+          currentEducation.period = period.trim();
+        } else {
+          // Fallback: if no match, treat the whole line as institution
+          currentEducation.institution = line.trim();
+          currentEducation.period = 'N/A';
+        }
+      }
+      // Legacy format: Education entry in single line format: - **YYYY - YYYY** - Institution - (Location)
       else if (line.startsWith('- **') && line.includes('**')) {
         const match = line.match(/^- \*\*(.+?)\*\* - (.+?) - \((.+?)\)$/);
         if (match && currentEducation.title) {
