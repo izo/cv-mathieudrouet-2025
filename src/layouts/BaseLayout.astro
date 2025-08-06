@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { siteConfig } from '../config/site.ts';
 import { env, securityConfig, isDevelopment } from '../config/env.ts';
 import ContactModal from '../components/ContactModal.astro';
+import PDFGenerator from '../components/PDFGenerator.astro';
 
 export interface Props {
   title: string;
@@ -107,8 +108,18 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
                   <a href="/about" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="À propos">
                     <iconify-icon icon="carbon:user-profile" width="16" height="16" class="inline-block"></iconify-icon>
                   </a>
-                  <button onclick="window.print()" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="Télécharger le CV en PDF">
-                    <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
+                  <button 
+                    onclick="generatePDF()" 
+                    data-pdf-button
+                    class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1 disabled:opacity-50 disabled:cursor-not-allowed" 
+                    aria-label="Télécharger le CV en PDF professionnel"
+                  >
+                    <span data-pdf-text>
+                      <iconify-icon icon="carbon:document-pdf" width="16" height="16" class="inline-block"></iconify-icon>
+                    </span>
+                    <span data-pdf-loading class="hidden">
+                      <iconify-icon icon="carbon:circle-dash" width="16" height="16" class="inline-block animate-spin"></iconify-icon>
+                    </span>
                   </button>
                   <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" class="text-cv-muted hover:text-cv-accent transition-colors focus:outline-none focus:ring-2 focus:ring-cv-accent focus:rounded p-1" aria-label="LinkedIn (ouvre dans un nouvel onglet)">
                     <iconify-icon icon="carbon:logo-linkedin" width="16" height="16" class="inline-block"></iconify-icon>
@@ -138,6 +149,9 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
         }
       }
     </script>
+    
+    <!-- PDF Generator -->
+    <PDFGenerator />
     
     <!-- Contact Modal -->
     <ContactModal />

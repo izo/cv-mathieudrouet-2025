@@ -1,0 +1,135 @@
+---
+// PDF Generator Component
+---
+
+<script>
+  // PDF Generation functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Global function to generate PDF
+    (window as any).generatePDF = async function() {
+      const button = document.querySelector('[data-pdf-button]') as HTMLButtonElement;
+      const buttonText = button?.querySelector('[data-pdf-text]') as HTMLElement;
+      const buttonLoading = button?.querySelector('[data-pdf-loading]') as HTMLElement;
+      
+      try {
+        // Show loading state
+        if (button) button.disabled = true;
+        if (buttonText) buttonText.classList.add('hidden');
+        if (buttonLoading) buttonLoading.classList.remove('hidden');
+        
+        // Call Netlify function to generate PDF
+        const response = await fetch('/.netlify/functions/generate-pdf', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            url: window.location.origin
+          })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // Get PDF blob
+        const blob = await response.blob();
+        
+        // Create download link
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'CV-Mathieu-Drouet.pdf';
+        document.body.appendChild(a);
+        a.click();
+        
+        // Cleanup
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        
+        // Show success message (optional)
+        showNotification('PDF généré avec succès !', 'success');
+        
+      } catch (error) {
+        console.error('Erreur génération PDF:', error);
+        
+        // Fallback to print if PDF generation fails
+        const fallbackToPrint = confirm(
+          'La génération PDF a échoué. Voulez-vous utiliser l\'impression du navigateur comme alternative ?'
+        );
+        
+        if (fallbackToPrint) {
+          window.print();
+        } else {
+          showNotification('Erreur lors de la génération du PDF', 'error');
+        }
+      } finally {
+        // Reset loading state
+        if (button) button.disabled = false;
+        if (buttonText) buttonText.classList.remove('hidden');
+        if (buttonLoading) buttonLoading.classList.add('hidden');
+      }
+    };
+    
+    // Simple notification system
+    function showNotification(message, type = 'info') {
+      // Remove existing notifications
+      const existing = document.querySelector('.pdf-notification');
+      if (existing) existing.remove();
+      
+      // Create notification
+      const notification = document.createElement('div');
+      notification.className = `pdf-notification fixed top-4 right-4 z-50 px-4 py-2 rounded-md shadow-lg text-sm font-medium transition-all duration-300 ${
+        type === 'success' 
+          ? 'bg-green-500 text-white' 
+          : type === 'error'
+          ? 'bg-red-500 text-white'
+          : 'bg-blue-500 text-white'
+      }`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Auto-remove after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+  });
+</script>
+
+<style>
+  /* PDF-specific styles that will be applied when ?pdf=true is in URL */
+  @media screen {
+    body[data-pdf-mode="true"] footer,
+    body[data-pdf-mode="true"] .no-pdf,
+    body[data-pdf-mode="true"] button:not(.pdf-keep),
+    body[data-pdf-mode="true"] [onclick]:not(.pdf-keep) {
+      display: none !important;
+    }
+    
+    body[data-pdf-mode="true"] .glass-card {
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+    
+    body[data-pdf-mode="true"] {
+      background: white !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Check if we're in PDF mode and apply styles
+  if (window.location.search.includes('pdf=true')) {
+    document.body.setAttribute('data-pdf-mode', 'true');
+  }
+</script>
