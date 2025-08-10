@@ -1,6 +1,4 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
 @layer base {
   /* ===== LUMON DESIGN SYSTEM ===== */
@@ -717,7 +715,8 @@
 
   /* Enhanced focus indicators for better visibility */
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-cv-focus focus:ring-offset-2;
+    /* Tailwind v4: use arbitrary var to set ring color */
+    @apply focus:outline-none focus:ring-2 focus:[--tw-ring-color:var(--cv-focus)] focus:ring-offset-2;
   }
   
   /* High contrast mode support */

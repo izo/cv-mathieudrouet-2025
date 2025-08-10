@@ -1,9 +1,8 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
-  integrations: [tailwind()],
+  // Tailwind is configured via PostCSS v4 plugin; no Astro integration needed
   site: 'https://cv.mathieu-drouet.com',
   
   // Performance optimizations
