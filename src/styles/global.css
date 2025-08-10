@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* Tailwind v4: declare design tokens via @theme so utilities like text-cv-muted work */
+@theme {
+  /* CV color tokens */
+  --color-cv-bg: var(--cv-bg);
+  --color-cv-paper: var(--cv-paper);
+  --color-cv-content: var(--cv-content);
+  --color-cv-muted: var(--cv-muted);
+  --color-cv-light: var(--cv-light);
+  --color-cv-card: var(--cv-card);
+  --color-cv-accent: var(--cv-accent);
+  --color-cv-section: var(--cv-section);
+  --color-cv-border: var(--cv-border);
+  --color-cv-shadow: var(--cv-shadow);
+  --color-cv-focus: var(--cv-focus);
+}
+
 @layer base {
   /* ===== LUMON DESIGN SYSTEM ===== */
   
@@ -186,7 +202,9 @@
   }
 
   body {
-    @apply m-0 p-0 min-h-screen;
+    margin: 0;
+    padding: 0;
+    @apply min-h-screen;
     background-color: var(--cv-bg);
     background-image: var(--background-image);
     background-size: cover;
@@ -747,13 +765,15 @@
     @apply relative pr-32;
   }
 
-  .prose h3 + p {
-    @apply text-cv-muted text-left font-bold mb-4;
+  .section-subtitle {
+    color: var(--cv-muted);
+    @apply text-left font-bold mb-4;
   }
 
   /* Style pour les dates dans les h3 */
-  .prose h3 strong:last-child {
-    @apply text-cv-muted font-bold absolute right-0 top-0;
+  .prose h3  .section-header .section-icon {
+    color: var(--cv-muted);
+    @apply font-bold absolute right-0 top-0;
   }
 
   .prose h1 + p {
@@ -775,7 +795,8 @@
     }
 
     .prose h3 strong:last-child {
-      @apply relative block text-right mt-2 text-cv-muted;
+      color: var(--cv-muted);
+      @apply relative block text-right mt-2;
     }
   }
 }
