@@ -60,9 +60,8 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 **Senior Product Manager** | 2021 - 2024 | [Company Link](https://bookr.fm/)
 
 - Dirigé le **développement complet d'une plateforme SaaS B2B** pour la gestion d'événements musicaux (festivals, tournées)
-- Élaboré la **stratégie produit end-to-end**, de la conception UX/UI au lancement commercial, générant **€500K+ ARR**
+- Élaboré la **stratégie produit end-to-end**, de la conception UX/UI au lancement commercial.
 - Orchestré l'**intégration API native** avec les écosystèmes clients existants (CRM, systèmes de billetterie, comptabilité)
-- Supervisé le **déploiement opérationnel** sur 50+ festivals européens avec un taux de satisfaction client de **95%**
 
 ### Fluidra - Blueriiot
 **carbon:location-heart-filled** Barcelone / Liege / Valencia / Full remote - 2018 – 2021  
@@ -70,7 +69,7 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 **Senior Product Manager, IoT** | 2018 - 2021 | [Company Link](https://www.fluidra.com/)
 
 - Dirigé le **développement d'applications mobiles iOS/Android** pour l'écosystème IoT Blue Connect (Flutter/React Native)
-- Piloté la **refonte complète de l'expérience utilisateur**, augmentant la satisfaction de **35%** et réduisant le taux de churn de **20%**
+- Piloté la **refonte complète de l'expérience utilisateur**, augmentant la satisfaction et réduisant le taux de churn
 - Orchestré le **lancement stratégique sur le marché américain**, atteignant **10K+ utilisateurs actifs** en 6 mois
 - Managé une **équipe produit internationale de 8 personnes** répartie sur 3 fuseaux horaires
 
