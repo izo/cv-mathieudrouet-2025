@@ -8,7 +8,7 @@ Senior Product Manager passionné par l'innovation et la transformation digitale
 
 Avec plus de 10 ans d'expérience, je combine vision stratégique et exécution opérationnelle pour :
 
-- **Définir des roadmaps produit** alignées sur les objectifs business
+- **Définir des roadmaps produit** alignées sur les objectifs
 - **Piloter des équipes cross-fonctionnelles** vers l'excellence
 - **Analyser les données** pour prendre des décisions éclairées
 - **Optimiser l'expérience utilisateur** à chaque étape
@@ -23,12 +23,7 @@ Avec plus de 10 ans d'expérience, je combine vision stratégique et exécution 
 
 ## En dehors du travail
 
-Quand je ne suis pas en train de définir la prochaine fonctionnalité révolutionnaire, vous me trouverez :
-
-- En train de capturer le monde à travers mon objectif (photographie documentaire)
-- À l'écoute de musique expérimentale
-- En train de cultiver mon jardin (permaculture)
-- Plongé dans un livre de sciences humaines
+ WIP :)
 
 ## Contactez-moi
 
