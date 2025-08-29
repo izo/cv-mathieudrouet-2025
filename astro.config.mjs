@@ -3,7 +3,7 @@ import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
   // Tailwind is configured via PostCSS v4 plugin; no Astro integration needed
-  site: 'https://cv.mathieu-drouet.com',
+  site: 'https://cv.drouet.io',
   
   // Performance optimizations
   build: {
