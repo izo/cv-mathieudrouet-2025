@@ -8,6 +8,8 @@
 
 > **Senior Product Manager** avec 10+ ans d'expérience en transformation digitale et gestion de produits numériques. Spécialisé dans l'architecture produit, l'UX/UI, et le leadership d'équipes techniques.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4d2e69c4-79a9-4295-a56d-22f488a99b60/deploy-status)](https://app.netlify.com/projects/cvdrouet/deploys)
+
 ## 🚀 À Propos
 
 Ce repository contient le code source de mon CV digital, développé avec des technologies modernes pour démontrer mes compétences techniques et ma vision du développement web performant.
