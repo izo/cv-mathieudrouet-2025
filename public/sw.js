@@ -45,8 +45,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Skip dev resources and source maps
-  if (event.request.url.includes('/src/') || event.request.url.includes('.ts') || event.request.url.includes('.map')) {
+  // Skip dev resources, source maps, and Astro assets
+  if (event.request.url.includes('/src/') || 
+      event.request.url.includes('.ts') || 
+      event.request.url.includes('.map') ||
+      event.request.url.includes('/assets/') ||
+      event.request.url.match(/\.(css|js)$/)) {
     return;
   }
 
