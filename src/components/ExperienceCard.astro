@@ -106,7 +106,7 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
       
       <!-- Content: either description array or slot -->
       {description && description.length > 0 ? (
-        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left pl-4 border-l-2 hover:border-transparent ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
+        <ul class="space-y-2 sm:space-y-2 text-left pl-0 sm:pl-4 border-l-0 sm:border-l-2 hover:border-transparent ml-0 sm:ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
           {description.map((item) => (
             <li class="text-sm sm:text-base lg:text-body text-cv-content flex flex-col sm:flex-row sm:items-start">
               <span class="sm:flex-1">{item}</span>
@@ -114,7 +114,7 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
           ))}
         </ul>
       ) : (
-        <ul class="space-y-2 sm:space-y-2 text-center sm:text-left pl-4 border-l-2 hover:border-transparent ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
+        <ul class="space-y-2 sm:space-y-2 text-left pl-0 sm:pl-4 border-l-0 sm:border-l-2 hover:border-transparent ml-0 sm:ml-2 transition-colors duration-300" style="border-color: #98b6b0;">
           <slot />
         </ul>
       )}
