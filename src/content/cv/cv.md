@@ -36,6 +36,15 @@ Institut Supérieur d'Architecture Saint-Luc & ARIAP, Tournai - Lille – 1997�
 
 ## Expériences
 
+### Heya - Here You Art
+**carbon:location-heart-filled** Brussels / full remote – 2025  
+**Head of Products** | 2025 | [Company Link](https://hereyouart.com/)
+
+- Audit complet du projet
+- reCréation d’un MVP sur une stack moderne ( Nuxt 4 pro)
+- Livré un **plan stratégique de 50+ recommandations** structurant la roadmap produit sur 24 mois
+- Identifié et évalué les **opportunités d'intégration LLM open source** (Llama, Mistral) dans l'écosystème existant
+
 ### CH-Studio - GEHealthcare
 **carbon:location-heart-filled** Lille / full remote – 2025  
 **Senior Product Manager** | 2025 | [Company Link](https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/)

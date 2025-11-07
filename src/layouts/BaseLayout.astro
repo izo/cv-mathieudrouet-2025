@@ -63,7 +63,41 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <!-- Additional Meta -->
     <meta name="theme-color" content={siteConfig.seo.themeColor} />
     <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
-    
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": siteConfig.author.name,
+      "jobTitle": siteConfig.author.jobTitle,
+      "url": siteConfig.url,
+      "image": new URL(siteConfig.author.image, siteConfig.url).href,
+      "email": siteConfig.author.email,
+      "telephone": siteConfig.author.phone,
+      "sameAs": [
+        siteConfig.social.linkedin.url,
+        siteConfig.social.github.url,
+        siteConfig.social.portfolio.url
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lille",
+        "addressRegion": "Hauts-de-France",
+        "addressCountry": "FR"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Business School / University"
+      },
+      "knowsAbout": [
+        "Product Management",
+        "Digital Transformation",
+        "UX Strategy",
+        "Agile Methodologies",
+        "Product Strategy"
+      ]
+    })} />
+
     <!-- Critical CSS inlined to prevent FOUC -->
     <style>
       /* Critical base styles to prevent FOUC */

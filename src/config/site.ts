@@ -7,8 +7,8 @@ export const siteConfig = {
   // Site Information
   name: "CV Mathieu Drouet",
   title: "Mathieu Drouet - Senior Product Manager",
-  description: "CV de Mathieu Drouet, Senior Product Manager avec plus de 10 ans d'expérience en gestion de produits numériques et transformation digitale.",
-  url: "https://cv.mathieu-drouet.com",
+  description: "Senior Product Manager à Lille | 10+ ans d'expérience en transformation digitale, stratégie UX et gestion de produits numériques | Contactez-moi",
+  url: "https://cv.drouet.io",
   
   // Personal Information
   author: {
@@ -40,13 +40,19 @@ export const siteConfig = {
   seo: {
     keywords: [
       "Senior Product Manager",
-      "Product Management", 
+      "Product Management",
       "CV",
       "Mathieu Drouet",
       "Lille",
       "France",
       "Digital Transformation",
-      "UX Strategy"
+      "UX Strategy",
+      "Product Manager Lille",
+      "PM Hauts-de-France",
+      "Gestion produit numérique",
+      "Transformation digitale B2B",
+      "Stratégie produit",
+      "Agile Product Owner"
     ],
     locale: "fr_FR",
     themeColor: "#0751cf"

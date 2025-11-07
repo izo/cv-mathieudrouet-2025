@@ -1,9 +1,19 @@
 import { defineConfig } from 'astro/config';
 import Icons from 'unplugin-icons/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Tailwind is configured via PostCSS v4 plugin; no Astro integration needed
   site: 'https://cv.drouet.io',
+
+  // Integrations
+  integrations: [
+    sitemap({
+      changefreq: 'monthly',
+      priority: 0.7,
+      lastmod: new Date(),
+    })
+  ],
   
   // Performance optimizations
   build: {

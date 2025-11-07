@@ -22,7 +22,7 @@ const cvContent = parseCVContent(cvEntry.body, cvEntry.data);
 <BaseLayout title={title} description={description} theme={cvEntry.data.theme}>
   <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-2 sm:pb-4">
     <header class="mb-section" role="banner">
-      <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">{cvContent.name}</h1>
+      <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">{cvContent.name} - {siteConfig.author.jobTitle}</h1>
     </header>
 
     <CVGrid>
