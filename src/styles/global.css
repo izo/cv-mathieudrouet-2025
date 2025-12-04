@@ -206,32 +206,12 @@
     padding: 0;
     @apply min-h-screen;
     background-color: var(--cv-bg);
-    background-image: var(--background-image);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    color: var(--cv-content);
     font-family: var(--font-family);
-    transition: all 0.3s ease;
-  }
-
-  /* Clean background for Lumon theme */
-  body {
-    background-image: none;
-    background-color: var(--cv-bg);
-  }
-
-  /* Performance optimizations */
-  * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Critical CSS optimizations */
-  .glass-card {
-    contain: layout style paint;
-  }
-  
+
   /* Optimize image loading */
   img {
     content-visibility: auto;
@@ -291,10 +271,6 @@
     to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
 
-  .glass-card {
-    animation: fadeIn 0.3s var(--ease-out) both;
-  }
-  
   /* Intersection Observer lazy loading */
   .lazy-load {
     opacity: 0;
@@ -610,27 +586,14 @@
   .lumon-container {
     position: relative;
     width: 100%;
-    max-width: var(--container-7xl);
+    max-width: 1200px;
     margin: 0 auto;
     min-height: calc(100vh - 64px);
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
   }
 
-  .glass-wrapper {
-    position: absolute;
-    inset: 2rem 1rem;
-    border-radius: 2rem;
-    pointer-events: none;
-  }
-
-  /* Clean layout for Lumon theme */
   .glass-wrapper {
     display: none;
-  }
-
-  .lumon-container {
-    max-width: 1200px;
-    padding: 4rem 2rem;
   }
 
   /* Simplified layout */
@@ -638,16 +601,6 @@
     @apply p-8 lg:p-16 min-h-screen;
   }
   
-
-  /* Clean card component */
-  .glass-card {
-    @apply relative overflow-hidden;
-    background: var(--cv-card);
-    border: 1px solid var(--cv-border);
-    color: var(--cv-content);
-    transition: all 0.2s ease;
-    @apply p-6;
-  }
 
   /* Lumon Pattern Boxes (optimized) */
   .pattern-boxes {
@@ -662,17 +615,6 @@
     box-shadow: var(--sh-alt);
   }
 
-  /* Clean hover effects */
-  .glass-card:hover {
-    border-color: var(--cv-accent);
-    box-shadow: 2px 2px 0 #7da17e;
-    background-image: 
-      linear-gradient(to right, #d6e0e2 1px, transparent 1px),
-      linear-gradient(to bottom, #d6e0e2 1px, transparent 1px);
-    background-size: 12.5px 12.5px;
-    background-repeat: repeat;
-  }
-  
   /* Touch target accessibility */
   button,
   a,
@@ -700,35 +642,6 @@
     min-height: auto;
     min-width: auto;
     padding: 2px 4px;
-  }
-
-  /* Lumon theme styles - Clean from screenshots */
-  body {
-    background-color: var(--cv-bg);
-    background-image: none;
-    color: var(--cv-content);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .glass-card {
-    background: var(--cv-card);
-    border: 1px solid var(--cv-border);
-    border-radius: 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    font-family: var(--font-family);
-    padding: 1.5rem 2rem;
-    transition: all 0.2s ease;
-    backdrop-filter: none;
-  }
-
-  .glass-card:hover {
-    border-color: var(--cv-accent);
-    box-shadow: 2px 2px 0 #7da17e;
-    background-image: 
-      linear-gradient(to right, #d6e0e2 1px, transparent 1px),
-      linear-gradient(to bottom, #d6e0e2 1px, transparent 1px);
-    background-size: 12.5px 12.5px;
-    background-repeat: repeat;
   }
 
   /* Enhanced focus indicators for better visibility */

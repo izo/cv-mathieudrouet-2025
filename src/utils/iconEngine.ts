@@ -2,8 +2,8 @@
  * Moteur d'icônes dynamique pour le système de CV
  */
 
-import type { IconSet, IconMapping, IconConfig, ParsedIcon, IconParseResult } from '../types/icons';
-import { ICON_MAPPINGS, DEFAULT_ICON_CONFIG } from '../types/icons';
+import type { IconSet, IconConfig, ParsedIcon, IconParseResult } from '../types/icons';
+import { DEFAULT_ICON_CONFIG } from '../types/icons';
 
 export class IconEngine {
   private config: IconConfig;

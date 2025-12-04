@@ -80,7 +80,7 @@ function watchContent() {
   checkContentChanges();
   
   // Watch for file changes
-  watch(contentPath, (eventType, filename) => {
+  watch(contentPath, (eventType, _filename) => {
     if (eventType === 'change') {
       setTimeout(() => {
         if (checkContentChanges()) {
@@ -104,7 +104,6 @@ switch (command) {
       console.log('✅ No content changes detected');
     }
     process.exit(0); // Always exit successfully for build
-    break;
     
   case 'watch':
     watchContent();

@@ -190,7 +190,7 @@ function replaceFlexibleIcons(text: string, defaultIconSet: string = 'carbon'): 
     
     // Convert markdown links with validation
     try {
-      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, linkText, url) => {
         // Basic URL validation
         if (!url || url.trim() === '') {
           return linkText; // Return just the text if URL is invalid
@@ -386,9 +386,6 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       
       const company = companyMatch[1].trim();
       const employerIcon = companyMatch[2] ? transformSectionIcon(companyMatch[2], defaultIconSet) : undefined;
-      
-      // Find location line (e.g., "**carbon:location-heart-filled** Lille / full remote – 2025")
-      const locationLine = lines.find(line => line.includes('**carbon:location-heart-filled**'));
       
       // Find role line (e.g., "**Senior Product Manager** | 2025 | [Company Link](...)")
       const roleLine = lines.find(line => line.match(/\*\*.*?\*\* \| .* \|/));
