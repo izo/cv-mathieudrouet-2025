@@ -11,7 +11,7 @@ export interface Props {
   levelIcon?: string;
 }
 
-const { company, companyUrl, role, period, current = false, logo, description, icon, levelIcon } = Astro.props;
+const { company, companyUrl, role, period, logo, description, icon, levelIcon } = Astro.props;
 
 // Generate initials as fallback for missing logos
 const getInitials = (name: string) => {

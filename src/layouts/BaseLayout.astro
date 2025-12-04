@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../config/site.ts';
-import { env, securityConfig, isDevelopment } from '../config/env.ts';
+import { securityConfig, isDevelopment } from '../config/env.ts';
 import ContactModal from '../components/ContactModal.astro';
 
 export interface Props {
@@ -65,7 +65,7 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
 
     <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": siteConfig.author.name,

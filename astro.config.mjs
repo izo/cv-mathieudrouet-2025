@@ -39,12 +39,11 @@ export default defineConfig({
         output: {
           // Optimize asset naming for caching
           assetFileNames: (assetInfo) => {
-            const info = assetInfo.name.split('.');
-            const ext = info[info.length - 1];
-            if (/\.(woff2?|ttf|otf|eot)$/.test(assetInfo.name)) {
+            const name = assetInfo.names?.[0] ?? '';
+            if (/\.(woff2?|ttf|otf|eot)$/.test(name)) {
               return `fonts/[name]-[hash][extname]`;
             }
-            if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/.test(assetInfo.name)) {
+            if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/.test(name)) {
               return `images/[name]-[hash][extname]`;
             }
             return `assets/[name]-[hash][extname]`;

@@ -1,6 +1,6 @@
 // Development debugging utilities for CV application
 // Only active in development mode
-import { env, loggingConfig, isDevelopment } from '../config/env';
+import { loggingConfig, isDevelopment } from '../config/env';
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 

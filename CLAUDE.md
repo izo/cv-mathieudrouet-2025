@@ -119,32 +119,66 @@ This is a personal CV/resume website for Mathieu Drouet built with Astro v5.11.1
 - **Change Detection**: `scripts/watch-content.js` - Detects content changes during build
 
 ### Content Structure
+
+The CV content follows a specific Markdown format parsed by `cvParser.ts`:
+
 ```markdown
 ---
 name: "Mathieu Drouet"
 title: "Senior Product Manager"
 description: "CV description"
+iconSet: "carbon"           # Icon set to use (carbon, tabler, lucide, heroicons)
+theme: "lumon"              # Theme variant (lumon, atari)
 ---
 
 # Mathieu Drouet
 
-## Education
-### Title
-**Period**
-Institution
+## **carbon:icon-name** Education
 
-## Experience
-### Company
-**Role** | Period | [Company Link](url)
-- Achievement 1
-- Achievement 2
+### Degree Title
+Institution, City – YYYY–YYYY
 
-## Skills
-### Skill Category
-**Subtitle** | Level
+## **carbon:identification** Coordonnées
+
+**carbon:email** **Email:** email@example.com
+**carbon:globe** [**Portfolio**](https://example.com)
+**carbon:logo-linkedin** [**LinkedIn**](https://linkedin.com/in/username)
+**carbon:location-heart-filled** **Localisation:** City, Country
+
+## **carbon:gamification** Centres d'intérêt
+
+**carbon:camera-action** Photography
+**carbon:music** Music
+
+## Expériences
+
+### Company Name
+**carbon:location-heart-filled** Location – YYYY
+**Role Title** | YYYY | [Company Link](https://company.com)
+
+- Achievement with **bold** text
+- Another achievement
+
+## Compétences
+
+### Category Title **carbon:cognitive**
+**Subtitle** | **carbon:badge** Level
+
 - Skill item 1
 - Skill item 2
 ```
+
+### Icon Format
+- Section icons: `## **carbon:icon-name** Section Title`
+- Inline icons: `**carbon:icon-name** Text content`
+- Skill icons: `### Title **carbon:icon-name**` (icon after title)
+- Level icons: `**Subtitle** | **carbon:icon-name** Level`
+
+### Supported Icon Sets
+- `carbon` (default): IBM Carbon Design icons
+- `tabler`: Tabler icons
+- `lucide`: Lucide icons
+- `heroicons`: Hero icons
 
 ### Change Detection System
 - **Cache File**: `.content-cache.json` - Stores content hash and modification timestamp
@@ -173,3 +207,7 @@ Institution
 - ✅ **Content Management**: Dynamic Markdown parsing with Lumon Design System integration
 - ✅ **Build Pipeline**: Content change detection with caching system implemented
 - ✅ **Audit System**: Comprehensive quality, security, and performance monitoring
+- ✅ **Tests**: 38 tests passing (20 unit + 18 integration)
+- ✅ **Security Patch**: mdast-util-to-hast vulnerability fixed via pnpm override
+- ✅ **Code Quality**: All TypeScript warnings resolved (0 errors, 0 warnings, 0 hints)
+- ✅ **Dependencies**: Astro 5.16.4, all packages up to date
