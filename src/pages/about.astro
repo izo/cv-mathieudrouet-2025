@@ -19,7 +19,7 @@ const { title, description } = siteConfig;
       <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">À propos</h1>
     </header>
 
-    <main id="main-content" class="space-y-section">
+    <section class="space-y-section" aria-labelledby="main-title">
       <div class="glass-card">
         <div class="prose prose-cv max-w-none">
           <Content />
@@ -39,6 +39,6 @@ const { title, description } = siteConfig;
           Voir le CV
         </a>
       </div>
-    </main>
+    </section>
   </div>
 </BaseLayout>
