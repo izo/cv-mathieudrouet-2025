@@ -35,7 +35,7 @@
     "@vitest/coverage-v8": "^4.0.0",
     "@vitest/ui": "^4.0.0",
     "jsdom": "^27.0.0",
-    "unplugin-icons": "^22.1.0",
+    "unplugin-icons": "^23.0.0",
     "vitest": "^4.0.0"
   },
   "pnpm": {
