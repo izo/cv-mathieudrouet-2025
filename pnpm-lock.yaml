@@ -46,7 +46,7 @@ importers:
         specifier: ^4.0.0
         version: 4.0.16(vitest@4.0.16)
       jsdom:
-        specifier: ^27.4.0
+        specifier: ^27.0.0
         version: 27.4.0
       unplugin-icons:
         specifier: ^22.1.0
