@@ -34,7 +34,7 @@
     "@types/node": "^24.0.14",
     "@vitest/coverage-v8": "^4.0.0",
     "@vitest/ui": "^4.0.0",
-    "jsdom": "^27.0.0",
+    "jsdom": "^28.0.0",
     "unplugin-icons": "^23.0.0",
     "vitest": "^4.0.0"
   },
