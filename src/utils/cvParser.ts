@@ -405,7 +405,7 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
           companyUrl,
           role,
           period,
-          current: period.includes('2025'),
+          current: period.includes(new Date().getFullYear().toString()),
           logo: getCompanyLogo(company),
           icon: employerIcon,
           achievements

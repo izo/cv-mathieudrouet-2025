@@ -39,8 +39,8 @@ University of Technology, Paris – 2017–2020
 ## Expériences
 
 ### CH-Studio - GEHealthcare
-**carbon:location-heart-filled** Lille / full remote – 2025
-**Senior Product Manager** | 2025 | [Company Link](https://www.gehealthcare.com)
+**carbon:location-heart-filled** Lille / full remote – ${new Date().getFullYear()}
+**Senior Product Manager** | ${new Date().getFullYear()} | [Company Link](https://www.gehealthcare.com)
 
 - Led product strategy for medical imaging solutions
 - Increased user engagement by 40%
@@ -115,7 +115,7 @@ University of Technology, Paris – 2017–2020
       const exp1 = result.experience[0];
       expect(exp1.company).toBe('CH-Studio - GEHealthcare');
       expect(exp1.role).toBe('Senior Product Manager');
-      expect(exp1.period).toBe('2025');
+      expect(exp1.period).toBe(String(new Date().getFullYear()));
       expect(exp1.companyUrl).toBe('https://www.gehealthcare.com');
       expect(exp1.current).toBe(true); // 2025 check
       expect(exp1.achievements).toHaveLength(2);
@@ -215,8 +215,8 @@ No proper format here`;
       const contentWithUnknownCompany = `## Expériences
 
 ### Unknown Company
-**carbon:location-heart-filled** Remote – 2025
-**Role** | 2025 | [Company Link](https://example.com)
+**carbon:location-heart-filled** Remote – ${new Date().getFullYear()}
+**Role** | ${new Date().getFullYear()} | [Company Link](https://example.com)
 - Achievement`;
 
       const result = parseCVContent(contentWithUnknownCompany, mockFrontmatter);

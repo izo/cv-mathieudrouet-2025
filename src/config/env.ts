@@ -49,7 +49,7 @@ const configs: Record<Environment, EnvironmentConfig> = {
     PERFORMANCE_MONITORING: false,
     CONTENT_CACHE_TTL: 3600000, // 1 hour
     BUILD_OPTIMIZATION: true,
-    API_BASE_URL: 'https://cv.mathieu-drouet.com'
+    API_BASE_URL: 'https://cv.drouet.io'
   },
   
   test: {

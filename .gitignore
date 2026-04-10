@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# IDE / editor tools
+.nova/
+windsurf_deployment.yaml
+
+# Claude Code session files
+.remember/
+.content-cache.json

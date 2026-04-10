@@ -42,4 +42,4 @@
 
 ## Security & Configuration Tips
 - Configuration lives in `src/config/env.ts` (no secrets in VCS). Adjust flags via exported configs.
-- Deploy: Netlify (`netlify.toml`, Node 18). Local verify with `pnpm build && pnpm preview`.
+- Deploy: Netlify (`netlify.toml`, Node 22). Local verify with `pnpm build && pnpm preview`.
