@@ -40,7 +40,8 @@
   },
   "pnpm": {
     "overrides": {
-      "mdast-util-to-hast": ">=13.2.1"
+      "mdast-util-to-hast": ">=13.2.1",
+      "yaml": ">=2.8.3"
     }
   }
 }
