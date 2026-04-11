@@ -203,12 +203,24 @@ No proper format here`;
     });
 
     it('should assign correct company logos', () => {
+      // mockContent uses old-format names ('CH-Studio - GEHealthcare', 'Group Actual')
+      // that don't match any key in companyLogoMap — both should return undefined (initials fallback)
       const result = parseCVContent(mockContent, mockFrontmatter);
 
-      // CH-Studio - GEHealthcare is mapped in companyLogoMap
-      expect(result.experience[0].logo).toBe('/logos/ge-healtcare.png');
-      // Group Actual (not "Groupe Actual") generates a default logo
-      expect(result.experience[1].logo).toBe('/logos/groupactual.png');
+      expect(result.experience[0].logo).toBeUndefined();
+      expect(result.experience[1].logo).toBeUndefined();
+
+      // Test the actual mapped company names with a dedicated fixture
+      const mappedContent = `## Expériences
+
+### CH-Studio × GE HealthCare
+**carbon:location-heart-filled** Lille / full remote – ${new Date().getFullYear()}
+**Senior Product Manager** | ${new Date().getFullYear()} | [Company Link](https://chstudio.fr)
+
+- Audit de plateforme DICOM`;
+
+      const mappedResult = parseCVContent(mappedContent, mockFrontmatter);
+      expect(mappedResult.experience[0].logo).toBe('/logos/ge-healtcare.png');
     });
 
     it('should handle unknown company logos', () => {
@@ -222,7 +234,8 @@ No proper format here`;
       const result = parseCVContent(contentWithUnknownCompany, mockFrontmatter);
 
       if (result.experience.length > 0) {
-        expect(result.experience[0].logo).toContain('/logos/');
+        // Unknown companies return undefined — the UI falls back to initials
+        expect(result.experience[0].logo).toBeUndefined();
       }
     });
 

@@ -6,17 +6,17 @@
 export const siteConfig = {
   // Site Information
   name: "CV Mathieu Drouet",
-  title: "Mathieu Drouet - Senior Product Manager",
-  description: "Senior Product Manager à Lille | 10+ ans d'expérience en transformation digitale, stratégie UX et gestion de produits numériques | Contactez-moi",
+  title: "Mathieu Drouet — Head of Product | AI-Augmented Delivery",
+  description: "Head of Product avec 10+ ans d'expérience en produits numériques B2B complexes. Discovery terrain, modernisation de systèmes legacy, intégration IA. Fondateur de regrets.app.",
   url: "https://cv.drouet.io",
-  
+
   // Personal Information
   author: {
     name: "Mathieu Drouet",
-    email: "mathieu@drouet.io",
+    email: "m@mdr.cool",
     phone: "+33767144874",
     location: "Lille, France",
-    jobTitle: "Senior Product Manager",
+    jobTitle: "Head of Product | AI-Augmented Delivery",
     image: "/profile.jpg"
   },
   
@@ -39,23 +39,23 @@ export const siteConfig = {
   // SEO Configuration
   seo: {
     keywords: [
-      "Senior Product Manager",
-      "Product Management",
-      "CV",
+      "Head of Product",
+      "Product Manager",
+      "AI Product",
       "Mathieu Drouet",
       "Lille",
       "France",
-      "Digital Transformation",
-      "UX Strategy",
-      "Product Manager Lille",
-      "PM Hauts-de-France",
-      "Gestion produit numérique",
-      "Transformation digitale B2B",
+      "AI-Augmented Delivery",
+      "Claude Code",
+      "Product Management B2B",
+      "Discovery terrain",
+      "Transformation digitale",
+      "IoT Product Manager",
       "Stratégie produit",
-      "Agile Product Owner"
+      "regrets.app"
     ],
     locale: "fr_FR",
-    themeColor: "#0751cf"
+    themeColor: "#163f38"
   }
 } as const;
 

@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-Site web CV de Mathieu Drouet — Senior Product Manager. Construit avec Astro (SSG), TypeScript et Tailwind CSS. Déployé sur https://cv.drouet.io via Netlify.
+Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Construit avec Astro (SSG), TypeScript et Tailwind CSS. Déployé sur https://cv.drouet.io via Netlify.
 
 ## Commands
 - Install: `pnpm install`
@@ -49,7 +49,7 @@ Site web CV de Mathieu Drouet — Senior Product Manager. Construit avec Astro (
 - `src/config/site.ts`: Site configuration including personal info, social links, and SEO settings
 - `src/config/env.ts`: Environment-specific configuration with type safety and security settings
 - `src/config/images.ts`: Mapping company name → logo file in `public/logos/`
-- `public/sw.js`: Service worker for performance optimization with intelligent caching
+- `public/sw.js`: Service worker kill-switch — auto-unregisters any cached SW and clears all caches on next browser visit (replaces old caching SW)
 - `public/_headers`: Netlify cache control and security headers
 
 ## Security Architecture
@@ -101,7 +101,7 @@ The CV content follows a specific Markdown format parsed by `cvParser.ts`:
 ```markdown
 ---
 name: "Mathieu Drouet"
-title: "Senior Product Manager"
+title: "Head of Product | AI-Augmented Delivery"
 description: "CV description"
 iconSet: "carbon"           # Icon set to use (carbon, tabler, lucide, heroicons)
 theme: "lumon"              # Theme variant (lumon, atari)

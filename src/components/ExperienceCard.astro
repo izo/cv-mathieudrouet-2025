@@ -11,7 +11,7 @@ export interface Props {
   levelIcon?: string;
 }
 
-const { company, companyUrl, role, period, logo, description, icon, levelIcon } = Astro.props;
+const { company, companyUrl, role, period, current, logo, description, icon, levelIcon } = Astro.props;
 
 // Generate initials as fallback for missing logos
 const getInitials = (name: string) => {
@@ -43,7 +43,7 @@ const iconSVG = icon ? await getIconifySVG(icon) : null;
 const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
 ---
 
-<div class="glass-card mb-4 sm:mb-6 lg:mb-section">
+<div class={`glass-card mb-4 sm:mb-6 lg:mb-section${current ? ' glass-card--current' : ''}`}>
   <div class="flex flex-col sm:grid sm:grid-cols-[3rem_1fr] lg:grid-cols-[4rem_1fr] gap-4 sm:gap-6">
     <!-- Logo Column -->
     <div class="w-12 h-12 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 order-1 sm:order-none">
@@ -94,10 +94,13 @@ const levelIconSVG = levelIcon ? await getLevelIconSVG(levelIcon) : null;
         </div>
         
         <!-- Level Badge -->
-        <div class="flex justify-center sm:justify-end">
-          <span class="inline-flex items-center gap-1.5 px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm text-white border shadow-sm font-medium" style="background-color: #98b6b0; border-color: #98b6b0;">
+        <div class="flex flex-col items-center sm:items-end gap-1.5">
+          {current && (
+            <span class="badge-current">En cours</span>
+          )}
+          <span class="badge-lumon">
             {levelIcon && levelIconSVG ? (
-              <div class="flex items-center justify-center w-6 h-6" set:html={levelIconSVG} />
+              <div class="flex items-center justify-center w-5 h-5" set:html={levelIconSVG} />
             ) : null}
             <span class="font-ibm-plex-mono" set:html={period}></span>
           </span>

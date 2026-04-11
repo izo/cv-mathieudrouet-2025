@@ -1,14 +1,17 @@
 export const logosBasePath = '/logos';
 
 export const companyLogoMap: Record<string, string> = {
-  'CH-Studio - GEHealthcare': 'ge-healtcare.png',
+  'regrets.app': 'regrets.svg',
+  'HEYA (Here You Art)': 'heyahereyouart.png',
+  'CH-Studio × GE HealthCare': 'ge-healtcare.png',
   'Groupe Actual': 'actual.png',
-  'Bookr.fm - Musicdata Studio': 'bookr.png',
-  'Fluidra - Blueriiot': 'fluidra.png'
+  'Bookr.fm (Music Data Studio)': 'bookr.png',
+  'Fluidra (Blueriiot / Riiot Labs)': 'fluidra.png',
+  'Agences, ESN & Freelance': 'agences.svg'
 };
 
-export function getCompanyLogo(company: string): string {
-  const fileName = companyLogoMap[company] ?? `${company.toLowerCase().replace(/[^a-z0-9]/g, '')}.png`;
+export function getCompanyLogo(company: string): string | undefined {
+  const fileName = companyLogoMap[company];
+  if (!fileName) return undefined;
   return `${logosBasePath}/${fileName}`;
 }
-
