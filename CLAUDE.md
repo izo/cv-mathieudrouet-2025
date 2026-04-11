@@ -27,6 +27,7 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
   - `cv/CVCard.astro`: CV-specific card component with icon support
   - `cv/CVGrid.astro`: Grid layout system for CV sections
   - `cv/CVSection.astro`: Section headers with icons
+  - `about.astro` + `src/content/about/about.md`: Page /about avec rendu Markdown via Content Collections (styles dans `.prose-cv`)
 - **Styling Architecture**: Tailwind CSS with Lumon Design System configuration in `tailwind.config.mjs`:
   - **Lumon Theme** (default): Green-based color system with square design aesthetic
   - **Atari Theme**: Blue/beige palette, retro CRT style — set via `theme: "atari"` in `cv.md` frontmatter
@@ -40,6 +41,9 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 - **Formulaire de contact** : `ContactModal.astro` utilise Netlify Forms ; ne fonctionne pas en local ni hors Netlify
 - **Format Markdown strict** : `cvParser.ts` attend un format précis dans `cv.md` (icônes, rôles, périodes). Un écart de format drop silencieusement les entrées sans erreur
 - **Détection poste actuel** : `current: true` si la période contient l'année en cours (`new Date().getFullYear()`)
+- **pnpm non installé localement** : les commandes sont documentées avec `pnpm` mais le runner disponible est `npm run <script>` (ex: `npm run dev`, `npm run build`). Le lock file pnpm reste la référence pour les dépendances en CI/Netlify.
+- **Styles markdown custom** : les pages qui rendent du Markdown via `<Content />` doivent avoir leurs styles définis dans `global.css` (ex: `.prose-cv`). Aucun warning au build si la classe est absente — le rendu est juste brut.
+- **Touch target override** : le CSS impose `min-height: 44px` sur tous les `<a>`. Les liens inline (dans `.prose-cv` par ex.) doivent avoir `class="no-min-size"` pour éviter le `display: inline-flex` forcé.
 
 ## Key Configuration Files
 - `astro.config.mjs`: Configures integrations, build optimizations, and Vite plugins
@@ -52,19 +56,10 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 - `public/sw.js`: Service worker kill-switch — auto-unregisters any cached SW and clears all caches on next browser visit (replaces old caching SW)
 - `public/_headers`: Netlify cache control and security headers
 
-## Security Architecture
-- **Content Security Policy**: Properly configured CSP headers in BaseLayout.astro allowing:
-  - Google Fonts: `https://fonts.googleapis.com`, `https://fonts.gstatic.com`
-  - Iconify APIs: `https://api.iconify.design`, `https://api.simplesvg.com`, `https://api.unisvg.com`
-  - Iconify CDN: `https://code.iconify.design`
-- **Environment Configuration**: Type-safe environment management with security controls
-- **Static Site Generation**: Reduced attack surface through pre-rendering
-- **External Link Security**: Proper `rel="noopener noreferrer"` attributes on external links
-
 ## Performance Architecture
 - **Bundle Optimization**: 31KB CSS bundle, minimal JavaScript footprint
 - **Font Loading**: Asynchronous Google Fonts loading with fallback handling
-- **Service Worker**: Intelligent caching for static assets with cache invalidation
+- **Service Worker**: Kill-switch — dés-installe les anciens SW et vide les caches au prochain chargement (voir `public/sw.js`)
 - **Build Pipeline**: Content change detection (SHA-256) to avoid unnecessary rebuilds
 - **Core Web Vitals**: Optimized for LCP, FID, and CLS metrics
 
