@@ -709,6 +709,103 @@
   .cv-animate-grid > *:nth-child(2) { animation: slideInUp 0.5s var(--ease-out) 0.12s both; }
   .cv-animate-grid > *:nth-child(3) { animation: slideInUp 0.5s var(--ease-out) 0.19s both; }
 
+  /* ===== MARKDOWN PROSE (Lumon style) ===== */
+  .prose-cv {
+    color: var(--cv-content);
+    font-family: var(--font-ibm-plex-sans);
+    line-height: 1.7;
+  }
+
+  .prose-cv > :first-child {
+    margin-top: 0;
+  }
+
+  .prose-cv > :last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-cv h1 {
+    display: none; /* Hero section handles the H1 */
+  }
+
+  .prose-cv h2 {
+    font-family: var(--font-lora);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cv-accent);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .prose-cv h2::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 2px;
+    background: var(--cv-accent);
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .prose-cv p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--cv-content);
+  }
+
+  .prose-cv ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--cv-accent);
+    padding-left: 1.25rem;
+  }
+
+  .prose-cv ul li {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding-left: 0;
+    color: var(--cv-content);
+  }
+
+  .prose-cv ul li::before {
+    content: '—';
+    color: var(--cv-accent);
+    margin-right: 0.5rem;
+    font-weight: 600;
+  }
+
+  .prose-cv strong {
+    color: var(--cv-accent);
+    font-weight: 600;
+    font-family: var(--font-lora);
+  }
+
+  .prose-cv a {
+    color: var(--cv-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cv-accent);
+    transition: opacity var(--default-transition-duration) var(--ease-out);
+    min-height: auto;
+    padding: 0;
+    display: inline;
+  }
+
+  .prose-cv a:hover {
+    opacity: 0.7;
+  }
+
+  .prose-cv code {
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 0.875em;
+    background: var(--cv-paper);
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--cv-border);
+    color: var(--cv-accent);
+  }
+
   /* Simplified layout */
   .main-wrapper {
     @apply p-8 lg:p-16 min-h-screen;

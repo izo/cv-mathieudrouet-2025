@@ -13,30 +13,31 @@ const { Content } = await aboutEntry.render();
 const { title, description } = siteConfig;
 ---
 
-<BaseLayout title={`À propos - ${title}`} description={description}>
+<BaseLayout title={`À propos — ${title}`} description={description}>
   <div class="pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-page lg:pr-8 pt-6 sm:pt-8 pb-2 sm:pb-4">
-    <header class="mb-section" role="banner">
-      <h1 class="text-hero text-cv-accent font-semibold font-lora" id="main-title">À propos</h1>
+    <header class="hero-section cv-animate" role="banner">
+      <p class="hero-eyebrow">À propos · Head of Product</p>
+      <h1 id="main-title">Mathieu Drouet</h1>
+      <p class="hero-tagline">Au-delà du CV</p>
+      <div class="hero-rule"></div>
+      <p class="hero-description">Ce que le CV ne raconte pas : l'approche, les convictions, et comment je travaille en 2026.</p>
     </header>
 
-    <section class="space-y-section" aria-labelledby="main-title">
+    <section class="space-y-section cv-animate" style="animation-delay: 0.15s" aria-labelledby="main-title">
       <div class="glass-card">
-        <div class="prose prose-cv max-w-none">
+        <div class="prose-cv max-w-none">
           <Content />
         </div>
       </div>
-      
+
       <div class="glass-card">
-        <h2 class="text-section text-cv-content font-semibold font-lora mb-4">Retour au CV</h2>
-        <p class="text-body text-cv-muted mb-4">
-          Découvrez mon parcours professionnel complet et mes compétences.
-        </p>
-        <a 
-          href="/" 
-          class="inline-flex items-center gap-2 px-4 py-2 bg-cv-accent text-white rounded-lg hover:bg-cv-accent/80 transition-colors"
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-cv-accent font-lora font-semibold hover:opacity-70 transition-opacity no-min-size"
+          aria-label="Retour au CV"
         >
-          <iconify-icon icon="tabler:arrow-left" width="16" height="16"></iconify-icon>
-          Voir le CV
+          <iconify-icon icon="carbon:arrow-left" width="20" height="20"></iconify-icon>
+          <span>Retour au CV</span>
         </a>
       </div>
     </section>
