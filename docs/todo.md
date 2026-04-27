@@ -11,7 +11,7 @@
 
 ## Todo
 
-- [ ] [P1] **Retirer `@tailwindcss/typography` du plugin Tailwind** — package supprimé des deps mais encore déclaré dans `tailwind.config.mjs` (`plugins: [require('@tailwindcss/typography')]`) — build propre va planter · _Origine : revue Agathe_ · `tailwind.config.mjs`
+- [x] [P1] **Retirer `@tailwindcss/typography` du plugin Tailwind** — package supprimé des deps mais encore déclaré dans `tailwind.config.mjs` (`plugins: [require('@tailwindcss/typography')]`) — build propre va planter · _Origine : revue Agathe_ · `tailwind.config.mjs`
 
 - [ ] [P1] **Unifier `.lumon-container` max-width** — déclaré à `80rem (1280px)` dans le `<style>` inline de `BaseLayout.astro` et à `1200px` dans `global.css` — la cascade crée un comportement non déterministe · _Origine : revue Agathe_ · `src/layouts/BaseLayout.astro` + `src/styles/global.css`
 
