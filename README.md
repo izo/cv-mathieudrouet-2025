@@ -39,19 +39,19 @@ src/
 ## Démarrage rapide
 
 ```bash
-pnpm install
-pnpm run dev        # localhost:4321
-pnpm run build      # Build de production
-pnpm run preview    # Prévisualiser le build
+bun install
+bun run dev        # localhost:4321
+bun run build      # Build de production
+bun run preview    # Prévisualiser le build
 ```
 
 ## Tests
 
 ```bash
-pnpm run test              # Lancer les tests (38 tests)
-pnpm run test:watch        # Mode watch
-pnpm run test:coverage     # Rapport de couverture (seuil 80%)
-pnpm run test:ui           # Interface web Vitest
+bun test                   # Lancer les tests (38 tests)
+bun run test:watch         # Mode watch
+bun run test:coverage      # Rapport de couverture (seuil 80%)
+bun run test:ui            # Interface web Vitest
 ```
 
 ## Contenu
