@@ -709,7 +709,7 @@
   .prose-cv {
     color: var(--cv-content);
     font-family: var(--font-ibm-plex-sans);
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   .prose-cv > :first-child {

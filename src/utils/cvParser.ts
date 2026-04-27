@@ -2,6 +2,7 @@
 import { cvDebug } from './debug';
 import { getCompanyLogo } from '../config/images';
 import { iconEngine } from './iconEngine';
+import { siteConfig } from '../config/site';
 
 export interface CVData {
   name: string;
@@ -313,10 +314,10 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   let contactIcon: string | undefined = undefined;
   let contactContent: string[] = [];
   const contact: Contact = {
-    email: "m@mdr.cool",
-    portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
-    linkedin: "linkedin.com/in/mathieu-drouet",
-    location: "Lille, France"
+    email: siteConfig.author.email,
+    portfolio: { text: siteConfig.url.replace('https://', ''), url: siteConfig.url },
+    linkedin: siteConfig.social.linkedin.handle,
+    location: siteConfig.author.location,
   };
   
   const contactLines = content.split('\n');
@@ -376,13 +377,16 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
   const experienceMatch = content.match(/## Expériences[\s\S]*?(?=\n## |$)/);
   const experience: Experience[] = [];
   if (experienceMatch) {
-    const expBlocks = experienceMatch[0].split(/(?=### )/).filter(block => block.trim());
+    const expBlocks = experienceMatch[0].split(/(?=### )/).filter(block => block.trim().startsWith('###'));
     expBlocks.forEach(block => {
       const lines = block.split('\n').filter(line => line.trim());
       
       // Extract company name and icon from title line (e.g., "### CH-Studio - GEHealthcare **carbon:ibm-telehealth**")
       const companyMatch = lines[0]?.match(/### (.+?)(?:\s+\*\*([a-zA-Z0-9:_-]+)\*\*)?$/);
-      if (!companyMatch) return;
+      if (!companyMatch) {
+        console.warn('[cvParser] Bloc expérience ignoré : format non reconnu', { line: lines[0] });
+        return;
+      }
       
       const company = companyMatch[1].trim();
       const employerIcon = companyMatch[2] ? transformSectionIcon(companyMatch[2], defaultIconSet) : undefined;
@@ -391,6 +395,9 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       const roleLine = lines.find(line => line.match(/\*\*.*?\*\* \| .* \|/));
       const roleMatch = roleLine?.match(/\*\*(.*?)\*\* \| (.*?) \| \[Company Link\]\((.*?)\)/);
       
+      if (!roleMatch) {
+        console.warn('[cvParser] Bloc expérience ignoré : ligne de rôle non reconnue', { company, line: roleLine });
+      }
       if (roleMatch) {
         const role = roleMatch[1];
         const period = roleMatch[2];
@@ -532,10 +539,10 @@ export function parseCVContent(content: string, frontmatterData?: any): CVData {
       name: frontmatterData?.name || 'Mathieu Drouet',
       education: [],
       contact: {
-        email: "m@mdr.cool",
-        portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
-        linkedin: "linkedin.com/in/mathieu-drouet",
-        location: "Lille, France"
+        email: siteConfig.author.email,
+        portfolio: { text: siteConfig.url.replace('https://', ''), url: siteConfig.url },
+        linkedin: siteConfig.social.linkedin.handle,
+        location: siteConfig.author.location,
       },
       contactContent: [],
       interests: [],
