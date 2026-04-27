@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import { siteConfig } from '../config/site.ts';
 
 // Get about content from Markdown
@@ -9,7 +9,7 @@ if (!aboutEntry) {
   throw new Error('About content not found');
 }
 
-const { Content } = await aboutEntry.render();
+const { Content } = await render(aboutEntry);
 const { title, description } = siteConfig;
 ---
 
