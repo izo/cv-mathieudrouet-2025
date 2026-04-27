@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { parseCVContent } from '../src/utils/cvParser';
+import { siteConfig } from '../src/config/site';
 
 describe('cvParser', () => {
   describe('parseCVContent', () => {
@@ -265,10 +266,10 @@ No proper format here`;
       const result = parseCVContent(mockContent, mockFrontmatter);
 
       expect(result.contact).toEqual({
-        email: "m@mdr.cool",
-        portfolio: { text: "cv.drouet.io", url: "https://cv.drouet.io" },
-        linkedin: "linkedin.com/in/mathieu-drouet",
-        location: "Lille, France"
+        email: siteConfig.author.email,
+        portfolio: { text: siteConfig.url.replace('https://', ''), url: siteConfig.url },
+        linkedin: siteConfig.social.linkedin.handle,
+        location: siteConfig.author.location,
       });
     });
   });
