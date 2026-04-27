@@ -2,7 +2,7 @@
 
 [![Live Site](https://img.shields.io/badge/🌐_Live_Site-cv.drouet.io-brightgreen)](https://cv.drouet.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
-[![Astro](https://img.shields.io/badge/Astro-5.16+-orange)](https://astro.build/)
+[![Astro](https://img.shields.io/badge/Astro-6.1.9+-orange)](https://astro.build/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4d2e69c4-79a9-4295-a56d-22f488a99b60/deploy-status)](https://app.netlify.com/projects/cvdrouet/deploys)
 
 > **Senior Product Manager** avec 10+ ans d'expérience en transformation digitale et gestion de produits numériques. Spécialisé dans l'architecture produit, l'UX/UI, et le leadership d'équipes techniques.
@@ -91,7 +91,7 @@ Typographie : IBM Plex Sans, IBM Plex Mono, Lora (Google Fonts)
 
 - Site 100% statique — near-zero JavaScript
 - CSS critique inline (anti-FOUC)
-- Service Worker pour cache des assets
+- Service Worker kill-switch — désinstalle les anciens SW et vide les caches au prochain chargement
 - Google Fonts chargées de manière asynchrone
 
 ## Documentation

@@ -44,6 +44,7 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 - **pnpm non installé localement** : les commandes sont documentées avec `pnpm` mais le runner disponible est `npm run <script>` (ex: `npm run dev`, `npm run build`). Le lock file pnpm reste la référence pour les dépendances en CI/Netlify.
 - **Styles markdown custom** : les pages qui rendent du Markdown via `<Content />` doivent avoir leurs styles définis dans `global.css` (ex: `.prose-cv`). Aucun warning au build si la classe est absente — le rendu est juste brut.
 - **Touch target override** : le CSS impose `min-height: 44px` sur tous les `<a>`. Les liens inline (dans `.prose-cv` par ex.) doivent avoir `class="no-min-size"` pour éviter le `display: inline-flex` forcé.
+- **Astro v6 Content Layer API** : config des collections dans `src/content.config.ts` (racine de `src/`, pas `src/content/config.ts`). Utiliser `loader: glob({ pattern, base })` à la place de `type: 'content'`. `render()` est importé depuis `astro:content` — `entry.render()` n'existe plus.
 
 ## Key Configuration Files
 - `astro.config.mjs`: Configures integrations, build optimizations, and Vite plugins
