@@ -21,11 +21,11 @@
 
 - [ ] [P1] **Centraliser le contact (anti-duplication)** — `cvParser.ts:316-320` et `cvParser.ts:533-538` hardcodent email/portfolio/linkedin/location en doublon de `src/config/site.ts` · Faire de `site.ts` la source unique, le parser doit lire depuis ce config plutôt que redéclarer · _Origine : revue Astride · piège auto-tendu_
 
-- [ ] [P2] **Supprimer les fontes fantômes du design system** — `--font-agrandir` et `--font-writer` déclarés dans `global.css` mais non chargées (tokens Next.js orphelins) — fallback silencieux sur `-apple-system` · _Origine : revue Agathe_ · `src/styles/global.css`
+- [x] [P2] **Supprimer les fontes fantômes du design system** — `--font-agrandir` et `--font-writer` déclarés dans `global.css` mais non chargées (tokens Next.js orphelins) — fallback silencieux sur `-apple-system` · _Origine : revue Agathe_ · `src/styles/global.css`
 
-- [ ] [P2] **Hardcoded hex `#7da17e` dans `.glass-card:hover`** → remplacer par `var(--cv-accent)` · _Origine : revue Agathe_ · `src/styles/global.css:443`
+- [x] [P2] **Hardcoded hex `#7da17e` dans `.glass-card:hover`** → remplacer par `var(--cv-accent)` · _Origine : revue Agathe_ · `src/styles/global.css:443`
 
-- [ ] [P2] **`.prose-cv strong` change de famille de fonte** — `font-family: var(--font-lora)` dans un corps IBM Plex Sans crée une rupture typographique non justifiée — supprimer la déclaration · _Origine : revue Agathe_ · `src/styles/global.css`
+- [x] [P2] **`.prose-cv strong` change de famille de fonte** — `font-family: var(--font-lora)` dans un corps IBM Plex Sans crée une rupture typographique non justifiée — supprimer la déclaration · _Origine : revue Agathe_ · `src/styles/global.css`
 
 - [ ] [P2] **Logger les exclusions silencieuses du parser CV** — `cvParser.ts:385` (`if (!companyMatch) return;`) et logique `roleMatch` (ligne 393-413) ignorent silencieusement les blocs mal formatés · Ajouter `console.warn('[cvParser] Bloc expérience ignoré : format non reconnu', { line: lines[0] })` minimum, idem pour skills · Gain : visibilité immédiate quand un changement de format casse le rendu · _Origine : revue Astride_
 

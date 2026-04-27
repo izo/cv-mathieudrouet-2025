@@ -78,16 +78,14 @@
     --cv-success: var(--color-accent-green);
     
     /* Lumon Font Families */
-    --font-agrandir: "__agrandir_24f3dc", "__agrandir_Fallback_24f3dc", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    --font-writer: "__writer_1deb74", "__writer_Fallback_1deb74", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --font-lora: "__lora_1fc044", "__lora_Fallback_1fc044", Georgia, serif;
     --font-ibm-plex: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
     --font-mono: ui-monospace, 'SF Mono', monospace;
-    
+
     /* Primary font family */
     --font-family: var(--font-ibm-plex);
-    
+
     /* Lumon Shadows */
     --sh-default: 6px 6px 0 #074dcf0f, -6px -6px 0 #074dcf0f;
     --sh-alt: 6px 6px 0 #074dcf0f;
@@ -141,13 +139,11 @@
     --cv-success: var(--color-atari-blue-sky);
     
     /* Atari Font Families (same as Lumon) */
-    --font-agrandir: "__agrandir_24f3dc", "__agrandir_Fallback_24f3dc", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    --font-writer: "__writer_1deb74", "__writer_Fallback_1deb74", -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --font-lora: "__lora_1fc044", "__lora_Fallback_1fc044", Georgia, serif;
     --font-ibm-plex: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
     --font-mono: ui-monospace, 'SF Mono', monospace;
-    
+
     /* Primary font family */
     --font-family: var(--font-ibm-plex);
     
@@ -440,7 +436,7 @@
   }
 
   .glass-card:hover {
-    box-shadow: 2px 2px 0 #7da17e;
+    box-shadow: 2px 2px 0 var(--cv-accent);
     border-color: var(--cv-accent);
     background-image: 
       linear-gradient(to right, #d6e0e2 1px, transparent 1px),
@@ -780,7 +776,6 @@
   .prose-cv strong {
     color: var(--cv-accent);
     font-weight: 600;
-    font-family: var(--font-lora);
   }
 
   .prose-cv a {
