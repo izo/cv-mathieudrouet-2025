@@ -6,15 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Construit avec Astro (SSG), TypeScript et Tailwind CSS. Déployé sur https://cv.drouet.io via Netlify.
 
 ## Commands
-- Install: `pnpm install`
-- Development: `pnpm run dev` or `pnpm start` (starts server at localhost:4321)
-- Build: `pnpm run build` (detects content changes and builds to ./dist/)
-- Preview: `pnpm run preview` (preview build locally)
-- Type-check: `pnpm run astro check` (validate TypeScript)
-- Content Check: `pnpm run content:check` (check for CV content changes)
-- Content Watch: `pnpm run content:watch` (watch CV content for changes)
-- Build with Watch: `pnpm run build:watch` (starts dev server with content watching)
-- Testing: `pnpm run test` (run Vitest tests), `pnpm run test:watch` (watch mode), `pnpm run test:ui` (UI mode), `pnpm run test:coverage` (coverage report)
+- Install: `bun install`
+- Development: `bun run dev` or `bun start` (starts server at localhost:4321)
+- Build: `bun run build` (detects content changes and builds to ./dist/)
+- Preview: `bun run preview` (preview build locally)
+- Type-check: `bun run astro check` (validate TypeScript)
+- Content Check: `bun run content:check` (check for CV content changes)
+- Content Watch: `bun run content:watch` (watch CV content for changes)
+- Build with Watch: `bun run build:watch` (starts dev server with content watching)
+- Testing: `bun test` (run Vitest tests), `bun run test:watch` (watch mode), `bun run test:ui` (UI mode), `bun run test:coverage` (coverage report)
 
 ## Architecture & Structure
 - **Content Management**: CV content is stored in `src/content/cv/cv.md` using Markdown format with Astro Content Collections, parsed dynamically through `src/utils/cvParser.ts`
@@ -41,7 +41,7 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 - **Formulaire de contact** : `ContactModal.astro` utilise Netlify Forms ; ne fonctionne pas en local ni hors Netlify
 - **Format Markdown strict** : `cvParser.ts` attend un format précis dans `cv.md` (icônes, rôles, périodes). Un écart de format drop silencieusement les entrées sans erreur
 - **Détection poste actuel** : `current: true` si la période contient l'année en cours (`new Date().getFullYear()`)
-- **pnpm non installé localement** : les commandes sont documentées avec `pnpm` mais le runner disponible est `npm run <script>` (ex: `npm run dev`, `npm run build`). Le lock file pnpm reste la référence pour les dépendances en CI/Netlify.
+- **Package manager : bun** — `bun install`, `bun run build`, `bun test`. Lock file : `bun.lockb`. Netlify utilise bun via `BUN_VERSION=1.3.13` dans `netlify.toml`.
 - **Styles markdown custom** : les pages qui rendent du Markdown via `<Content />` doivent avoir leurs styles définis dans `global.css` (ex: `.prose-cv`). Aucun warning au build si la classe est absente — le rendu est juste brut.
 - **Touch target override** : le CSS impose `min-height: 44px` sur tous les `<a>`. Les liens inline (dans `.prose-cv` par ex.) doivent avoir `class="no-min-size"` pour éviter le `display: inline-flex` forcé.
 - **Astro v6 Content Layer API** : config des collections dans `src/content.config.ts` (racine de `src/`, pas `src/content/config.ts`). Utiliser `loader: glob({ pattern, base })` à la place de `type: 'content'`. `render()` est importé depuis `astro:content` — `entry.render()` n'existe plus.

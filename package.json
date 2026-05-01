@@ -5,6 +5,7 @@
   "description": "CV de Mathieu Drouet - Senior Product Manager",
   "author": "Mathieu Drouet",
   "private": true,
+  "packageManager": "bun@1.3.13",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -31,16 +32,14 @@
     "@iconify-json/carbon": "^1.2.10",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^24.0.14",
-    "@vitest/coverage-v8": "^4.0.0",
-    "@vitest/ui": "^4.0.0",
+    "@vitest/coverage-v8": "^4.1.5",
+    "@vitest/ui": "^4.1.5",
     "jsdom": "^29.0.0",
     "unplugin-icons": "^23.0.0",
-    "vitest": "^4.0.0"
+    "vitest": "^4.1.5"
   },
-  "pnpm": {
-    "overrides": {
-      "mdast-util-to-hast": ">=13.2.1",
-      "yaml": ">=2.8.3"
-    }
+  "resolutions": {
+    "mdast-util-to-hast": ">=13.2.1",
+    "yaml": ">=2.8.3"
   }
 }
