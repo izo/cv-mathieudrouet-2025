@@ -9,7 +9,7 @@ describe('Build Integration Tests', () => {
   beforeAll(() => {
     // Ensure we have a fresh build
     if (!existsSync(distDir)) {
-      execSync('pnpm run build', { stdio: 'inherit' });
+      execSync('bun run build', { stdio: 'inherit' });
     }
   });
 
