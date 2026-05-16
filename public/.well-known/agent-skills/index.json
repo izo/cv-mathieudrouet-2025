@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "cv-info",
+      "type": "instructions",
+      "description": "Retrieve CV, biography, experience, skills, and contact information for Mathieu Drouet, Head of Product based in Lille, France.",
+      "url": "https://cv.drouet.io/.well-known/agent-skills/cv-info/SKILL.md",
+      "sha256": "cf26157372280e0f87d244b619bb99582c7b623c624db8a41bd7b175effea01a"
+    }
+  ]
+}

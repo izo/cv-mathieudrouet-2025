@@ -1,0 +1,50 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://cv.drouet.io/",
+      "service-doc": [
+        {
+          "href": "https://cv.drouet.io/cv.md",
+          "type": "text/markdown",
+          "title": "CV of Mathieu Drouet — full content in Markdown"
+        },
+        {
+          "href": "https://cv.drouet.io/about.md",
+          "type": "text/markdown",
+          "title": "About page in Markdown"
+        },
+        {
+          "href": "https://cv.drouet.io/llms.txt",
+          "type": "text/markdown",
+          "title": "LLM-facing site summary (llms.txt)"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://cv.drouet.io/llms.txt",
+          "type": "text/markdown"
+        }
+      ],
+      "alternate": [
+        {
+          "href": "https://cv.drouet.io/cv_mathieu_drouet.pdf",
+          "type": "application/pdf",
+          "title": "CV in PDF format"
+        }
+      ],
+      "https://agentskills.io/rel/index": [
+        {
+          "href": "https://cv.drouet.io/.well-known/agent-skills/index.json",
+          "type": "application/json",
+          "title": "Agent skills discovery index"
+        }
+      ],
+      "sitemap": [
+        {
+          "href": "https://cv.drouet.io/sitemap.xml",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}
