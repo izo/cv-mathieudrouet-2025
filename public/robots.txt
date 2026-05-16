@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 
+# Content Signals (https://contentsignals.org/)
+# search=yes:    crawl for search indexing
+# ai-train=no:   do NOT use content to train AI models
+# ai-input=yes:  may use content as live grounding for AI answers
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
 # Sitemap
 Sitemap: https://cv.drouet.io/sitemap.xml
 

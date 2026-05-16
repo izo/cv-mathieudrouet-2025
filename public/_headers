@@ -29,9 +29,47 @@
 # HTML files - Short-term caching
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
-  
+
+# Markdown resources for AI agents
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+  Vary: Accept
+
+/llms.txt
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Well-known agent discovery resources (RFC 8615)
+/.well-known/api-catalog
+  Content-Type: application/linkset+json; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/.well-known/agent-skills/index.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/.well-known/agent-skills/*/SKILL.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Homepage — advertise agent discovery resources via Link (RFC 8288)
 /
   Cache-Control: public, max-age=3600, must-revalidate
+  Vary: Accept
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </.well-known/agent-skills/index.json>; rel="https://agentskills.io/rel/index"; type="application/json"
+  Link: </llms.txt>; rel="describedby"; type="text/markdown"
+  Link: </cv.md>; rel="alternate"; type="text/markdown"; title="CV in Markdown"
+  Link: </about.md>; rel="alternate"; type="text/markdown"; title="About in Markdown"
+  Link: </cv_mathieu_drouet.pdf>; rel="alternate"; type="application/pdf"; title="CV in PDF"
+  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+
+/about
+  Cache-Control: public, max-age=3600, must-revalidate
+  Vary: Accept
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </about.md>; rel="alternate"; type="text/markdown"; title="About in Markdown"
 
 # Security Headers
 /*

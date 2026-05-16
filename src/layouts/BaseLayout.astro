@@ -37,7 +37,13 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
-    
+
+    <!-- Agent discovery (RFC 8288 link relations) -->
+    <link rel="api-catalog" type="application/linkset+json" href="/.well-known/api-catalog" />
+    <link rel="describedby" type="text/markdown" href="/llms.txt" />
+    <link rel="alternate" type="text/markdown" href={Astro.url.pathname === '/about' ? '/about.md' : '/cv.md'} title="Markdown version" />
+    <link rel="alternate" type="application/pdf" href="/cv_mathieu_drouet.pdf" title="CV (PDF)" />
+
     <!-- SEO Meta Tags -->
     <meta name="author" content={siteConfig.author.name} />
     <meta name="keywords" content={siteConfig.seo.keywords.join(", ")} />
@@ -204,6 +210,72 @@ const fullImageUrl = new URL(image, siteConfig.url).href;
           window.__cvDebug.help();
         }
       }
+    </script>
+
+    <!-- WebMCP: expose site tools to AI agents (https://webmachinelearning.github.io/webmcp/) -->
+    <script is:inline>
+      (function registerWebMCPTools() {
+        if (typeof navigator === 'undefined') return;
+        var mc = navigator.modelContext;
+        if (!mc || typeof mc.provideContext !== 'function') return;
+
+        try {
+          mc.provideContext({
+            tools: [
+              {
+                name: 'get_cv_markdown',
+                description: "Fetch Mathieu Drouet's full CV (Head of Product, Lille, France) as Markdown.",
+                inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+                execute: async function () {
+                  var res = await fetch('/cv.md', { headers: { 'Accept': 'text/markdown' } });
+                  if (!res.ok) throw new Error('CV markdown unavailable (HTTP ' + res.status + ')');
+                  var markdown = await res.text();
+                  return { content: [{ type: 'text', text: markdown }] };
+                }
+              },
+              {
+                name: 'get_about_markdown',
+                description: "Fetch Mathieu Drouet's long-form about page (AI-Augmented Delivery, what he does and looks for) as Markdown.",
+                inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+                execute: async function () {
+                  var res = await fetch('/about.md', { headers: { 'Accept': 'text/markdown' } });
+                  if (!res.ok) throw new Error('About markdown unavailable (HTTP ' + res.status + ')');
+                  var markdown = await res.text();
+                  return { content: [{ type: 'text', text: markdown }] };
+                }
+              },
+              {
+                name: 'download_cv_pdf',
+                description: "Trigger a browser download of Mathieu Drouet's CV as a PDF file.",
+                inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+                execute: async function () {
+                  var a = document.createElement('a');
+                  a.href = '/cv_mathieu_drouet.pdf';
+                  a.download = 'CV-Mathieu-Drouet.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  return { content: [{ type: 'text', text: 'CV PDF download started.' }] };
+                }
+              },
+              {
+                name: 'open_contact_form',
+                description: "Open the contact form modal so the user can send a message to Mathieu Drouet.",
+                inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+                execute: async function () {
+                  if (typeof window.openContactModal === 'function') {
+                    window.openContactModal();
+                    return { content: [{ type: 'text', text: 'Contact form opened.' }] };
+                  }
+                  return { content: [{ type: 'text', text: 'Contact form is not available on this page.' }], isError: true };
+                }
+              }
+            ]
+          });
+        } catch (err) {
+          console.warn('WebMCP registration failed:', err);
+        }
+      })();
     </script>
     
 
