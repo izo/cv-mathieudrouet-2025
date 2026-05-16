@@ -1,0 +1,4 @@
+[      95ms] [ERROR] The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ http://localhost:4324/:0
+[     266ms] [LOG] 🔧 CV Debug Mode Active @ http://localhost:4324/:2086
+[     267ms] [LOG] Environment: development @ http://localhost:4324/:2087
+[     267ms] [LOG] Available debug tools: __cvDebug @ http://localhost:4324/:2088

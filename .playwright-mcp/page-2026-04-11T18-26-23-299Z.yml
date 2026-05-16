@@ -1,0 +1,406 @@
+- generic [active] [ref=e1]:
+  - link "Aller au contenu principal" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - link "Aller à la navigation" [ref=e3] [cursor=pointer]:
+    - /url: "#navigation"
+  - generic [ref=e5]:
+    - main [ref=e6]:
+      - generic [ref=e7]:
+        - banner [ref=e8]:
+          - heading "Mathieu Drouet - Senior Product Manager" [level=1] [ref=e9]
+        - region "Informations générales" [ref=e10]:
+          - heading "Informations générales" [level=2] [ref=e11]
+          - generic [ref=e12]:
+            - generic [ref=e13]:
+              - heading "Education" [level=3] [ref=e14]:
+                - img [ref=e16]
+                - text: Education
+              - generic [ref=e18]:
+                - generic [ref=e19]:
+                  - generic [ref=e20]: 2022–2023
+                  - heading "Programmation iOS — SwiftUI" [level=4] [ref=e21]
+                  - paragraph [ref=e22]: Simplon.co, Lille
+                - generic [ref=e23]:
+                  - generic [ref=e24]: Lille – 1997–2001
+                  - heading "Photographie documentaire" [level=4] [ref=e25]
+                  - paragraph [ref=e26]: Institut Supérieur d'Architecture Saint, Luc & ARIAP, Tournai
+            - generic [ref=e27]:
+              - heading "Coordonnées" [level=3] [ref=e28]:
+                - img [ref=e30]
+                - text: Coordonnées
+              - list [ref=e34]:
+                - listitem [ref=e35]:
+                  - generic [ref=e36]:
+                    - img [ref=e38]
+                    - strong [ref=e40]: "Email:"
+                    - text: m@mdr.cool
+                - listitem [ref=e41]:
+                  - generic [ref=e42]:
+                    - img [ref=e44]
+                    - link "Portfolio" [ref=e49] [cursor=pointer]:
+                      - /url: https://cv.drouet.io
+                      - strong [ref=e50]: Portfolio
+                - listitem [ref=e51]:
+                  - generic [ref=e52]:
+                    - img [ref=e54]
+                    - link "Studio" [ref=e57] [cursor=pointer]:
+                      - /url: https://regrets.app/
+                      - strong [ref=e58]: Studio
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - img [ref=e62]
+                    - link "LinkedIn" [ref=e64] [cursor=pointer]:
+                      - /url: https://linkedin.com/in/mathieudrouet
+                      - strong [ref=e65]: LinkedIn
+                - listitem [ref=e66]:
+                  - generic [ref=e67]:
+                    - img [ref=e69]
+                    - strong [ref=e72]: "Localisation:"
+                    - text: Lille, France
+                - listitem [ref=e73]:
+                  - generic [ref=e74]:
+                    - img [ref=e76]
+                    - strong [ref=e79]: "Mobilité:"
+                    - text: Lille, Paris, Belgique, Canada
+            - generic [ref=e80]:
+              - heading "Centres d'intérêt" [level=3] [ref=e81]:
+                - img [ref=e83]
+                - text: Centres d'intérêt
+              - list [ref=e86]:
+                - listitem [ref=e87]:
+                  - generic [ref=e88]:
+                    - img [ref=e90]
+                    - text: Photographie documentaire
+                - listitem [ref=e95]:
+                  - generic [ref=e96]:
+                    - img [ref=e98]
+                    - text: Musique expérimentale
+                - listitem [ref=e100]:
+                  - generic [ref=e101]:
+                    - img [ref=e103]
+                    - text: Permaculture
+                - listitem [ref=e105]:
+                  - generic [ref=e106]:
+                    - img [ref=e108]
+                    - text: Sciences Politiques
+                - listitem [ref=e111]:
+                  - generic [ref=e112]:
+                    - img [ref=e114]
+                    - text: Design
+        - region "Expériences" [ref=e116]:
+          - generic [ref=e117]:
+            - heading "Expériences" [level=2] [ref=e118]
+            - generic "10+ ans" [ref=e119]
+          - generic [ref=e120]:
+            - generic [ref=e122]:
+              - generic "Initiales de regrets.app" [ref=e124]: R
+              - generic [ref=e125]:
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - heading "Voir le projet chez regrets.app (ouvre dans un nouvel onglet)" [level=3] [ref=e128]:
+                      - link "Voir le projet chez regrets.app (ouvre dans un nouvel onglet)" [ref=e129] [cursor=pointer]:
+                        - /url: https://regrets.app/
+                        - generic [ref=e130]: regrets.app
+                    - paragraph [ref=e131]: Fondateur
+                  - generic [ref=e134]: 2025 – en cours
+                - list [ref=e135]:
+                  - listitem [ref=e136]:
+                    - generic [ref=e137]: Conception, développement et publication d'applications iOS, macOS et SaaS
+                  - listitem [ref=e138]:
+                    - generic [ref=e139]:
+                      - link "Ulk" [ref=e140] [cursor=pointer]:
+                        - /url: https://izo.github.io/Ulk/
+                      - text: — framework d'agents IA pour Claude Code (59+ agents, skills, rules)
+                  - listitem [ref=e141]:
+                    - generic [ref=e142]: "Stack : Next.js, Astro, SwiftUI, TypeScript, Tailwind CSS, Bun"
+            - generic [ref=e144]:
+              - img "Logo de HEYA (Here You Art)" [ref=e146]
+              - generic [ref=e147]:
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - heading "Voir le projet chez HEYA (Here You Art) (ouvre dans un nouvel onglet)" [level=3] [ref=e150]:
+                      - link "Voir le projet chez HEYA (Here You Art) (ouvre dans un nouvel onglet)" [ref=e151] [cursor=pointer]:
+                        - /url: https://hereyouart.com/
+                        - generic [ref=e152]: HEYA (Here You Art)
+                    - paragraph [ref=e153]: Head of Product
+                  - generic [ref=e156]: "2025"
+                - list [ref=e157]:
+                  - listitem [ref=e158]:
+                    - generic [ref=e159]: "Discovery complète : audit technique, analyse concurrentielle (12 plateformes), entretiens parties prenantes"
+                  - listitem [ref=e160]:
+                    - generic [ref=e161]:
+                      - text: Conception, architecture et développement en solo du MVP complet (profils, réseau, messagerie, offres, multilingue fr/nl/en) via Claude Code et
+                      - link "Ulk" [ref=e162] [cursor=pointer]:
+                        - /url: https://izo.github.io/Ulk/
+                      - text: ", framework d'agents IA développé en propre — stack Next.js 15, TypeScript, Tailwind CSS, Drizzle ORM"
+                  - listitem [ref=e163]:
+                    - generic [ref=e164]: Roadmap stratégique 24 mois (acquisition, rétention, monétisation)
+                  - listitem [ref=e165]:
+                    - generic [ref=e166]: Prototypage d'intégrations LLM (Llama, Mistral) pour enrichissement de profils et modération, conformité RGPD
+            - generic [ref=e168]:
+              - img "Logo de CH-Studio × GE HealthCare" [ref=e170]
+              - generic [ref=e171]:
+                - generic [ref=e172]:
+                  - generic [ref=e173]:
+                    - heading "Voir le projet chez CH-Studio × GE HealthCare (ouvre dans un nouvel onglet)" [level=3] [ref=e174]:
+                      - link "Voir le projet chez CH-Studio × GE HealthCare (ouvre dans un nouvel onglet)" [ref=e175] [cursor=pointer]:
+                        - /url: https://chstudio.fr/project/plateforme-de-gestion-de-donnees-dicom/
+                        - generic [ref=e176]: CH-Studio × GE HealthCare
+                    - paragraph [ref=e177]: Senior Product Manager
+                  - generic [ref=e180]: "2025"
+                - list [ref=e181]:
+                  - listitem [ref=e182]:
+                    - generic [ref=e183]: Audit stratégique d'une plateforme de gestion de données DICOM (imagerie médicale, 1100+ utilisateurs)
+                  - listitem [ref=e184]:
+                    - generic [ref=e185]: Livraison d'un plan de 50+ recommandations et d'une roadmap 18 mois
+            - generic [ref=e187]:
+              - img "Logo de Groupe Actual" [ref=e189]
+              - generic [ref=e190]:
+                - generic [ref=e191]:
+                  - generic [ref=e192]:
+                    - heading "Voir le projet chez Groupe Actual (ouvre dans un nouvel onglet)" [level=3] [ref=e193]:
+                      - link "Voir le projet chez Groupe Actual (ouvre dans un nouvel onglet)" [ref=e194] [cursor=pointer]:
+                        - /url: https://www.groupeactual.eu/
+                        - generic [ref=e195]: Groupe Actual
+                    - paragraph [ref=e196]: Senior Product Manager
+                  - generic [ref=e199]: 2023 – 2024
+                - list [ref=e200]:
+                  - listitem [ref=e201]:
+                    - generic [ref=e202]: Conception et lancement d'un microservice de gestion des comptes épargne-temps pour 500+ entreprises — automatisation via API Urssaf/MSA
+                  - listitem [ref=e203]:
+                    - generic [ref=e204]: Transformation digitale d'une application DAF legacy (15 ans) vers architecture cloud-native — discovery auprès des DAF et RH terrain
+                  - listitem [ref=e205]:
+                    - generic [ref=e206]: Management d'équipes cross-fonctionnelles de 12 personnes, Agile/Scrum
+                  - listitem [ref=e207]:
+                    - generic [ref=e208]: Delivery de 8 releases majeures, priorisation par valeur business
+            - generic [ref=e210]:
+              - img "Logo de Bookr.fm (Music Data Studio)" [ref=e212]
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - generic [ref=e215]:
+                    - heading "Voir le projet chez Bookr.fm (Music Data Studio) (ouvre dans un nouvel onglet)" [level=3] [ref=e216]:
+                      - link "Voir le projet chez Bookr.fm (Music Data Studio) (ouvre dans un nouvel onglet)" [ref=e217] [cursor=pointer]:
+                        - /url: https://bookr.fm/
+                        - generic [ref=e218]: Bookr.fm (Music Data Studio)
+                    - paragraph [ref=e219]: Senior Product Manager
+                  - generic [ref=e222]: 2021 – 2024
+                - list [ref=e223]:
+                  - listitem [ref=e224]:
+                    - generic [ref=e225]: Stratégie produit end-to-end, de la discovery (programmateurs, directeurs artistiques) au lancement commercial
+                  - listitem [ref=e226]:
+                    - generic [ref=e227]: SaaS B2B pour la programmation artistique de festivals et salles de concert (40+ festivals en beta, 885K+ profils artistes)
+                  - listitem [ref=e228]:
+                    - generic [ref=e229]: Conception UX/UI et intégration API native (CRM, billetterie, comptabilité)
+            - generic [ref=e231]:
+              - img "Logo de Fluidra (Blueriiot / Riiot Labs)" [ref=e233]
+              - generic [ref=e234]:
+                - generic [ref=e235]:
+                  - generic [ref=e236]:
+                    - heading "Voir le projet chez Fluidra (Blueriiot / Riiot Labs) (ouvre dans un nouvel onglet)" [level=3] [ref=e237]:
+                      - link "Voir le projet chez Fluidra (Blueriiot / Riiot Labs) (ouvre dans un nouvel onglet)" [ref=e238] [cursor=pointer]:
+                        - /url: https://www.fluidra.com/
+                        - generic [ref=e239]: Fluidra (Blueriiot / Riiot Labs)
+                    - paragraph [ref=e240]: Senior Product Manager, IoT
+                  - generic [ref=e243]: 2018 – 2021
+                - list [ref=e244]:
+                  - listitem [ref=e245]:
+                    - generic [ref=e246]: Migration de l'application principale vers Flutter — développement cross-platform iOS/Android
+                  - listitem [ref=e247]:
+                    - generic [ref=e248]: Discovery terrain auprès des installateurs, techniciens de maintenance et distributeurs
+                  - listitem [ref=e249]:
+                    - generic [ref=e250]: Refonte UX complète, réduction du churn mesurée
+                  - listitem [ref=e251]:
+                    - generic [ref=e252]: Lancement sur le marché américain, management d'une équipe internationale de 8 personnes / 3 fuseaux horaires
+            - generic [ref=e254]:
+              - generic "Initiales de Agences, ESN & Freelance" [ref=e256]: AE
+              - generic [ref=e257]:
+                - generic [ref=e258]:
+                  - generic [ref=e259]:
+                    - heading "Voir le projet chez Agences, ESN & Freelance (ouvre dans un nouvel onglet)" [level=3] [ref=e260]:
+                      - link "Voir le projet chez Agences, ESN & Freelance (ouvre dans un nouvel onglet)" [ref=e261] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e262]: Agences, ESN & Freelance
+                    - paragraph [ref=e263]: Directeur de projet technique / Chef de projet digital
+                  - generic [ref=e266]: 2005 – 2020
+                - list [ref=e267]:
+                  - listitem [ref=e268]:
+                    - generic [ref=e269]:
+                      - strong [ref=e270]: Direction technique chez BETC
+                      - text: — pilotage de la refonte du site Crédit Agricole
+                  - listitem [ref=e271]:
+                    - generic [ref=e272]:
+                      - strong [ref=e273]: Direction de projet technique
+                      - text: pour le n°1 européen des services à la personne
+                  - listitem [ref=e274]:
+                    - generic [ref=e275]:
+                      - strong [ref=e276]: Chef de projet
+                      - text: — réseau social privé pour assistantes maternelles (UX/UI, coordination d'équipe, SPIP/PHP)
+                  - listitem [ref=e277]:
+                    - generic [ref=e278]:
+                      - strong [ref=e279]: Responsable technique à l'Université Catholique de Lille
+                      - text: — migration d'infrastructure, administration serveurs, enseignement Linux
+                  - listitem [ref=e280]:
+                    - generic [ref=e281]:
+                      - strong [ref=e282]: Contributeur au CMS open source SPIP
+                      - text: (jusqu'en 2020)
+                  - listitem [ref=e283]:
+                    - generic [ref=e284]:
+                      - strong [ref=e285]: Co-fondateur de Sacavin
+                      - text: (startup vin) et
+                      - strong [ref=e286]: Take a Sip
+                      - text: (agence de création de contenu)
+                  - listitem [ref=e287]:
+                    - generic [ref=e288]: Développement front-end, mentorat de projets mobiles/musique
+        - region "Compétences" [ref=e289]:
+          - generic [ref=e290]:
+            - heading "Compétences" [level=2] [ref=e291]
+            - generic "Expertise professionnelle" [ref=e292]
+          - generic [ref=e294]:
+            - generic [ref=e296]:
+              - generic "Icône de Product leadership" [ref=e298]:
+                - img [ref=e300]
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]:
+                    - heading "Product leadership" [level=3] [ref=e305]
+                    - paragraph [ref=e306]: Strategic Leadership
+                  - generic [ref=e308]:
+                    - img [ref=e310]
+                    - generic [ref=e313]: Expert
+                - list [ref=e314]:
+                  - listitem [ref=e315]:
+                    - generic [ref=e316]: Discovery terrain, roadmap produit, go-to-market
+                  - listitem [ref=e317]:
+                    - generic [ref=e318]: OKR, priorisation par impact business
+                  - listitem [ref=e319]:
+                    - generic [ref=e320]: Delivery management, équipes cross-fonctionnelles
+            - generic [ref=e322]:
+              - generic "Icône de IA appliquée au produit" [ref=e324]:
+                - img [ref=e326]
+              - generic [ref=e329]:
+                - generic [ref=e330]:
+                  - generic [ref=e331]:
+                    - heading "IA appliquée au produit" [level=3] [ref=e332]
+                    - paragraph [ref=e333]: AI Product
+                  - generic [ref=e335]:
+                    - img [ref=e337]
+                    - generic [ref=e340]: Avancé
+                - list [ref=e341]:
+                  - listitem [ref=e342]:
+                    - generic [ref=e343]: Claude Code (usage quotidien), agents IA, Model Context Protocol (MCP)
+                  - listitem [ref=e344]:
+                    - generic [ref=e345]: LLM open source (Llama, Mistral, Claude), RAG, fine-tuning
+                  - listitem [ref=e346]:
+                    - generic [ref=e347]: Prototypage et intégration IA dans produits existants
+                  - listitem [ref=e348]:
+                    - generic [ref=e349]:
+                      - link "Ulk" [ref=e350] [cursor=pointer]:
+                        - /url: https://izo.github.io/Ulk/
+                      - text: — framework d'agents développé en propre
+            - generic [ref=e352]:
+              - generic "Icône de Analytics" [ref=e354]:
+                - img [ref=e356]
+              - generic [ref=e359]:
+                - generic [ref=e360]:
+                  - generic [ref=e361]:
+                    - heading "Analytics" [level=3] [ref=e362]
+                    - paragraph [ref=e363]: Data-Driven
+                  - generic [ref=e365]:
+                    - img [ref=e367]
+                    - generic [ref=e370]: Avancé
+                - list [ref=e371]:
+                  - listitem [ref=e372]:
+                    - generic [ref=e373]: PostHog, Hotjar, analyse comportementale
+                  - listitem [ref=e374]:
+                    - generic [ref=e375]: Feedback loops, KPI produit
+            - generic [ref=e377]:
+              - generic "Icône de Développement & infrastructure" [ref=e379]:
+                - img [ref=e381]
+              - generic [ref=e384]:
+                - generic [ref=e385]:
+                  - generic [ref=e386]:
+                    - heading "Développement & infrastructure" [level=3] [ref=e387]
+                    - paragraph [ref=e388]: Full-Stack Development
+                  - generic [ref=e390]:
+                    - img [ref=e392]
+                    - generic [ref=e395]: Avancé
+                - list [ref=e396]:
+                  - listitem [ref=e397]:
+                    - generic [ref=e398]: Next.js, Astro, React, TypeScript, Tailwind CSS, Bun
+                  - listitem [ref=e399]:
+                    - generic [ref=e400]: Flutter, SwiftUI, SPIP, PHP, architecture API
+                  - listitem [ref=e401]:
+                    - generic [ref=e402]: CI/CD, Git, Linux, macOS avancé
+                  - listitem [ref=e403]:
+                    - generic [ref=e404]: Xcode (développement, distribution App Store / TestFlight)
+            - generic [ref=e406]:
+              - generic "Icône de Design & création" [ref=e408]:
+                - img [ref=e410]
+              - generic [ref=e412]:
+                - generic [ref=e413]:
+                  - generic [ref=e414]:
+                    - heading "Design & création" [level=3] [ref=e415]
+                    - paragraph [ref=e416]: Creative Direction
+                  - generic [ref=e418]:
+                    - img [ref=e420]
+                    - generic [ref=e423]: Avancé
+                - list [ref=e424]:
+                  - listitem [ref=e425]:
+                    - generic [ref=e426]: Figma, Adobe Creative Suite (Lightroom, Photoshop, InDesign — usage professionnel)
+                  - listitem [ref=e427]:
+                    - generic [ref=e428]: Direction artistique
+            - generic [ref=e430]:
+              - generic "Icône de Outils produit" [ref=e432]:
+                - img [ref=e434]
+              - generic [ref=e436]:
+                - generic [ref=e437]:
+                  - generic [ref=e438]:
+                    - heading "Outils produit" [level=3] [ref=e439]
+                    - paragraph [ref=e440]: Digital Workflow
+                  - generic [ref=e442]:
+                    - img [ref=e444]
+                    - generic [ref=e447]: Expert
+                - list [ref=e448]:
+                  - listitem [ref=e449]:
+                    - generic [ref=e450]: Linear, Notion, Obsidian, Jira, Confluence
+                  - listitem [ref=e451]:
+                    - generic [ref=e452]: Vercel, Cursor, Git, CI/CD, VS Code, Claude Code
+            - generic [ref=e454]:
+              - generic "Icône de Langues" [ref=e456]:
+                - img [ref=e458]
+              - generic [ref=e460]:
+                - generic [ref=e461]:
+                  - generic [ref=e462]:
+                    - heading "Langues" [level=3] [ref=e463]
+                    - paragraph [ref=e464]: International Communication
+                  - generic [ref=e466]:
+                    - img [ref=e468]
+                    - generic [ref=e471]: Avancé
+                - list [ref=e472]:
+                  - listitem [ref=e473]:
+                    - generic [ref=e474]: "Français : langue maternelle"
+                  - listitem [ref=e475]:
+                    - generic [ref=e476]: "Anglais : professionnel courant"
+                  - listitem [ref=e477]:
+                    - generic [ref=e478]: "Espagnol : conversationnel"
+    - contentinfo [ref=e480]:
+      - generic [ref=e481]:
+        - paragraph [ref=e482]: © 2025 Mathieu Drouet
+        - generic [ref=e483]:
+          - link "À propos" [ref=e484] [cursor=pointer]:
+            - /url: /about
+            - img [ref=e486]
+          - link "Télécharger le CV en PDF" [ref=e488] [cursor=pointer]:
+            - /url: /cv_mathieu_drouet.pdf
+            - img [ref=e490]
+          - link "LinkedIn (ouvre dans un nouvel onglet)" [ref=e493] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/mathieudrouet/
+            - img [ref=e495]
+          - link "GitHub (ouvre dans un nouvel onglet)" [ref=e497] [cursor=pointer]:
+            - /url: https://github.com/izo
+            - img [ref=e499]
+          - link "Portfolio (ouvre dans un nouvel onglet)" [ref=e501] [cursor=pointer]:
+            - /url: https://mathieu-drouet.com
+            - img [ref=e503]
+          - button "Ouvrir le formulaire de contact" [ref=e505]:
+            - img [ref=e507]
