@@ -1,5 +1,5 @@
 ---
-// Contact Modal Component with Netlify Forms support
+// Contact Modal Component — submits to the Cloudflare Pages Function /api/contact
 ---
 
 <!-- Contact Modal -->
@@ -36,17 +36,13 @@
       </div>
 
       <!-- Contact Form -->
-      <form 
+      <form
         id="contact-form"
-        name="contact" 
-        method="POST" 
-        data-netlify="true" 
-        data-netlify-honeypot="bot-field"
+        name="contact"
+        method="POST"
+        action="/api/contact"
         class="space-y-4"
       >
-        <!-- Netlify Forms -->
-        <input type="hidden" name="form-name" value="contact" />
-        
         <!-- Honeypot field for spam protection -->
         <div class="hidden">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -206,15 +202,15 @@
       try {
         // Create FormData
         const formData = new FormData(form);
-        
-        // Convert FormData to URLSearchParams for Netlify
+
+        // Convert FormData to URLSearchParams (form-urlencoded body)
         const params = new URLSearchParams();
         for (const [key, value] of formData.entries()) {
           params.append(key, value.toString());
         }
-        
-        // Submit to Netlify
-        const response = await fetch('/', {
+
+        // Submit to the Cloudflare Pages Function
+        const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: params.toString()
