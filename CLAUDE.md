@@ -23,7 +23,7 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
   - Responsive design with mobile-first approach
 - **Component Organization**:
   - `ExperienceCard.astro`: Work experience display with company links, roles, and descriptions (mobile responsive with flexbox)
-  - `ContactModal.astro`: Contact form modal using Netlify Forms (works in production only)
+  - `ContactModal.astro`: Contact form modal — submits to the Cloudflare Pages Function `/api/contact` (works in production / on `wrangler pages dev`)
   - `cv/CVCard.astro`: CV-specific card component with icon support
   - `cv/CVGrid.astro`: Grid layout system for CV sections
   - `cv/CVSection.astro`: Section headers with icons
@@ -38,7 +38,8 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 
 ## Gotchas
 - **Fetch réseau au build** : `ExperienceCard.astro` et `CVCard.astro` fetchent des SVG depuis `api.iconify.design` pendant le build SSG — un timeout réseau fait échouer le build
-- **Formulaire de contact** : `ContactModal.astro` utilise Netlify Forms ; ne fonctionne pas en local ni hors Netlify
+- **Formulaire de contact** : `ContactModal.astro` poste vers la Pages Function `functions/api/contact.ts` (envoi email via Resend). Nécessite les secrets `RESEND_API_KEY` / `CONTACT_TO` côté Cloudflare ; ne fonctionne pas avec `astro dev` seul (utiliser `wrangler pages dev`)
+- **Pages Functions (Cloudflare)** : `functions/_middleware.ts` gère la négociation Markdown (`Accept: text/markdown`) et `functions/api/contact.ts` le formulaire. Le répertoire `functions/` n'est pas analysé par `astro check`. Migration documentée dans `docs/07-migration-cloudflare-pages-2026-05-29.md`. L'edge function Netlify (`netlify/edge-functions/`) et `netlify.toml` restent présents jusqu'au cutover DNS (rollback)
 - **Format Markdown strict** : `cvParser.ts` attend un format précis dans `cv.md` (icônes, rôles, périodes). Un écart de format drop silencieusement les entrées sans erreur
 - **Détection poste actuel** : `current: true` si la période contient l'année en cours (`new Date().getFullYear()`)
 - **Package manager : bun** — `bun install`, `bun run build`, `bun test`. Lock file : `bun.lockb`. Netlify utilise bun via `BUN_VERSION=1.3.13` dans `netlify.toml`.
