@@ -30,3 +30,6 @@ windsurf_deployment.yaml
 # Claude Code session files
 .remember/
 .content-cache.json
+package-lock.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
