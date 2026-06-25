@@ -1,0 +1,2 @@
+# Rétrocompatibilité : Astro 7 génère sitemap-index.xml (pas sitemap.xml)
+/sitemap.xml /sitemap-index.xml 301

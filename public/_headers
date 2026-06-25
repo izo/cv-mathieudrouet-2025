@@ -63,7 +63,7 @@
   Link: </cv.md>; rel="alternate"; type="text/markdown"; title="CV in Markdown"
   Link: </about.md>; rel="alternate"; type="text/markdown"; title="About in Markdown"
   Link: </cv_mathieu_drouet.pdf>; rel="alternate"; type="application/pdf"; title="CV in PDF"
-  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+  Link: </sitemap-index.xml>; rel="sitemap"; type="application/xml"
 
 /about
   Cache-Control: public, max-age=3600, must-revalidate

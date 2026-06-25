@@ -84,8 +84,7 @@ if [[ -n "$astro_asset" ]]; then
 else
   fail "_astro asset introuvable dans le HTML (build non présent ?)"
 fi
-check_header "/fonts/* → immutable (si fonts présents)" "$BASE/fonts/" "" "cache-control.*immutable" 2>/dev/null || true
-check_header "/logos/*.png → immutable" "$BASE/logos/ddd.png" "" "cache-control.*immutable" 2>/dev/null || true
+check_header "/logos/*.png → immutable" "$BASE/logos/ddd.png" "" "cache-control.*immutable"
 
 # ── 5. En-têtes de sécurité ─────────────────────────
 h1 "5. En-têtes de sécurité"
@@ -118,7 +117,8 @@ check_header "agent-skills/index.json Content-Type" "$BASE/.well-known/agent-ski
 
 # ── 8. Infra ─────────────────────────────────────────
 h1 "8. Infra"
-check_status "/sitemap.xml → 200" "$BASE/sitemap.xml" "200"
+check_status "/sitemap-index.xml → 200" "$BASE/sitemap-index.xml" "200"
+check_status "/sitemap.xml → 301" "$BASE/sitemap.xml" "301"
 check_status "/robots.txt → 200" "$BASE/robots.txt" "200"
 check_status "/sw.js → 200" "$BASE/sw.js" "200"
 check_status "Route inexistante → 404" "$BASE/cette-page-nexiste-pas-123" "404"
