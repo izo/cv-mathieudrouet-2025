@@ -37,7 +37,6 @@
     "@vitest/coverage-v8": "^4.1.5",
     "@vitest/ui": "^4.1.5",
     "jsdom": "^29.0.0",
-    "unplugin-icons": "^23.0.0",
     "vitest": "^4.1.0"
   },
   "resolutions": {

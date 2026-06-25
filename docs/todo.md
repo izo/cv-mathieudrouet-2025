@@ -9,7 +9,7 @@
 
 ## Todo
 
-- [ ] [P1] **Décider unplugin-icons** — installé mais inutilisé · Option A (recommandée) : migrer les `<iconify-icon>` vers des SVG inline générés au build (élimine CDN + connect-src Iconify) · Option B : désinstaller (`pnpm remove unplugin-icons`) · `astro.config.mjs`
+- [x] [P1] **Désinstaller unplugin-icons** — package inutilisé retiré (`bun remove unplugin-icons`), import + plugin Vite supprimés de `astro.config.mjs` · Option A (migration SVG inline) reportée en backlog P2
 
 ## In Progress
 

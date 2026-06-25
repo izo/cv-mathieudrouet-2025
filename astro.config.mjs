@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import Icons from 'unplugin-icons/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -27,10 +26,6 @@ export default defineConfig({
   vite: {
     plugins: [
       tailwindcss(),
-      Icons({
-        compiler: 'astro',
-        autoInstall: true,
-      })
     ],
     build: {
       // Enable CSS code splitting
