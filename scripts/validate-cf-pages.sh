@@ -18,20 +18,24 @@ BASE="${BASE%/}"  # supprime le trailing slash
 
 PASS=0; FAIL=0
 
-ok()   { echo "  ✅ $1"; ((PASS++)); }
-fail() { echo "  ❌ $1"; ((FAIL++)); }
+ok()   { echo "  ✅ $1"; PASS=$((PASS + 1)); }
+fail() { echo "  ❌ $1"; FAIL=$((FAIL + 1)); }
 h1()   { echo; echo "── $1 ──────────────────────────────────"; }
 
 check_header() {
-  local label="$1" url="$2" flag="$3" pattern="$4"
+  local label="$1" url="$2" flags_str="$3" pattern="$4"
   local val
-  val=$(curl -sI $flag "$url" | grep -i "$pattern" | head -1 | tr -d '\r')
+  if [[ -n "$flags_str" ]]; then
+    val=$(eval "curl -sI $flags_str '$url'" | grep -i "$pattern" | head -1 | tr -d '\r' || true)
+  else
+    val=$(curl -sI "$url" | grep -i "$pattern" | head -1 | tr -d '\r' || true)
+  fi
   if [[ -n "$val" ]]; then ok "$label → $val"; else fail "$label manquant ($pattern)"; fi
 }
 
 check_body() {
   local label="$1" url="$2" flag="$3" pattern="$4"
-  if curl -s $flag "$url" | grep -q "$pattern"; then ok "$label"; else fail "$label"; fi
+  if curl -s $flag "$url" | grep -q "$pattern" 2>/dev/null; then ok "$label"; else fail "$label"; fi
 }
 
 check_status() {
@@ -74,9 +78,9 @@ check_header "/llms.txt → text/markdown" "$BASE/llms.txt" "" "content-type.*te
 # ── 4. Cache immutable ───────────────────────────────
 h1 "4. Cache-Control immutable"
 # On ne connaît pas le hash _astro, on récupère l'un des assets depuis la page
-astro_asset=$(curl -s "$BASE/" | grep -o '/_astro/[^"]*\.css' | head -1 || true)
+astro_asset=$(curl -s "$BASE/" | grep -oE '/_astro/[^"]+\.(css|js)' | head -1 || true)
 if [[ -n "$astro_asset" ]]; then
-  check_header "_astro/*.css → immutable" "$BASE$astro_asset" "" "cache-control.*immutable"
+  check_header "_astro/* → immutable" "$BASE$astro_asset" "" "cache-control.*immutable"
 else
   fail "_astro asset introuvable dans le HTML (build non présent ?)"
 fi

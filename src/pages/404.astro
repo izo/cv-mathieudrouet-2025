@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page non trouvée — Mathieu Drouet" description="Cette page n'existe pas." showFooter={false}>
+  <main class="flex flex-col items-center justify-center min-h-[60vh] text-center px-6">
+    <p class="text-6xl font-mono font-bold text-cv-accent mb-4">404</p>
+    <h1 class="text-2xl font-semibold text-cv-content mb-6">Page non trouvée</h1>
+    <a href="/" class="text-cv-accent underline hover:no-underline">← Retour au CV</a>
+  </main>
+</BaseLayout>

@@ -13,19 +13,25 @@ const ROUTE_TO_MARKDOWN: Record<string, string> = {
   "/about/": "/about.md",
 };
 
+// CF Pages ignores X-Frame-Options and Permissions-Policy set via _headers —
+// injecting them here ensures they reach the client on every HTML response.
+const SECURITY_HEADERS: Record<string, string> = {
+  "x-frame-options": "DENY",
+  "permissions-policy": "camera=(), microphone=(), geolocation=()",
+};
+
 export const onRequest: PagesFunction = async (context) => {
   const { request, next, env } = context;
   const url = new URL(request.url);
   const target = ROUTE_TO_MARKDOWN[url.pathname];
 
-  // Route non concernée → pipeline normal (assets statiques / autres Functions)
-  if (!target) return next();
-
-  // Méthode non idempotente → laisser passer (ex: POST /)
-  if (request.method !== "GET" && request.method !== "HEAD") return next();
+  // Route non concernée ou méthode non idempotente → pipeline normal
+  if (!target || (request.method !== "GET" && request.method !== "HEAD")) {
+    return withSecurityHeaders(await next());
+  }
 
   const accept = request.headers.get("accept") || "";
-  if (!prefersMarkdown(accept)) return next();
+  if (!prefersMarkdown(accept)) return withSecurityHeaders(await next());
 
   // Récupère l'asset statique .md servi par Pages via le binding ASSETS
   const assets = (env as { ASSETS: Fetcher }).ASSETS;
@@ -34,7 +40,7 @@ export const onRequest: PagesFunction = async (context) => {
       headers: { accept: "text/markdown" },
     }),
   );
-  if (!mdResponse.ok) return next();
+  if (!mdResponse.ok) return withSecurityHeaders(await next());
 
   const body = request.method === "HEAD" ? null : await mdResponse.text();
 
@@ -52,6 +58,16 @@ export const onRequest: PagesFunction = async (context) => {
 
   return new Response(body, { status: 200, headers });
 };
+
+function withSecurityHeaders(response: Response): Response {
+  const ct = response.headers.get("content-type") ?? "";
+  if (!ct.includes("text/html")) return response;
+  const headers = new Headers(response.headers);
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) {
+    if (!headers.has(k)) headers.set(k, v);
+  }
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
 
 function prefersMarkdown(accept: string): boolean {
   if (!accept) return false;
