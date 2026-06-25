@@ -43,10 +43,12 @@
         action="/api/contact"
         class="space-y-4"
       >
-        <!-- Honeypot field for spam protection -->
+        <!-- Honeypot classique -->
         <div class="hidden">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
         </div>
+        <!-- Honeypot temporel : injecté par JS à l'ouverture de la modal -->
+        <input type="hidden" name="_t" value="0" />
 
         <!-- Name Field -->
         <div>
@@ -153,7 +155,11 @@
     (window as any).openContactModal = function() {
       modal?.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
-      
+
+      // Honeypot temporel : timestamp injecté à l'ouverture (pas au chargement SSG)
+      const tInput = form?.querySelector('input[name="_t"]') as HTMLInputElement | null;
+      if (tInput) tInput.value = String(Date.now());
+
       // Focus first input
       setTimeout(() => {
         const nameInput = document.getElementById('name') as HTMLInputElement;
