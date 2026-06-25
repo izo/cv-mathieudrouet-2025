@@ -84,7 +84,7 @@ if [[ -n "$astro_asset" ]]; then
 else
   fail "_astro asset introuvable dans le HTML (build non présent ?)"
 fi
-check_header "/logos/*.png → immutable" "$BASE/logos/ddd.png" "" "cache-control.*immutable"
+check_header "/logos/*.png → immutable" "$BASE/logos/actual.png" "" "cache-control.*immutable"
 
 # ── 5. En-têtes de sécurité ─────────────────────────
 h1 "5. En-têtes de sécurité"
