@@ -5,7 +5,7 @@
 
 ## Backlog
 
-- [ ] [P2] **Auto-héberger Google Fonts** — télécharger IBM Plex Sans/Mono + Lora, servir depuis `/public/fonts/`, retirer les `<link>` Google Fonts et les `preconnect` · Gain : ~200-400ms LCP, privacy, conformité RGPD · `src/layouts/BaseLayout.astro`
+- [x] [P2] **Auto-héberger Google Fonts** — 24 fichiers woff2 (latin + latin-ext, 3 familles × 4 poids × 2 subsets) dans `public/fonts/`; `@font-face` dans `global.css`; `--font-lora` corrigé (`__lora_1fc044` → `'Lora'`); CSP allégée (suppression `fonts.googleapis.com`/`fonts.gstatic.com`); `<link rel="preload">` sur IBM Plex Sans 400 · `src/layouts/BaseLayout.astro`, `src/styles/global.css`, `public/_headers`
 
 ## Todo
 
