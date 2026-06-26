@@ -1,7 +1,7 @@
 ---
 name: "Mathieu Drouet"
-title: "Head of Product | AI-Augmented Delivery"
-description: "Product leader avec 10+ ans d'expérience en produits numériques B2B complexes. Spécialisé en discovery terrain, transformation de systèmes legacy et intégration IA dans des produits existants."
+title: "Head of Product & Product Builder | AI-Augmented Delivery"
+description: "Product leader qui conçoit ET livre le produit. 10+ ans en produits numériques B2B complexes : de la discovery terrain au prototype testable en quelques jours grâce à l'IA. Spécialisé en transformation de systèmes legacy, intégration d'agents IA dans des produits existants et management d'équipes cross-fonctionnelles."
 iconSet: "carbon"
 theme: "lumon"
 
@@ -32,16 +32,16 @@ theme: "lumon"
 **carbon:location-heart-filled** Full remote – 2025
 **Fondateur** | 2025 – en cours | [Company Link](https://regrets.app/)
 
-- Conception, développement et publication d'applications iOS, macOS et SaaS
-- Ulk — framework d'agents IA pour Claude Code (59+ agents, skills, rules)
+- Product Builder en solo : de l'idée au produit publié (App Store / SaaS) en autonomie complète — discovery, design, code et release
+- Ulk — framework d'agents IA pour Claude Code (59+ agents, skills, rules) qui industrialise le cycle idée → prototype → livraison
 - Stack : Next.js, Astro, SwiftUI, TypeScript, Tailwind CSS, Bun
 
 ### HEYA (Here You Art)
 **carbon:location-heart-filled** Bruxelles / full remote – 2025
 **Head of Product** | 2025 | [Company Link](https://hereyouart.com/)
 
-- Discovery complète : audit technique, analyse concurrentielle (12 plateformes), entretiens parties prenantes
-- Conception, architecture et développement en solo du MVP complet (profils, réseau, messagerie, offres, multilingue fr/nl/en) via Claude Code et [Ulk](https://izo.github.io/Ulk/), framework d'agents IA développé en propre — stack Next.js 15, TypeScript, Tailwind CSS, Drizzle ORM
+- De la discovery au MVP livré en solo : audit technique, analyse concurrentielle (12 plateformes), entretiens parties prenantes, puis conception, architecture et développement complet
+- MVP complet (profils, réseau, messagerie, offres, multilingue fr/nl/en) buildé via Claude Code et [Ulk](https://izo.github.io/Ulk/), framework d'agents IA développé en propre — stack Next.js 15, TypeScript, Tailwind CSS, Drizzle ORM
 - Roadmap stratégique 24 mois (acquisition, rétention, monétisation)
 - Prototypage d'intégrations LLM (Llama, Mistral) pour enrichissement de profils et modération, conformité RGPD
 
@@ -97,7 +97,8 @@ theme: "lumon"
 
 - Discovery terrain, roadmap produit, go-to-market
 - OKR, priorisation par impact business
-- Delivery management, équipes cross-fonctionnelles
+- Delivery management, équipes cross-fonctionnelles jusqu'à 12 personnes
+- Product Builder : capable de prototyper et livrer soi-même, sans dépendre d'une équipe pour valider une intuition
 
 ### IA appliquée au produit **carbon:ai-generate**
 **AI Product** | **carbon:task-star** Avancé
