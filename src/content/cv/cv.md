@@ -1,7 +1,7 @@
 ---
 name: "Mathieu Drouet"
 title: "Head of Product & Product Builder | AI-Augmented Delivery"
-description: "Product leader qui conçoit ET livre le produit. 10+ ans en produits numériques B2B complexes : de la discovery terrain au prototype testable en quelques jours grâce à l'IA. Spécialisé en transformation de systèmes legacy, intégration d'agents IA dans des produits existants et management d'équipes cross-fonctionnelles."
+description: "Product leader qui conçoit ET livre le produit. 10+ ans en B2B complexe : de la discovery terrain au prototype testable en quelques jours grâce à l'IA. Builder autant que manager d'équipes cross-fonctionnelles."
 iconSet: "carbon"
 theme: "lumon"
 
@@ -59,6 +59,7 @@ theme: "lumon"
 - Conception et lancement d'un microservice de gestion des comptes épargne-temps pour 500+ entreprises — automatisation via API Urssaf/MSA
 - Transformation digitale d'une application DAF legacy (15 ans) vers architecture cloud-native — discovery auprès des DAF et RH terrain
 - Management d'équipes cross-fonctionnelles de 12 personnes, Agile/Scrum
+- Premiers usages de LLM dans le delivery produit : accélération de la discovery, de la documentation et du prototypage
 - Delivery de 8 releases majeures, priorisation par valeur business
 
 ### Bookr.fm (Music Data Studio)
@@ -74,6 +75,7 @@ theme: "lumon"
 **Senior Product Manager, IoT** | 2018 – 2021 | [Company Link](https://www.fluidra.com/)
 
 - Migration de l'application principale vers Flutter — développement cross-platform iOS/Android
+- Premières intégrations d'IA / machine learning dans le produit IoT : exploitation des données capteurs (analyse de la qualité de l'eau, recommandations de traitement)
 - Discovery terrain auprès des installateurs, techniciens de maintenance et distributeurs
 - Refonte UX complète, réduction du churn mesurée
 - Lancement sur le marché américain, management d'une équipe internationale de 8 personnes / 3 fuseaux horaires

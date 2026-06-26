@@ -6,8 +6,8 @@
 export const siteConfig = {
   // Site Information
   name: "CV Mathieu Drouet",
-  title: "Mathieu Drouet — Head of Product | AI-Augmented Delivery",
-  description: "Head of Product avec 10+ ans d'expérience en produits numériques B2B complexes. Discovery terrain, modernisation de systèmes legacy, intégration IA. Fondateur de regrets.app.",
+  title: "Mathieu Drouet — Head of Product & Product Builder | AI-Augmented Delivery",
+  description: "Head of Product & Product Builder, 10+ ans en produits B2B complexes. Conçoit ET livre le produit : discovery terrain, modernisation de systèmes legacy, intégration d'agents IA. Fondateur de regrets.app.",
   url: "https://cv.drouet.io",
 
   // Personal Information
@@ -16,7 +16,7 @@ export const siteConfig = {
     email: "m@mdr.cool",
     phone: "+33767144874",
     location: "Lille, France",
-    jobTitle: "Head of Product | AI-Augmented Delivery",
+    jobTitle: "Head of Product & Product Builder | AI-Augmented Delivery",
     image: "/profile.jpg"
   },
   
@@ -40,6 +40,7 @@ export const siteConfig = {
   seo: {
     keywords: [
       "Head of Product",
+      "Product Builder",
       "Product Manager",
       "AI Product",
       "Mathieu Drouet",
