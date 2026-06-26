@@ -3,7 +3,6 @@
 [![Live Site](https://img.shields.io/badge/🌐_Live_Site-cv.drouet.io-brightgreen)](https://cv.drouet.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
 [![Astro](https://img.shields.io/badge/Astro-6.1.9+-orange)](https://astro.build/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4d2e69c4-79a9-4295-a56d-22f488a99b60/deploy-status)](https://app.netlify.com/projects/cvdrouet/deploys)
 
 > **Senior Product Manager** avec 10+ ans d'expérience en transformation digitale et gestion de produits numériques. Spécialisé dans l'architecture produit, l'UX/UI, et le leadership d'équipes techniques.
 
@@ -14,17 +13,17 @@
 - **[Tailwind CSS](https://tailwindcss.com/)** — Design system utilitaire
 - **[Vitest](https://vitest.dev/)** — Tests unitaires et d'intégration
 - **[Iconify](https://iconify.design/)** — Icônes multi-sets (Carbon, Tabler, Lucide...)
-- **Netlify** — Hébergement, CDN, Forms
+- **[Cloudflare Pages](https://pages.cloudflare.com/)** — Hébergement, CDN, Pages Functions
 
 ## Architecture
 
-Le contenu du CV est géré via un unique fichier Markdown (`src/content/cv/cv.md`) parsé dynamiquement au build. Le résultat est un site statique déployé sur Netlify.
+Le contenu du CV est géré via un unique fichier Markdown (`src/content/cv/cv.md`) parsé dynamiquement au build. Le résultat est un site statique déployé sur Cloudflare Pages.
 
 ```
 src/
 ├── components/
 │   ├── ExperienceCard.astro     # Carte expérience/compétence
-│   ├── ContactModal.astro       # Modal contact (Netlify Forms)
+│   ├── ContactModal.astro       # Modal contact (Cloudflare Pages Function)
 │   └── cv/                      # CVCard, CVGrid, CVSection
 ├── content/
 │   ├── cv/cv.md                 # Contenu du CV (source de vérité)
@@ -82,7 +81,7 @@ Typographie : IBM Plex Sans, IBM Plex Mono, Lora (Google Fonts)
 
 ## Sécurité
 
-- Content Security Policy (meta tag + Netlify headers)
+- Content Security Policy (meta tag + `public/_headers` Cloudflare Pages)
 - `X-Frame-Options: DENY`
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - Liens externes avec `rel="noopener noreferrer"`

@@ -39,10 +39,10 @@ Site web CV de Mathieu Drouet — Head of Product | AI-Augmented Delivery. Const
 ## Gotchas
 - **Fetch réseau au build** : `ExperienceCard.astro` et `CVCard.astro` fetchent des SVG depuis `api.iconify.design` pendant le build SSG — un timeout réseau fait échouer le build
 - **Formulaire de contact** : `ContactModal.astro` poste vers la Pages Function `functions/api/contact.ts` (envoi email via Resend). Nécessite les secrets `RESEND_API_KEY` / `CONTACT_TO` côté Cloudflare ; ne fonctionne pas avec `astro dev` seul (utiliser `wrangler pages dev`)
-- **Pages Functions (Cloudflare)** : `functions/_middleware.ts` gère la négociation Markdown (`Accept: text/markdown`) et `functions/api/contact.ts` le formulaire. Le répertoire `functions/` n'est pas analysé par `astro check`. Migration documentée dans `docs/07-migration-cloudflare-pages-2026-05-29.md`. L'edge function Netlify (`netlify/edge-functions/`) et `netlify.toml` restent présents jusqu'au cutover DNS (rollback)
+- **Pages Functions (Cloudflare)** : `functions/_middleware.ts` gère la négociation Markdown (`Accept: text/markdown`) et `functions/api/contact.ts` le formulaire. Le répertoire `functions/` n'est pas analysé par `astro check`
 - **Format Markdown strict** : `cvParser.ts` attend un format précis dans `cv.md` (icônes, rôles, périodes). Un écart de format drop silencieusement les entrées sans erreur
 - **Détection poste actuel** : `current: true` si la période contient l'année en cours (`new Date().getFullYear()`)
-- **Package manager : bun** — `bun install`, `bun run build`, `bun test`. Lock file : `bun.lockb`. Netlify utilise bun via `BUN_VERSION=1.3.13` dans `netlify.toml`.
+- **Package manager : bun** — `bun install`, `bun run build`, `bun test`. Lock file : `bun.lockb`. Cloudflare Pages détecte bun automatiquement via `bun.lockb`.
 - **Styles markdown custom** : les pages qui rendent du Markdown via `<Content />` doivent avoir leurs styles définis dans `global.css` (ex: `.prose-cv`). Aucun warning au build si la classe est absente — le rendu est juste brut.
 - **Touch target override** : le CSS impose `min-height: 44px` sur tous les `<a>`. Les liens inline (dans `.prose-cv` par ex.) doivent avoir `class="no-min-size"` pour éviter le `display: inline-flex` forcé.
 - **Astro v6 Content Layer API** : config des collections dans `src/content.config.ts` (racine de `src/`, pas `src/content/config.ts`). Utiliser `loader: glob({ pattern, base })` à la place de `type: 'content'`. `render()` est importé depuis `astro:content` — `entry.render()` n'existe plus.
